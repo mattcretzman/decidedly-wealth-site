@@ -38,6 +38,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);line-heigh
 a{color:var(--navy);text-decoration:none;transition:color .2s}
 a:hover{color:var(--navy-light)}
 h1,h2,h3,h4{font-family:var(--font-d);font-weight:500;letter-spacing:-.01em;line-height:1.2;color:var(--navy-deep)}
+h1 em,h2 em,h3 em{font-style:italic;font-weight:700}
 h1{font-size:clamp(36px,5vw,60px)}
 h2{font-size:clamp(28px,4vw,44px)}
 h3{font-size:clamp(20px,2.5vw,26px)}
@@ -55,9 +56,12 @@ section{padding:100px 0}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(3,38,102,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:all .4s}
 nav.s{background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:10px 0;box-shadow:0 1px 0 var(--border)}
 .ni{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
-.nl{font-family:var(--font-d);font-size:22px;font-weight:600;color:white;transition:color .4s}
-.nl em{font-style:normal;color:var(--accent)}
-nav.s .nl{color:var(--navy-deep)}
+.nl{display:flex;align-items:center;transition:all .4s}
+.nl img{height:32px;width:auto;transition:all .4s}
+.nl .logo-light{display:block}
+.nl .logo-dark{display:none}
+nav.s .nl .logo-light{display:none}
+nav.s .nl .logo-dark{display:block}
 .nk{display:flex;align-items:center;gap:32px;list-style:none}
 .nk a{font-size:14px;color:rgba(255,255,255,.85);transition:color .4s}
 .nk a:hover{color:white}
@@ -147,7 +151,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;background:var(--bg)}
 
 <nav id="nav">
   <div class="ni">
-    <a href="/" class="nl">Decidedly<em>.</em></a>
+    <a href="/" class="nl"><img src="images/decidedly-logo-white.png" alt="Decidedly Wealth Management" class="logo-light"><img src="images/decidedly-logo.png" alt="Decidedly Wealth Management" class="logo-dark"></a>
     <ul class="nk" id="nk">
       <li><a href="/who-we-are.html">Who We Are</a></li>
       <li><a href="/services.html">What We Do</a></li>
