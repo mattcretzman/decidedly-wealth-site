@@ -62,10 +62,35 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - Hamburger menu on desktop
 
 ## Current Build Status (as of Aug 3)
-- **12 pages LIVE:** homepage, who-we-are, services, contact, books, exit-planning, sangers-story, business-succession-planning, business-valuation, post-exit-wealth-management, family-business-advisory, cepa-explained
-- **Brand style guide applied:** bold+italic rule, real logo, hi-res photos from Drive
-- **Hi-res photos pulled from Google Drive** (Wealth.com Photoshoot folder in Decidedly Wealth): 3 distinct Sanger shots (sanger-smith-hires.jpg = smiling/CU0A3184, sanger-contemplative.jpg = serious/CU0A3177, sanger-relaxed.jpg = wider/CU0A3173). Family couch photo from 2025 photoshoot.
-- **Next to build:** Location pages (5: Fort Worth, Dallas, Southlake, Frisco, Arlington), Who We Serve, The Decision Lab (waiting on Sanger for details)
+- **21 pages LIVE** at decidedly-preview.vercel.app
+- **Brand style guide applied:** bold+italic rule (one word only, used sparingly), real logo, hi-res photos from Drive
+- **Hi-res photos pulled from Google Drive** (Wealth.com Photoshoot folder): 3 distinct Sanger shots (sanger-smith-hires.jpg = smiling/CU0A3184, sanger-contemplative.jpg = serious/CU0A3177, sanger-relaxed.jpg = wider/CU0A3173). Family couch photo from 2025 Photoshoot.
+- **Team photos:** Matt exported uniform circular crops from Canva (baked-in circle PNGs). Container uses border-radius:50%, object-fit:cover, no background/border. Don't try to process the PNGs with ImageMagick — the circles are baked into the pixels.
+- **Vercel auto-deploy is NOT working** — must run `vercel --prod` manually from the project directory after every push.
+- **Only page remaining:** The Decision Lab (waiting on Sanger for process details)
+
+### All 21 Pages
+1. index.html (homepage)
+2. who-we-are.html
+3. services.html
+4. contact.html
+5. books.html
+6. exit-planning.html (#1 SEO target + Google Ads landing page)
+7. sangers-story.html (editorial layout, unique feel)
+8. business-succession-planning.html
+9. business-valuation.html
+10. post-exit-wealth-management.html
+11. family-business-advisory.html
+12. cepa-explained.html
+13. exit-planning-fort-worth.html
+14. exit-planning-dallas.html
+15. exit-planning-southlake.html
+16. exit-planning-frisco.html
+17. exit-planning-arlington.html
+18. who-we-serve.html
+19. podcast.html
+20. privacy.html
+21. disclosures.html
 - **Keyword data:** ~/Desktop/_Client Projects/Sanger Smith/keyword-data.md (DataForSEO, real CPC/vol/competition)
 - **Site plan:** ~/Desktop/_Client Projects/Sanger Smith/site-plan.md (full 25+ page architecture)
 - **Content audit:** ~/Desktop/_Client Projects/Sanger Smith/content-dump/full-content-audit.md
