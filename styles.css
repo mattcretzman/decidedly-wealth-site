@@ -146,6 +146,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;background:var(--bg)}
 .nav-inner-page .nl .logo-dark{display:block!important}
 .nav-inner-page .nk a,.nav-inner-page.s .nk a{color:var(--text-2)!important}
 .nav-inner-page .nk a:hover,.nav-inner-page.s .nk a:hover{color:var(--navy)!important}
+.nav-inner-page .nk a.nc,.nav-inner-page.s .nk a.nc{color:white!important}
 .nav-inner-page .nt{color:var(--text)!important}
 
 /* Bio section */
@@ -215,4 +216,57 @@ footer{border-top:1px solid var(--border);padding:40px 0;background:var(--bg)}
 .ep-journey-content{padding-left:16px}
 .ep-journey-content h3{margin-bottom:8px}
 .ep-journey-content p{font-size:15px;color:var(--text-2);line-height:1.7;max-width:540px}
+
+/* Sanger's Story page */
+.story-opening{background:var(--bg);padding:180px 0 120px;border-bottom:1px solid var(--border)}
+.story-opening-inner{max-width:800px}
+.story-opening .ey{margin-bottom:20px}
+.story-opening h1{font-size:clamp(32px,4.5vw,54px);color:var(--navy-deep);line-height:1.25}
+.story-opening h1 em{color:var(--accent)}
+
+.story-split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.story-split-reverse{grid-template-columns:1fr 1fr}
+@media(max-width:768px){.story-split,.story-split-reverse{grid-template-columns:1fr;gap:32px}}
+
+.story-photo{border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.story-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.story-photo-tall{aspect-ratio:3/4}
+
+.story-text h2{margin-bottom:16px}
+.story-body{font-size:17px;color:var(--text-2);line-height:1.85;margin-bottom:24px}
+.story-body p{margin-bottom:16px}
+.story-body p:last-child{margin-bottom:0}
+
+.story-photo-break{max-width:1100px;margin:0 auto;padding:0 24px}
+.story-photo-break img{width:100%;height:auto;border-radius:var(--r);display:block;aspect-ratio:21/9;object-fit:cover}
+
+.story-quote-block{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:48px 40px;position:relative;align-self:center}
+.story-quote-mark{font-family:var(--font-d);font-size:80px;color:var(--accent);opacity:.2;line-height:1;position:absolute;top:12px;left:24px}
+.story-quote-block blockquote{font-family:var(--font-d);font-size:clamp(18px,2vw,22px);color:var(--navy-deep);line-height:1.6;font-weight:400;font-style:italic;position:relative;z-index:1}
+
+.story-approach{background:var(--navy-deep);color:white;padding:100px 0;position:relative;overflow:hidden}
+.story-approach::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(200,149,108,.06),transparent 60%);pointer-events:none}
+.story-approach-inner{max-width:700px;position:relative;z-index:1}
+.story-approach h2{color:white;font-size:clamp(32px,4vw,52px);margin-bottom:24px}
+.story-approach h2 em{color:var(--accent)}
+.story-approach p{font-size:19px;color:rgba(255,255,255,.65);line-height:1.85}
+
+.story-creds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.story-cred-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:36px 32px;transition:border-color .3s}
+.story-cred-card:hover{border-color:var(--border-hover)}
+.story-cred-abbr{font-family:var(--font-d);font-size:clamp(28px,3vw,36px);color:var(--navy-deep);font-weight:600;margin-bottom:8px}
+.story-cred-card h4{margin-bottom:10px;font-size:15px}
+.story-cred-card p{font-size:14px;color:var(--text-2);line-height:1.7}
+@media(max-width:768px){.story-creds-grid{grid-template-columns:1fr}}
+
+.story-books{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.story-book{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:start}
+.story-book-cover{border-radius:var(--r);overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1);border:1px solid var(--border)}
+.story-book-cover img{width:100%;height:auto;display:block}
+.story-book-info h3{margin-bottom:4px;font-size:18px}
+.story-book-info cite{font-style:italic}
+.story-book-sub{font-family:var(--font-m);font-size:11px;letter-spacing:.06em;color:var(--text-3);margin-bottom:12px}
+.story-book-info p{font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:16px}
+@media(max-width:768px){.story-books{grid-template-columns:1fr}.story-book{grid-template-columns:120px 1fr}}
+@media(max-width:480px){.story-book{grid-template-columns:1fr}.story-book-cover{max-width:160px}}
 
