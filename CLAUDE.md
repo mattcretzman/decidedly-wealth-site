@@ -62,9 +62,10 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - Hamburger menu on desktop
 
 ## Current Build Status (as of Aug 3)
-- **5 pages LIVE:** homepage, who-we-are, services, contact, books
-- **Brand style guide applied:** bold+italic rule, real logo, circular headshots
-- **Next page to build:** Exit Planning — #1 SEO target AND Google Ads landing page
+- **12 pages LIVE:** homepage, who-we-are, services, contact, books, exit-planning, sangers-story, business-succession-planning, business-valuation, post-exit-wealth-management, family-business-advisory, cepa-explained
+- **Brand style guide applied:** bold+italic rule, real logo, hi-res photos from Drive
+- **Hi-res photos pulled from Google Drive** (Wealth.com Photoshoot folder in Decidedly Wealth): 3 distinct Sanger shots (sanger-smith-hires.jpg = smiling/CU0A3184, sanger-contemplative.jpg = serious/CU0A3177, sanger-relaxed.jpg = wider/CU0A3173). Family couch photo from 2025 photoshoot.
+- **Next to build:** Location pages (5: Fort Worth, Dallas, Southlake, Frisco, Arlington), Who We Serve, The Decision Lab (waiting on Sanger for details)
 - **Keyword data:** ~/Desktop/_Client Projects/Sanger Smith/keyword-data.md (DataForSEO, real CPC/vol/competition)
 - **Site plan:** ~/Desktop/_Client Projects/Sanger Smith/site-plan.md (full 25+ page architecture)
 - **Content audit:** ~/Desktop/_Client Projects/Sanger Smith/content-dump/full-content-audit.md
