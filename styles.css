@@ -97,7 +97,8 @@ nav.s .nk a:hover{color:var(--navy)}
 .team{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
 .tm{text-align:center}
-.tm-photo{background:var(--warm);border-radius:50%;aspect-ratio:1;margin-bottom:16px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);overflow:hidden;max-width:220px;margin-left:auto;margin-right:auto}
+.tm-photo{background:var(--warm);border-radius:50%;aspect-ratio:1;margin-bottom:16px;border:1px solid var(--border);overflow:hidden;max-width:220px;margin-left:auto;margin-right:auto}
+.tm-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .tm-ph{font-family:var(--font-m);font-size:10px;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase}
 .tm h4{font-size:17px;margin-bottom:2px}
 .tm-role{font-size:13px;color:var(--text-2)}
@@ -151,7 +152,8 @@ footer{border-top:1px solid var(--border);padding:40px 0;background:var(--bg)}
 
 /* Bio section */
 .bio-grid{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start;margin-bottom:60px}
-.bio-photo{background:var(--warm);border-radius:50%;aspect-ratio:1;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.bio-photo{background:var(--warm);border-radius:50%;aspect-ratio:1;border:1px solid var(--border);overflow:hidden}
+.bio-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .bio-name{font-size:28px;margin-bottom:4px}
 .bio-role{font-size:15px;color:var(--text-2);margin-bottom:8px}
 .bio-creds{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;color:var(--accent);margin-bottom:20px;display:flex;gap:12px;flex-wrap:wrap}
