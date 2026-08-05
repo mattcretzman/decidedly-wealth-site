@@ -68,7 +68,9 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - **Service page images:** 7 AI-generated (Gemini) editorial photos across services.html, exit-planning.html, business-succession-planning.html, business-valuation.html, post-exit-wealth-management.html. All named `ai-*.jpg`, 1200px wide.
 - **Podcast section:** YouTube cover art (Sanger + Shawn at mics) replaces standalone logo. File: podcast-cover.jpg (600x600 from YouTube channel avatar).
 - **Books page:** "About the Authors" section uses podcast-cover.jpg (both authors).
-- **Remaining old photos:** sanger-contemplative.jpg on exit-planning-dallas.html + family-business-advisory.html; family-couch.jpg on podcast.html + sangers-story.html. Emailed Sanger Aug 5 asking if he wants these swapped. Awaiting reply.
+- **All old photos replaced:** Sanger replied "update them all so I have a buzz cut" — done. Zero old headshots remain. sanger-brick.jpg on all solo Sanger spots, podcast-cover.jpg on all father-son spots.
+- **All pages wired up:** No orphaned pages. Footer has Podcast + Books + Privacy + Disclosures. Services page links to sub-pages. Exit planning links to succession/valuation/CEPA. All 5 geo pages have "Your Advisor" section with photo.
+- **Google Ads:** Campaign plan drafted in Drive (Doc ID: 1YVyehnVgoVsjMTxWmFgbvbC2z4_gb1NUx5dljAGvtR4). API access confirmed (account 8793593741, ~/google-ads.yaml re-authed Aug 5). Blocked on Sanger's card.
 - **Vercel auto-deploy is NOT working** — must run `vercel --prod` manually from the project directory after every push.
 - **Only page remaining:** The Decision Lab (waiting on Sanger for process details)
 
