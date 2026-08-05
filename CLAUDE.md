@@ -61,11 +61,14 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - Cookie-cutter footer with 47 links
 - Hamburger menu on desktop
 
-## Current Build Status (as of Aug 3)
+## Current Build Status (as of Aug 5)
 - **21 pages LIVE** at decidedly-preview.vercel.app
 - **Brand style guide applied:** bold+italic rule (one word only, used sparingly), real logo, hi-res photos from Drive
-- **Hi-res photos pulled from Google Drive** (Wealth.com Photoshoot folder): 3 distinct Sanger shots (sanger-smith-hires.jpg = smiling/CU0A3184, sanger-contemplative.jpg = serious/CU0A3177, sanger-relaxed.jpg = wider/CU0A3173). Family couch photo from 2025 Photoshoot.
-- **Team photos:** Matt exported uniform circular crops from Canva (baked-in circle PNGs). Container uses border-radius:50%, object-fit:cover, no background/border. Don't try to process the PNGs with ImageMagick — the circles are baked into the pixels.
+- **Team photos:** Brick wall photos from Light_Edits Drive folder, cropped to 600x600 square. CSS handles circular clipping via `.tm-photo img` and `.bio-photo img` rules (object-fit:cover, display:block). Containers no longer use display:flex. Sanger=brick-5, RJ=brick-15, Wyatt=brick-24 (wider framing). Dori still uses old 320x320 circular PNG.
+- **Service page images:** 7 AI-generated (Gemini) editorial photos across services.html, exit-planning.html, business-succession-planning.html, business-valuation.html, post-exit-wealth-management.html. All named `ai-*.jpg`, 1200px wide.
+- **Podcast section:** YouTube cover art (Sanger + Shawn at mics) replaces standalone logo. File: podcast-cover.jpg (600x600 from YouTube channel avatar).
+- **Books page:** "About the Authors" section uses podcast-cover.jpg (both authors).
+- **Remaining old photos:** sanger-contemplative.jpg on exit-planning-dallas.html + family-business-advisory.html; family-couch.jpg on podcast.html + sangers-story.html. Emailed Sanger Aug 5 asking if he wants these swapped. Awaiting reply.
 - **Vercel auto-deploy is NOT working** — must run `vercel --prod` manually from the project directory after every push.
 - **Only page remaining:** The Decision Lab (waiting on Sanger for process details)
 
