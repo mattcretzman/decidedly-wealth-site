@@ -38,7 +38,7 @@
       <div class="ey" style="color:var(--accent);margin-bottom:16px">Business Valuation</div>
       <h1>How much is your<br>business <em>worth?</em></h1>
       <p class="hs">Most business owners don't know the answer &mdash; and the gap between what they think and what the market says can be millions. We help you understand where value lives in your business and how to grow it.</p>
-      <a href="/contact.html" class="bp">Book a Free Conversation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a href="#talk" class="bp">Book a Free Conversation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
     </div>
   </div>
 </section>
@@ -99,22 +99,50 @@
           <p>We help you understand where value lives in your business and how to maximize it before you transition. This isn't about a one-time appraisal &mdash; it's about building a plan to grow and protect the value you've created.</p>
           <p>As a CEPA-certified advisor, Sanger Smith has the specialized training to guide you through the financial, operational, and personal dimensions of business value &mdash; helping you make decisions that increase what your business is worth to the right buyer or successor.</p>
         </div>
-        <a href="/contact.html" class="bp" style="margin-top:24px">Talk to an Advisor <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a href="#talk" class="bp" style="margin-top:24px">Talk to an Advisor <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-final">
-  <div class="ctn" style="position:relative;z-index:1">
-    <div class="ey r" style="color:var(--accent);text-align:center">Start the Conversation</div>
-    <h2 class="r">Know your number before<br>you need <em>it.</em></h2>
-    <p class="cta-sub r">Understanding your business value is the first step toward a confident exit. Send us a quick email or give us a call &mdash; your first conversation is free.</p>
-    <a href="/contact.html" class="bp r">Book a Free Conversation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    <div class="cta-note r" style="margin-top:12px">(817) 615-9711 &middot; Fort Worth, TX</div>
+<!-- INLINE FORM -->
+<section id="talk" style="background:var(--navy-deep);color:white;padding:80px 0">
+  <div class="ctn">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start" class="r">
+      <div>
+        <div class="ey" style="color:var(--accent)">Start the Conversation</div>
+        <h2 style="color:white;margin-bottom:16px">Know your number before you need <em style="color:var(--accent)">it.</em></h2>
+        <p style="color:rgba(255,255,255,.6);font-size:17px;line-height:1.7;margin-bottom:24px">Understanding your business value is the first step toward a confident exit. Your first conversation is free.</p>
+        <div style="font-size:15px;color:rgba(255,255,255,.5);line-height:2">
+          <a href="tel:8176159711" style="color:rgba(255,255,255,.7);font-size:18px;font-weight:500">(817) 615-9711</a><br>
+          <a href="mailto:contact@decidedlywealth.com" style="color:rgba(255,255,255,.5)">contact@decidedlywealth.com</a><br>
+          Fort Worth, TX
+        </div>
+      </div>
+      <div class="contact-form r" style="background:white;color:var(--text)">
+        <h3 style="color:var(--navy-deep)">Book a free conversation.</h3>
+        <form>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="form-group"><label for="first">First Name</label><input type="text" id="first" name="first" required></div>
+            <div class="form-group"><label for="last">Last Name</label><input type="text" id="last" name="last" required></div>
+          </div>
+          <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
+          <div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" name="phone"></div>
+          <div class="form-group"><label for="message">How can we help?</label><textarea id="message" name="message" placeholder="Tell us about your business and what you'd like to know." style="min-height:80px"></textarea></div>
+          <input type="hidden" name="source" value="business-valuation">
+          <button type="submit" class="form-submit" style="width:100%;justify-content:center">Book My Free Conversation <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
+
+<div id="sticky-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--navy-deep);padding:12px 16px;box-shadow:0 -2px 12px rgba(0,0,0,.15)">
+  <div style="display:flex;gap:12px;max-width:500px;margin:0 auto">
+    <a href="tel:8176159711" style="flex:1;padding:12px;background:white;color:var(--navy-deep);border-radius:var(--r);text-align:center;font-weight:600;font-size:14px;text-decoration:none">Call Now</a>
+    <a href="#talk" style="flex:1;padding:12px;background:var(--accent);color:white;border-radius:var(--r);text-align:center;font-weight:600;font-size:14px;text-decoration:none">Book Free Consult</a>
+  </div>
+</div>
 
 <footer>
   <div class="ctn">
@@ -134,8 +162,14 @@
 </footer>
 
 <script>
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>40));
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('s',scrollY>40);
+  const s=document.getElementById('sticky-cta');
+  if(window.innerWidth<=768){s.style.display=scrollY>600?'block':'none'}
+});
 if(!CSS.supports('animation-timeline','view()')){const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});document.querySelectorAll('.r').forEach(el=>o.observe(el))}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
 </script>
+<style>@media(min-width:769px){#sticky-cta{display:none!important}}@media(max-width:768px){#talk [style*="grid-template-columns"]{grid-template-columns:1fr!important}}</style>
 </body>
 </html>
