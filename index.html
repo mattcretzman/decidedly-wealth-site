@@ -52,25 +52,7 @@ section{padding:100px 0}
 @supports not (animation-timeline:view()){.r{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.r.v{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.r{animation:none!important;opacity:1!important;transform:none!important}}
 
-/* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(3,38,102,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:all .4s}
-nav.s{background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:10px 0;box-shadow:0 1px 0 var(--border)}
-.ni{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
-.nl{display:flex;align-items:center;transition:all .4s}
-.nl img{height:32px;width:auto;transition:all .4s}
-.nl .logo-light{display:block}
-.nl .logo-dark{display:none}
-nav.s .nl .logo-light{display:none}
-nav.s .nl .logo-dark{display:block}
-.nk{display:flex;align-items:center;gap:32px;list-style:none}
-.nk a{font-size:14px;color:rgba(255,255,255,.85);transition:color .4s}
-.nk a:hover{color:white}
-nav.s .nk a{color:var(--text-2)}
-nav.s .nk a:hover{color:var(--navy)}
-.nc{font-size:13px!important;font-weight:500!important;color:white!important;background:var(--navy);padding:10px 22px;border-radius:var(--r);transition:background .2s!important}
-.nc:hover{background:var(--navy-light)!important}
-.nt{display:none;background:none;border:none;color:var(--text);cursor:pointer;font-size:24px}
-@media(max-width:768px){.nk{display:none}.nt{display:block}.nk.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:white;padding:20px;gap:16px;box-shadow:0 8px 24px rgba(0,0,0,.08)}}
+/* Nav — see styles.css */
 
 /* Hero */
 .hero{min-height:90vh;display:flex;align-items:center;background:var(--navy-deep);color:white;padding-top:80px;position:relative;overflow:hidden}
@@ -153,13 +135,27 @@ footer{border-top:1px solid var(--border);padding:40px 0;background:var(--bg)}
   <div class="ni">
     <a href="/" class="nl"><img src="images/decidedly-logo-white.png" alt="Decidedly Wealth Management" class="logo-light"><img src="images/decidedly-logo.png" alt="Decidedly Wealth Management" class="logo-dark"></a>
     <ul class="nk" id="nk">
-      <li><a href="/who-we-are.html">Who We Are</a></li>
-      <li><a href="/services.html">What We Do</a></li>
-      <li><a href="/contact.html">Contact</a></li>
+      <li class="dd"><a href="/who-we-are.html">Who We Are</a>
+        <ul class="dd-menu">
+          <li><a href="/sangers-story.html">Sanger's Story</a></li>
+          <li><a href="/who-we-serve.html">Who We Serve</a></li>
+          <li><a href="/cepa-explained.html">CEPA Explained</a></li>
+        </ul>
+      </li>
+      <li class="dd"><a href="/services.html">What We Do</a>
+        <ul class="dd-menu">
+          <li><a href="/exit-planning.html">Exit Planning</a></li>
+          <li><a href="/business-succession-planning.html">Business Succession</a></li>
+          <li><a href="/business-valuation.html">Business Valuation</a></li>
+          <li><a href="/post-exit-wealth-management.html">Post-Exit Wealth</a></li>
+          <li><a href="/family-business-advisory.html">Family Business Advisory</a></li>
+        </ul>
+      </li>
       <li><a href="/books.html">Free Books</a></li>
+      <li><a href="/client-portal.html">Client Login</a></li>
       <li><a href="/contact.html" class="nc">Get in Touch</a></li>
     </ul>
-    <button class="nt" onclick="document.getElementById('nk').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <button class="nt" aria-label="Menu">&#9776;</button>
   </div>
 </nav>
 
@@ -291,7 +287,10 @@ footer{border-top:1px solid var(--border);padding:40px 0;background:var(--bg)}
         <div class="fa">6100 Camp Bowie Blvd, Suite 24<br>Fort Worth, TX 76116<br>(817) 615-9711</div>
       </div>
       <div class="fa" style="text-align:right">
-        <a href="/who-we-are.html">Who We Are</a> · <a href="/services.html">What We Do</a> · <a href="/contact.html">Contact</a> · <a href="/podcast.html">Podcast</a> · <a href="/books.html">Books</a><br><a href="mailto:contact@decidedlywealth.com">contact@decidedlywealth.com</a><br>
+        <a href="/who-we-are.html">Who We Are</a> · <a href="/services.html">What We Do</a> · <a href="/contact.html">Contact</a> · <a href="/podcast.html">Podcast</a> · <a href="/books.html">Books</a> · <a href="/client-portal.html">Client Portal</a><br>
+        <span style="font-size:11px"><a href="/exit-planning.html">Exit Planning</a> · <a href="/business-succession-planning.html">Succession</a> · <a href="/business-valuation.html">Valuation</a> · <a href="/post-exit-wealth-management.html">Post-Exit Wealth</a> · <a href="/family-business-advisory.html">Family Advisory</a></span><br>
+        <span style="font-size:11px"><a href="/sangers-story.html">Sanger's Story</a> · <a href="/who-we-serve.html">Who We Serve</a> · <a href="/cepa-explained.html">CEPA Explained</a></span><br>
+        <a href="mailto:contact@decidedlywealth.com">contact@decidedlywealth.com</a><br>
         <a href="https://linkedin.com/in/sanger-d-smith-b1690647/">LinkedIn</a> &middot;
         <a href="https://youtube.com/@decidedlypodcast">YouTube</a><br><span style="font-size:11px"><a href="/exit-planning-fort-worth.html">Fort Worth</a> · <a href="/exit-planning-dallas.html">Dallas</a> · <a href="/exit-planning-southlake.html">Southlake</a> · <a href="/exit-planning-frisco.html">Frisco</a> · <a href="/exit-planning-arlington.html">Arlington</a></span> &middot;
         <a href="#" id="portal-link">Client Portal</a>
@@ -302,9 +301,10 @@ footer{border-top:1px solid var(--border);padding:40px 0;background:var(--bg)}
 </footer>
 
 <script>
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>40));
-if(!CSS.supports('animation-timeline','view()')){const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});document.querySelectorAll('.r').forEach(el=>o.observe(el))}
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('nk').classList.remove('open')})});
+)
+const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('nk').classList.remove('open')});});
+
 </script>
+<script src="nav.js"></script>
 </body>
 </html>
