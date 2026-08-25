@@ -3,6 +3,7 @@ const { google } = require('googleapis');
 const SHEET_ID = process.env.DWM_BOOK_SHEET_ID;
 const SA_KEY = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY || '{}');
 const RESEND_KEY = process.env.RESEND_API_KEY;
+const LEVITATE_KEY = process.env.LEVITATE_API_KEY;
 
 const TEAM = [
   'sanger@decidedlywealth.com',
@@ -82,6 +83,25 @@ module.exports = async function handler(req, res) {
     await notifyTeam(firstName, lastName, email, source || 'books-page');
   } catch (err) {
     console.error('Notification error:', err.message);
+  }
+
+  try {
+    if (LEVITATE_KEY) {
+      const tag = source === 'blog-popup' ? 'Newsletter Signup' : 'Book Download';
+      await fetch('https://api.levitate.ai/public/v1/Contacts', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${LEVITATE_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: firstName || '',
+          lastName: lastName || '',
+          emailAddresses: [{ label: 'Primary', value: email }],
+          tags: ['Website Lead', tag],
+          visibility: 'shared'
+        })
+      });
+    }
+  } catch (err) {
+    console.error('Levitate error:', err.message);
   }
 
   return res.status(200).json({ ok: true });
