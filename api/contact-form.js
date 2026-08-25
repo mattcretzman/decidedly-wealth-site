@@ -11,19 +11,24 @@ const TEAM = [
   'dori@decidedlywealth.com'
 ];
 
-async function notifyTeam(firstName, lastName, email, source) {
+async function notifyTeam({ firstName, lastName, email, phone, interest, message, source }) {
   if (!RESEND_KEY) return;
   const name = [firstName, lastName].filter(Boolean).join(' ') || 'Unknown';
-  const label = source === 'blog-popup' ? 'Newsletter Signup' : 'Book Download';
+  const rows = [
+    ['Name', name],
+    ['Email', email],
+    phone && ['Phone', phone],
+    interest && ['Interest', interest],
+    message && ['Message', message],
+    ['Source', source]
+  ].filter(Boolean);
 
   const html = `
     <div style="font-family:sans-serif;max-width:560px">
-      <h2 style="color:#1a2744;margin-bottom:4px">${label}</h2>
-      <p style="color:#666;margin-top:0">Someone just signed up on decidedlywealth.com</p>
+      <h2 style="color:#1a2744;margin-bottom:4px">New Website Lead</h2>
+      <p style="color:#666;margin-top:0">Someone just reached out through decidedlywealth.com</p>
       <table style="width:100%;border-collapse:collapse">
-        <tr><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;color:#1a2744;width:100px">Name</td><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#333">${name}</td></tr>
-        <tr><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;color:#1a2744">Email</td><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#333">${email}</td></tr>
-        <tr><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;color:#1a2744">Source</td><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#333">${source}</td></tr>
+        ${rows.map(([k, v]) => `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;color:#1a2744;width:100px;vertical-align:top">${k}</td><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#333">${v}</td></tr>`).join('')}
       </table>
       <p style="color:#999;font-size:12px;margin-top:16px">Reply directly to ${email} to follow up.</p>
     </div>`;
@@ -35,7 +40,7 @@ async function notifyTeam(firstName, lastName, email, source) {
       from: 'Decidedly Wealth <matt@stormbreakerdigital.com>',
       to: TEAM,
       reply_to: email,
-      subject: `${label}: ${name}`,
+      subject: `New Lead: ${name} — ${interest || source}`,
       html
     })
   });
@@ -46,7 +51,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, source } = req.body;
+  const { firstName, lastName, email, phone, interest, message, source } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email required' });
   }
@@ -62,7 +67,7 @@ module.exports = async function handler(req, res) {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: SHEET_ID,
-      range: 'Sheet1!A:E',
+      range: 'Sheet1!A:H',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [[
@@ -70,7 +75,10 @@ module.exports = async function handler(req, res) {
           firstName || '',
           lastName || '',
           email,
-          source || 'books-page'
+          phone || '',
+          interest || '',
+          message || '',
+          source || 'contact-form'
         ]]
       }
     });
@@ -79,7 +87,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    await notifyTeam(firstName, lastName, email, source || 'books-page');
+    await notifyTeam({ firstName, lastName, email, phone, interest, message, source: source || 'contact-form' });
   } catch (err) {
     console.error('Notification error:', err.message);
   }
