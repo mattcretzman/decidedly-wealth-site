@@ -71,7 +71,9 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - **All old photos replaced:** Sanger replied "update them all so I have a buzz cut" — done. Zero old headshots remain. sanger-brick.jpg on all solo Sanger spots, podcast-cover.jpg on all father-son spots.
 - **All pages wired up:** No orphaned pages. Footer has Podcast + Books + Privacy + Disclosures. Services page links to sub-pages. Exit planning links to succession/valuation/CEPA. All 5 geo pages have "Your Advisor" section with photo.
 - **Google Ads:** Campaign plan drafted in Drive (Doc ID: 1YVyehnVgoVsjMTxWmFgbvbC2z4_gb1NUx5dljAGvtR4). API access confirmed (account 8793593741, ~/google-ads.yaml re-authed Aug 5). Blocked on Sanger's card.
-- **Vercel auto-deploy is NOT working** — must run `vercel --prod` manually from the project directory after every push.
+- **Vercel auto-deploy is WORKING** — push to main auto-deploys to decidedlywealth.com in ~30s (vercel.json added Aug 24).
+- **GitHub repo is PUBLIC** (required for RJ's Claude.ai MCP connector)
+- **RJ Finley (richfin3)** has read+write access via Claude.ai GitHub MCP connector. He commits to his fork and opens PRs.
 - **Only page remaining:** The Decision Lab (waiting on Sanger for process details)
 
 ### All 21 Pages
