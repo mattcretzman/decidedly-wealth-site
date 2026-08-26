@@ -41,7 +41,7 @@ async function notifyTeam({ firstName, lastName, email, phone, interest, message
       from: 'Decidedly Wealth <matt@stormbreakerdigital.com>',
       to: TEAM,
       reply_to: email,
-      subject: `New Lead: ${name} — ${interest || source}`,
+      subject: `New Lead: ${name} - ${interest || source}`,
       html
     })
   });
