@@ -26,7 +26,7 @@ async function getAccessToken() {
 
 async function gaqlQuery(token, query) {
   const resp = await fetch(
-    `https://googleads.googleapis.com/v17/customers/${CID}/googleAds:searchStream`,
+    `https://googleads.googleapis.com/v23/customers/${CID}/googleAds:searchStream`,
     {
       method: 'POST',
       headers: {
