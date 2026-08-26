@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>DWM Ops Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,system-ui,sans-serif;background:#0f1419;color:#e1e5ea;min-height:100vh}
+.gate{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.gate-box{background:#1a2030;padding:40px;border-radius:12px;text-align:center;border:1px solid #2a3040}
+.gate-box h2{color:#d4a243;margin-bottom:16px;font-size:18px}
+.gate-box input{padding:12px 16px;background:#0f1419;border:1px solid #2a3040;border-radius:6px;color:#e1e5ea;font-size:15px;width:240px;text-align:center}
+.gate-box input:focus{outline:none;border-color:#d4a243}
+.gate-box button{display:block;width:100%;margin-top:12px;padding:12px;background:#d4a243;color:#0f1419;border:none;border-radius:6px;font-weight:700;font-size:14px;cursor:pointer}
+.gate-box button:hover{background:#c49533}
+.gate-box .err{color:#ef4444;font-size:13px;margin-top:8px;display:none}
+#app{display:none;padding:24px;max-width:1100px;margin:0 auto}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.header h1{color:#d4a243;font-size:22px}
+.header .meta{color:#6b7280;font-size:13px}
+.refresh{background:#1a2744;color:#d4a243;border:1px solid #2a3040;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:13px}
+.refresh:hover{background:#243050}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.card{background:#1a2030;padding:20px;border-radius:10px;border:1px solid #2a3040;text-align:center}
+.card .val{font-size:28px;font-weight:700;color:#fff}
+.card .label{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+.card .delta{font-size:13px;margin-top:4px}
+.up{color:#22c55e}
+.down{color:#ef4444}
+.flat{color:#6b7280}
+.section{background:#1a2030;border-radius:10px;border:1px solid #2a3040;margin-bottom:24px;overflow:hidden}
+.section h2{padding:16px 20px;font-size:14px;color:#d4a243;border-bottom:1px solid #2a3040;text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{padding:10px 16px;text-align:left;color:#6b7280;font-size:11px;text-transform:uppercase;letter-spacing:.05em;background:#151a24}
+td{padding:10px 16px;border-top:1px solid #1e2636}
+tr:hover td{background:#151a24}
+.r{text-align:right}
+.loading{text-align:center;padding:60px;color:#6b7280}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.tag-green{background:#052e16;color:#22c55e}
+.tag-red{background:#2d0a0a;color:#ef4444}
+.tag-amber{background:#2d1f0a;color:#f59e0b}
+.tag-blue{background:#0a1a2d;color:#3b82f6}
+@media(max-width:768px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  table{font-size:12px}
+  th,td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <h2>DWM Ops Dashboard</h2>
+    <input type="password" id="pw" placeholder="Access key" autofocus>
+    <button onclick="auth()">Enter</button>
+    <div class="err" id="err">Wrong key</div>
+  </div>
+</div>
+
+<div id="app">
+  <div class="header">
+    <div>
+      <h1>Decidedly Wealth - Ads Dashboard</h1>
+      <div class="meta" id="generated"></div>
+    </div>
+    <button class="refresh" onclick="loadData()">Refresh</button>
+  </div>
+
+  <div class="cards" id="cards">
+    <div class="loading">Loading...</div>
+  </div>
+
+  <div class="section" id="campaigns-section">
+    <h2>Campaign Breakdown - This Week</h2>
+    <div id="campaigns"><div class="loading">Loading...</div></div>
+  </div>
+
+  <div class="section" id="leads-section">
+    <h2>Recent Leads</h2>
+    <div id="leads"><div class="loading">Loading...</div></div>
+  </div>
+
+  <div class="section" id="terms-section">
+    <h2>Top Search Terms (30 days)</h2>
+    <div id="terms"><div class="loading">Loading...</div></div>
+  </div>
+</div>
+
+<script>
+var KEY='';
+function auth(){
+  KEY=document.getElementById('pw').value;
+  fetch('/api/ads-data?key='+encodeURIComponent(KEY))
+    .then(function(r){
+      if(r.status===401){document.getElementById('err').style.display='block';return}
+      document.getElementById('gate').style.display='none';
+      document.getElementById('app').style.display='block';
+      return r.json();
+    })
+    .then(function(d){if(d)render(d)});
+}
+document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')auth()});
+
+function loadData(){
+  fetch('/api/ads-data?key='+encodeURIComponent(KEY))
+    .then(function(r){return r.json()})
+    .then(render);
+}
+
+function pct(c,p){
+  if(p===0)return c>0?{txt:'+new',cls:'up'}:{txt:'-',cls:'flat'};
+  var v=Math.round(((c-p)/p)*100);
+  return{txt:(v>=0?'+':'')+v+'%',cls:v>0?'up':v<0?'down':'flat'};
+}
+
+function render(d){
+  var tw=d.thisWeek.totals,lw=d.lastWeek.totals;
+  document.getElementById('generated').textContent='Last updated: '+new Date(d.generated).toLocaleString();
+
+  // Cards
+  var metrics=[
+    {val:'$'+tw.cost.toFixed(0),label:'Spend',d:pct(tw.cost,lw.cost),invert:true},
+    {val:tw.clicks,label:'Clicks',d:pct(tw.clicks,lw.clicks)},
+    {val:tw.conversions,label:'Leads',d:pct(tw.conversions,lw.conversions)},
+    {val:tw.costPerConv>0?'$'+tw.costPerConv.toFixed(0):'-',label:'Cost/Lead',d:tw.costPerConv>0?pct(tw.costPerConv,lw.costPerConv):{txt:'-',cls:'flat'},invert:true}
+  ];
+  var ch='';
+  metrics.forEach(function(m){
+    var cls=m.invert?(m.d.cls==='up'?'down':m.d.cls==='down'?'up':'flat'):m.d.cls;
+    ch+='<div class="card"><div class="val">'+m.val+'</div><div class="label">'+m.label+'</div><div class="delta '+cls+'">'+m.d.txt+' vs last week</div></div>';
+  });
+  document.getElementById('cards').innerHTML=ch;
+
+  // Campaigns
+  var camps=d.thisWeek.campaigns;
+  var ct='<table><tr><th>Campaign</th><th class="r">Spend</th><th class="r">Clicks</th><th class="r">Impr</th><th class="r">CTR</th><th class="r">Leads</th><th class="r">CPC</th><th class="r">Cost/Lead</th></tr>';
+  Object.keys(camps).forEach(function(n){
+    var c=camps[n];
+    ct+='<tr><td>'+n+'</td><td class="r">$'+c.cost.toFixed(2)+'</td><td class="r">'+c.clicks+'</td><td class="r">'+c.impressions+'</td><td class="r">'+c.ctr+'%</td><td class="r">'+c.conversions+'</td><td class="r">'+(c.cpc>0?'$'+c.cpc.toFixed(2):'-')+'</td><td class="r">'+(c.costPerConv>0?'$'+c.costPerConv.toFixed(0):'-')+'</td></tr>';
+  });
+  // Totals row
+  ct+='<tr style="font-weight:700;border-top:2px solid #2a3040"><td>Total</td><td class="r">$'+tw.cost.toFixed(2)+'</td><td class="r">'+tw.clicks+'</td><td class="r">'+tw.impressions+'</td><td class="r">'+tw.ctr+'%</td><td class="r">'+tw.conversions+'</td><td class="r">'+(tw.cpc>0?'$'+tw.cpc.toFixed(2):'-')+'</td><td class="r">'+(tw.costPerConv>0?'$'+tw.costPerConv.toFixed(0):'-')+'</td></tr>';
+  ct+='</table>';
+  document.getElementById('campaigns').innerHTML=ct;
+
+  // Leads
+  var leads=d.leads;
+  if(leads.length===0){
+    document.getElementById('leads').innerHTML='<p style="padding:20px;color:#6b7280;text-align:center">No leads yet</p>';
+  } else {
+    var lt='<table><tr><th>Name</th><th>Email</th><th>Phone</th><th>Source</th><th>Date</th></tr>';
+    leads.forEach(function(l){
+      var src=l.source||'';
+      var tagCls=src.indexOf('exit')>=0?'tag-green':src.indexOf('book')>=0?'tag-blue':src.indexOf('blog')>=0?'tag-amber':'tag-blue';
+      lt+='<tr><td>'+l.firstName+' '+l.lastName+'</td><td>'+l.email+'</td><td>'+(l.phone||'-')+'</td><td><span class="tag '+tagCls+'">'+src+'</span></td><td>'+new Date(l.date).toLocaleDateString()+'</td></tr>';
+    });
+    lt+='</table>';
+    document.getElementById('leads').innerHTML=lt;
+  }
+
+  // Search terms
+  var terms=d.searchTerms||[];
+  if(terms.length===0){
+    document.getElementById('terms').innerHTML='<p style="padding:20px;color:#6b7280;text-align:center">No search term data yet (takes 1-2 days)</p>';
+  } else {
+    var st='<table><tr><th>Search Term</th><th>Campaign</th><th class="r">Impr</th><th class="r">Clicks</th><th class="r">Cost</th><th class="r">CTR</th></tr>';
+    terms.forEach(function(t){
+      var ctr=t.impressions>0?((t.clicks/t.impressions)*100).toFixed(1)+'%':'0%';
+      var flag=t.clicks===0&&t.impressions>5?' style="color:#ef4444"':'';
+      st+='<tr'+flag+'><td>'+t.term+'</td><td>'+t.campaign+'</td><td class="r">'+t.impressions+'</td><td class="r">'+t.clicks+'</td><td class="r">$'+t.cost.toFixed(2)+'</td><td class="r">'+ctr+'</td></tr>';
+    });
+    st+='</table>';
+    document.getElementById('terms').innerHTML=st;
+  }
+}
+</script>
+</body>
+</html>
