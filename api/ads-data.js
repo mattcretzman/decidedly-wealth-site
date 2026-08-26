@@ -21,6 +21,9 @@ async function getAccessToken() {
     })
   });
   const data = await resp.json();
+  if (!data.access_token) {
+    throw new Error('Token exchange failed: ' + JSON.stringify(data));
+  }
   return data.access_token;
 }
 
@@ -38,7 +41,11 @@ async function gaqlQuery(token, query) {
       body: JSON.stringify({ query })
     }
   );
-  const data = await resp.json();
+  const text = await resp.text();
+  if (!resp.ok) {
+    throw new Error('Google Ads API ' + resp.status + ': ' + text.substring(0, 200));
+  }
+  const data = JSON.parse(text);
   if (!data || !data[0] || !data[0].results) return [];
   return data[0].results;
 }
