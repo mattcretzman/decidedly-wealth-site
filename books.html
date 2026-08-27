@@ -229,6 +229,7 @@ document.getElementById('book-form').addEventListener('submit',function(e){
   var f=this;
   var btn=f.querySelector('button');
   btn.textContent='Sending...';btn.disabled=true;
+  var u=new URLSearchParams(window.location.search);
   fetch('/api/book-download',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
@@ -236,10 +237,14 @@ document.getElementById('book-form').addEventListener('submit',function(e){
       firstName:f.firstName.value,
       lastName:f.lastName.value,
       email:f.email.value,
-      source:'books-page'
+      source:'books-page',
+      referrer:document.referrer||'',
+      utm_source:u.get('utm_source')||'',
+      utm_medium:u.get('utm_medium')||'',
+      utm_campaign:u.get('utm_campaign')||''
     })
   }).finally(function(){
-    window.location.href='/books-thank-you.html';
+    window.location.href='/books-thank-you.html?email='+encodeURIComponent(f.email.value);
   });
 });
 </script>

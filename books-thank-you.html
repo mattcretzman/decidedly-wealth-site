@@ -80,6 +80,24 @@ gtag('event','conversion',{'send_to':'AW-18360721058/Qbj3CLbbqN8cEKK9ibNE'});
       </a>
     </div>
 
+    <!-- SELF-ATTRIBUTION -->
+    <div id="attribution" style="max-width:560px;margin:0 auto 40px;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:32px;text-align:center">
+      <h3 style="margin-bottom:6px;font-size:18px">Quick question — how did you find us?</h3>
+      <p style="font-size:14px;color:var(--text-3);margin-bottom:20px">Totally optional. Helps us know what's working.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center" id="attr-btns">
+        <button class="attr-btn" data-val="Google Search">Google Search</button>
+        <button class="attr-btn" data-val="Google Ad">Google Ad</button>
+        <button class="attr-btn" data-val="LinkedIn">LinkedIn</button>
+        <button class="attr-btn" data-val="Podcast">Podcast</button>
+        <button class="attr-btn" data-val="Referral / Word of Mouth">Referral</button>
+        <button class="attr-btn" data-val="Social Media">Social Media</button>
+        <button class="attr-btn" data-val="Other">Other</button>
+      </div>
+      <div id="attr-thanks" style="display:none;padding:12px 0">
+        <p style="font-size:15px;color:var(--navy);font-weight:600">Thanks!</p>
+      </div>
+    </div>
+
     <div style="max-width:560px;margin:0 auto;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:36px 32px;text-align:center">
       <h3 style="margin-bottom:8px">Want to talk about what you read?</h3>
       <p style="font-size:15px;color:var(--text-2);line-height:1.7;margin-bottom:20px">Sanger offers a complimentary conversation for business owners who want to explore what exit planning could look like for their family.</p>
@@ -104,6 +122,28 @@ gtag('event','conversion',{'send_to':'AW-18360721058/Qbj3CLbbqN8cEKK9ibNE'});
   </div>
 </footer>
 
+<style>
+.attr-btn{padding:10px 20px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg);font-family:var(--font-b);font-size:14px;color:var(--text);cursor:pointer;transition:border-color .2s,background .2s}
+.attr-btn:hover{border-color:var(--navy);background:var(--white)}
+</style>
+<script>
+(function(){
+  var email=new URLSearchParams(window.location.search).get('email');
+  if(!email)document.getElementById('attribution').style.display='none';
+  document.querySelectorAll('.attr-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var val=btn.getAttribute('data-val');
+      document.getElementById('attr-btns').style.display='none';
+      document.getElementById('attr-thanks').style.display='block';
+      fetch('/api/book-attribution',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email:email,attribution:val})
+      });
+    });
+  });
+})();
+</script>
 <script src="nav.js"></script>
 </body>
 </html>

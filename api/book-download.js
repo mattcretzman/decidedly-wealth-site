@@ -92,7 +92,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, source } = req.body;
+  const { firstName, lastName, email, source, referrer, utm_source, utm_medium, utm_campaign } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email required' });
   }
@@ -108,7 +108,7 @@ module.exports = async function handler(req, res) {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: SHEET_ID,
-      range: 'Sheet1!A:E',
+      range: 'Sheet1!A:I',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [[
@@ -116,7 +116,11 @@ module.exports = async function handler(req, res) {
           firstName || '',
           lastName || '',
           email,
-          source || 'books-page'
+          source || 'books-page',
+          referrer || '',
+          utm_source || '',
+          utm_medium || '',
+          utm_campaign || ''
         ]]
       }
     });

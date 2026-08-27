@@ -211,7 +211,7 @@ document.getElementById('popup-form').addEventListener('submit',function(e){
   var f=this;var btn=f.querySelector('button');btn.textContent='Subscribing...';btn.disabled=true;
   fetch('/api/book-download',{
     method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({firstName:f.firstName.value,lastName:'',email:f.email.value,source:'blog-popup'})
+    body:JSON.stringify({firstName:f.firstName.value,lastName:'',email:f.email.value,source:'blog-popup',referrer:document.referrer||'',utm_source:new URLSearchParams(window.location.search).get('utm_source')||'',utm_medium:new URLSearchParams(window.location.search).get('utm_medium')||'',utm_campaign:new URLSearchParams(window.location.search).get('utm_campaign')||''})
   }).then(function(){
     f.innerHTML='<p style="font-size:16px;color:var(--navy);font-weight:600;padding:12px 0;margin-bottom:8px">You\'re in!</p><p style="font-size:14px;color:var(--text-2);line-height:1.6">We just sent both of Sanger\'s books to your inbox. Check your email (or spam folder) for the download links.</p>';
   });
