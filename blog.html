@@ -149,11 +149,11 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 <!-- SUBSCRIBE CTA -->
 <section class="cta-final">
   <div class="ctn" style="position:relative;z-index:1">
-    <div class="ey r" style="color:var(--accent);text-align:center">The Weekly Decision</div>
-    <h2 class="r">One decision.<br>Every <em>Wednesday.</em></h2>
-    <p class="cta-sub r">Subscribe to get RJ's best thinking on wealth, decisions, and building something that lasts. Delivered to your inbox every week.</p>
-    <a href="/books.html#get-books" class="bp r">Subscribe Free <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    <div class="cta-note r" style="margin-top:12px">Free &middot; Every Wednesday &middot; Unsubscribe anytime</div>
+    <div class="ey r" style="color:var(--accent);text-align:center">Free Books</div>
+    <h2 class="r">Two books on building<br>wealth that <em>lasts.</em></h2>
+    <p class="cta-sub r">Get free digital copies of both of Sanger's books — decades of wisdom on exit planning, legacy, and the five decisions that matter most.</p>
+    <a href="/books.html#get-books" class="bp r">Get Both Books Free <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    <div class="cta-note r" style="margin-top:12px">Free &middot; Instant delivery &middot; No spam</div>
   </div>
 </section>
 
@@ -177,16 +177,16 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 <div class="popup-overlay" id="popup">
   <div class="popup-box">
     <button class="popup-close" onclick="document.getElementById('popup').classList.remove('active')">&times;</button>
-    <div class="ey" style="text-align:center">The Weekly Decision</div>
-    <h3>Want these insights in your <em>inbox?</em></h3>
-    <p>Get our best thinking on wealth, decisions, and building something that lasts. One email, every Wednesday.</p>
+    <div class="ey" style="text-align:center">Free Books</div>
+    <h3>Get both of Sanger's books — <em>free.</em></h3>
+    <p>Two books on building wealth that lasts. Enter your name and email and we'll send them straight to your inbox.</p>
     <form class="popup-form" id="popup-form">
       <input type="text" name="firstName" placeholder="First name" required>
       <input type="email" name="email" placeholder="Email address" required>
       <input type="hidden" name="source" value="blog-popup">
-      <button type="submit">Send Me The Weekly Decision</button>
+      <button type="submit">Send Me Both Books</button>
     </form>
-    <div class="popup-note">No spam. Unsubscribe anytime.</div>
+    <div class="popup-note">Free. No spam. Unsubscribe anytime.</div>
   </div>
 </div>
 
@@ -213,7 +213,7 @@ document.getElementById('popup-form').addEventListener('submit',function(e){
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({firstName:f.firstName.value,lastName:'',email:f.email.value,source:'blog-popup'})
   }).then(function(){
-    f.innerHTML='<p style="font-size:16px;color:var(--navy);font-weight:600;padding:20px 0">You\'re in! Check your inbox every Wednesday.</p>';
+    f.innerHTML='<p style="font-size:16px;color:var(--navy);font-weight:600;padding:12px 0;margin-bottom:8px">You\'re in!</p><p style="font-size:14px;color:var(--text-2);line-height:1.6">We just sent both of Sanger\'s books to your inbox. Check your email (or spam folder) for the download links.</p>';
   });
 });
 </script>
