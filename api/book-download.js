@@ -172,17 +172,35 @@ module.exports = async function handler(req, res) {
   return res.status(200).json({ ok: true });
 };
 
+// Emails that should NEVER be enriched or enrolled in LinkedIn outreach
+const INTERNAL_EMAILS = [
+  'matt@stormbreakerdigital.com',
+  'sanger@decidedlywealth.com',
+  'rj@decidedlywealth.com',
+  'wyatt@decidedlywealth.com',
+  'dori@decidedlywealth.com',
+  'contact@decidedlywealth.com',
+  'morgan@decidedlymoney.com'
+];
+
 async function enrichAndEnroll(firstName, lastName, email) {
   if (!PROSPEO_KEY || !REPLYIO_KEY) return;
 
+  // Skip internal/test emails
+  const lowerEmail = email.toLowerCase();
+  if (INTERNAL_EMAILS.some(e => lowerEmail === e)) {
+    console.log(`Skipping enrichment for internal email: ${email}`);
+    return;
+  }
+
   // Step 1: Enrich email via Prospeo to find LinkedIn URL
-  const prospeoRes = await fetch('https://api.prospeo.io/social-url-finder', {
+  const prospeoRes = await fetch('https://api.prospeo.io/enrich-person', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'X-KEY': PROSPEO_KEY },
-    body: JSON.stringify({ email })
+    body: JSON.stringify({ data: { email } })
   });
   const prospeoData = await prospeoRes.json();
-  const linkedInUrl = prospeoData?.response?.linkedin_url;
+  const linkedInUrl = prospeoData?.person?.linkedin_url;
 
   if (!linkedInUrl) {
     console.log(`Prospeo: no LinkedIn found for ${email}`);
@@ -192,6 +210,10 @@ async function enrichAndEnroll(firstName, lastName, email) {
   console.log(`Prospeo: found LinkedIn for ${email}: ${linkedInUrl}`);
 
   // Step 2: Import contact into Reply.io book download sequence
+  // Use Prospeo-enriched name if we don't have one from the form
+  const enrichedFirst = firstName || prospeoData?.person?.first_name || '';
+  const enrichedLast = lastName || prospeoData?.person?.last_name || '';
+
   const replyRes = await fetch('https://api.reply.io/v3/contacts/import', {
     method: 'POST',
     headers: {
@@ -201,8 +223,8 @@ async function enrichAndEnroll(firstName, lastName, email) {
     body: JSON.stringify({
       items: [{
         email,
-        firstName: firstName || '',
-        lastName: lastName || '',
+        firstName: enrichedFirst,
+        lastName: enrichedLast,
         linkedInUrl
       }],
       options: {
