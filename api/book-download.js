@@ -35,8 +35,8 @@ async function sendBooksToLead(firstName, email) {
         <a href="${BOOK_URLS.significance}" style="display:inline-block;padding:16px 32px;background:#1a2744;color:white;text-decoration:none;border-radius:6px;font-weight:600;font-size:16px">Download "A Life Rich with Significance"</a>
       </div>
       <div style="border-top:1px solid #e5e5e5;padding-top:24px;text-align:center">
-        <p style="color:#666;font-size:14px;line-height:1.7;margin-bottom:16px">Want to talk about what you read? Sanger offers a complimentary conversation for business owners exploring exit planning.</p>
-        <a href="https://decidedlywealth.com/contact.html" style="color:#1a2744;font-weight:600;text-decoration:none;font-size:14px">Start a Conversation &rarr;</a>
+        <p style="color:#666;font-size:14px;line-height:1.7;margin-bottom:16px">Want to talk about what you read? I offer a complimentary conversation for business owners exploring exit planning.</p>
+        <a href="https://app.greminders.com/c/sanger/decisionlabinit" style="color:#1a2744;font-weight:600;text-decoration:none;font-size:14px">Book a Decision Lab Conversation &rarr;</a>
       </div>
       <div style="border-top:1px solid #e5e5e5;margin-top:32px;padding-top:16px;text-align:center">
         <p style="color:#999;font-size:11px;line-height:1.6">Decidedly Wealth Management<br>6100 Camp Bowie Blvd, Suite 24 &middot; Fort Worth, TX 76116<br>(817) 615-9711 &middot; contact@decidedlywealth.com</p>
