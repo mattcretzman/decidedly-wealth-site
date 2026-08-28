@@ -4,6 +4,9 @@ const SHEET_ID = process.env.DWM_BOOK_SHEET_ID;
 const SA_KEY = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY || '{}');
 const RESEND_KEY = process.env.RESEND_API_KEY;
 const LEVITATE_KEY = process.env.LEVITATE_API_KEY;
+const PROSPEO_KEY = process.env.PROSPEO_API_KEY;
+const REPLYIO_KEY = process.env.REPLYIO_API_KEY;
+const REPLYIO_BOOK_SEQUENCE_ID = 1762565;
 
 const TEAM = [
   'sanger@decidedlywealth.com',
@@ -161,5 +164,53 @@ module.exports = async function handler(req, res) {
     console.error('Levitate error:', err.message);
   }
 
+  // Enrich via Prospeo + enroll in Reply.io LinkedIn sequence (non-blocking)
+  enrichAndEnroll(firstName, lastName, email).catch(err => {
+    console.error('Enrich/enroll error:', err.message);
+  });
+
   return res.status(200).json({ ok: true });
 };
+
+async function enrichAndEnroll(firstName, lastName, email) {
+  if (!PROSPEO_KEY || !REPLYIO_KEY) return;
+
+  // Step 1: Enrich email via Prospeo to find LinkedIn URL
+  const prospeoRes = await fetch('https://api.prospeo.io/social-url-finder', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-KEY': PROSPEO_KEY },
+    body: JSON.stringify({ email })
+  });
+  const prospeoData = await prospeoRes.json();
+  const linkedInUrl = prospeoData?.response?.linkedin_url;
+
+  if (!linkedInUrl) {
+    console.log(`Prospeo: no LinkedIn found for ${email}`);
+    return;
+  }
+
+  console.log(`Prospeo: found LinkedIn for ${email}: ${linkedInUrl}`);
+
+  // Step 2: Import contact into Reply.io book download sequence
+  const replyRes = await fetch('https://api.reply.io/v3/contacts/import', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${REPLYIO_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      items: [{
+        email,
+        firstName: firstName || '',
+        lastName: lastName || '',
+        linkedInUrl
+      }],
+      options: {
+        sequenceId: REPLYIO_BOOK_SEQUENCE_ID,
+        duplicateAction: 'skip'
+      }
+    })
+  });
+  const replyData = await replyRes.json();
+  console.log(`Reply.io: imported ${email} into book sequence`, JSON.stringify(replyData));
+}
