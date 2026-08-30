@@ -63,7 +63,7 @@ async function sendBooksToLead(firstName, email) {
 async function notifyTeam(firstName, lastName, email, source) {
   if (!RESEND_KEY) return;
   const name = [firstName, lastName].filter(Boolean).join(' ') || 'Unknown';
-  const label = source === 'blog-popup' ? 'Newsletter Signup' : 'Book Download';
+  const label = 'Book Download';
 
   const html = `
     <div style="font-family:sans-serif;max-width:560px">
@@ -147,7 +147,7 @@ module.exports = async function handler(req, res) {
 
   try {
     if (LEVITATE_KEY) {
-      const tag = source === 'blog-popup' ? 'Newsletter Signup' : 'Book Download';
+      const tag = 'Book Download';
       await fetch('https://api.levitate.ai/public/v1/Contacts', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${LEVITATE_KEY}`, 'Content-Type': 'application/json' },
