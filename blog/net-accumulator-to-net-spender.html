@@ -156,9 +156,9 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 document.getElementById('gate-form').addEventListener('submit',function(e){
   e.preventDefault();
   var f=this;var btn=f.querySelector('button');btn.textContent='Sending...';btn.disabled=true;
-  fetch('/api/book-download',{
+  fetch('/api/newsletter-signup',{
     method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({firstName:'',lastName:'',email:f.email.value,source:'blog-gate-net-accumulator'})
+    body:JSON.stringify({email:f.email.value,source:'blog-gate-net-accumulator'})
   }).then(function(){
     f.innerHTML='<p style="font-size:15px;color:white;font-weight:600;padding:8px 0">You\'re in! Check your inbox — the full piece is on its way, and a new decision lands every Wednesday.</p>';
   });
