@@ -53,7 +53,7 @@ module.exports = async function handler(req, res) {
           firstName: '',
           lastName: '',
           emailAddresses: [{ label: 'Primary', value: email }],
-          tags: ['Website Lead', 'Newsletter Signup', source || 'blog-gate'],
+          tags: ['Website Lead', 'Your Weekly Decision Subscriber', source || 'blog-gate'],
           visibility: 'shared'
         })
       });
