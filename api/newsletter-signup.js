@@ -17,8 +17,7 @@ async function notifyTeam(email, source) {
         <tr><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;color:#1a2744;width:100px">Email</td><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#333">${email}</td></tr>
         <tr><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;color:#1a2744">Source</td><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#333">${source}</td></tr>
       </table>
-      <p style="color:#666;font-size:13px;margin-top:16px">This subscriber needs to be added to the newsletter list in Levitate and sent the full blog post.</p>
-      <p style="color:#999;font-size:12px;margin-top:8px">Reply directly to <a href="mailto:${email}">${email}</a> to follow up.</p>
+      <p style="color:#666;font-size:13px;margin-top:16px">Contact created in Levitate tagged: Website Lead, Newsletter Signup, ${source}. Full article + future newsletters sent automatically via Levitate.</p>
     </div>`;
 
   await fetch('https://api.resend.com/emails', {
