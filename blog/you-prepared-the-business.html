@@ -156,7 +156,7 @@ document.getElementById('gate-form').addEventListener('submit',function(e){
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({email:f.email.value,source:'blog-gate-you-prepared-the-business'})
   }).then(function(){
-    f.innerHTML='<p style="font-size:15px;color:white;font-weight:600;padding:8px 0">You\'re in! Check your inbox for the full piece, and a new decision lands every Wednesday.</p>';
+    f.innerHTML='<p style="font-size:15px;color:white;font-weight:600;padding:8px 0">You\'re in! The full piece arrives in this Wednesday\'s email, and a new decision lands every Wednesday after that.</p>';
   });
 });
 </script>

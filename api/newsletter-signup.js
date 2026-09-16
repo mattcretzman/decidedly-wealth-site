@@ -46,7 +46,7 @@ module.exports = async function handler(req, res) {
   // Create contact in Levitate tagged as Newsletter Signup
   try {
     if (LEVITATE_KEY) {
-      await fetch('https://api.levitate.ai/public/v1/Contacts', {
+      const levRes = await fetch('https://api.levitate.ai/public/v1/Contacts', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${LEVITATE_KEY}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -57,6 +57,10 @@ module.exports = async function handler(req, res) {
           visibility: 'shared'
         })
       });
+      const levData = await levRes.text();
+      console.log(`Levitate: ${levRes.status} for ${email}`, levData.substring(0, 200));
+    } else {
+      console.warn('Levitate: LEVITATE_API_KEY not set — skipping contact creation');
     }
   } catch (err) {
     console.error('Levitate error:', err.message);
