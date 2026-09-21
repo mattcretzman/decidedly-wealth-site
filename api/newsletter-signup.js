@@ -33,6 +33,8 @@ async function notifyTeam(email, source) {
   });
 }
 
+const { isSpam } = require('./_spam-filter');
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -41,6 +43,12 @@ module.exports = async function handler(req, res) {
   const { email, source } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email required' });
+  }
+
+  const spam = isSpam(req.body);
+  if (spam.blocked) {
+    console.log(`Spam blocked (${spam.reason}): ${email}`);
+    return res.status(200).json({ ok: true });
   }
 
   // Create contact in Levitate tagged as Newsletter Signup

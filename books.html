@@ -121,6 +121,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
       <h2>Enter your email and we'll send<br>both books <em>instantly.</em></h2>
       <p>No cost. No catch. Just two books worth of hard-won wisdom from a father and son who've spent decades guiding family businesses.</p>
       <form class="book-form" id="book-form">
+            <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <input type="text" name="firstName" placeholder="First name" required>
           <input type="text" name="lastName" placeholder="Last name" required>
@@ -224,7 +225,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 </footer>
 
 <script>
-document.getElementById('book-form').addEventListener('submit',function(e){
+document.getElementById('book-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;
   var btn=f.querySelector('button');
@@ -237,7 +238,7 @@ document.getElementById('book-form').addEventListener('submit',function(e){
       firstName:f.firstName.value,
       lastName:f.lastName.value,
       email:f.email.value,
-      source:'books-page',
+      source:'books-page',website:f.website?f.website.value:'',_t:_t,
       referrer:document.referrer||'',
       utm_source:u.get('utm_source')||'',
       utm_medium:u.get('utm_medium')||'',

@@ -322,6 +322,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
       <div class="contact-form r" style="background:white;color:var(--text)">
         <h3 style="color:var(--navy-deep)">Book a free conversation.</h3>
         <form>
+            <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
             <div class="form-group"><label for="first">First Name</label><input type="text" id="first" name="first" required></div>
             <div class="form-group"><label for="last">Last Name</label><input type="text" id="last" name="last" required></div>
@@ -369,7 +370,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 var s=document.getElementById('sticky-cta');
 if(s&&window.innerWidth<=768){window.addEventListener('scroll',function(){s.style.display=scrollY>600?'block':'none'});}
 document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
-document.querySelector('.contact-form form').addEventListener('submit',function(e){
+document.querySelector('.contact-form form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;var btn=f.querySelector('button');var orig=btn.innerHTML;
   btn.textContent='Sending...';btn.disabled=true;
@@ -382,7 +383,7 @@ document.querySelector('.contact-form form').addEventListener('submit',function(
       email:f.email.value,
       phone:f.phone.value,
       message:f.message.value,
-      source:'exit-planning'
+      source:'exit-planning',website:f.website?f.website.value:'',_t:_t
     })
   }).then(function(){
     f.innerHTML='<p style="font-size:18px;color:var(--navy);font-weight:600;padding:32px 0;text-align:center">Thank you! We\'ll be in touch shortly.</p>';

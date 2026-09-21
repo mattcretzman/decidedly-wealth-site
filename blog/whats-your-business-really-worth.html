@@ -117,6 +117,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
           <h3>The rest is in your <em>inbox.</em></h3>
           <p>The three things that actually drive what a buyer pays, why a valuation three years early beats one the month before, and the one-line closer that ties it all together. Drop your email and I'll send you the full piece, plus a new decision every Wednesday.</p>
           <form class="gate-form" id="gate-form">
+            <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
             <input type="email" name="email" placeholder="Your email address" required>
             <button type="submit">Send Me The Rest</button>
           </form>
@@ -149,12 +150,12 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 </footer>
 
 <script>
-document.getElementById('gate-form').addEventListener('submit',function(e){
+document.getElementById('gate-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;var btn=f.querySelector('button');btn.textContent='Sending...';btn.disabled=true;
   fetch('/api/newsletter-signup',{
     method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({email:f.email.value,source:'blog-gate-whats-your-business-really-worth'})
+    body:JSON.stringify({email:f.email.value,source:'blog-gate-whats-your-business-really-worth',website:f.website?f.website.value:'',_t:_t})
   }).then(function(){
     f.innerHTML='<p style="font-size:15px;color:white;font-weight:600;padding:8px 0">You\'re in! The full piece arrives in this Wednesday\'s email, and a new decision lands every Wednesday after that.</p>';
   });

@@ -195,6 +195,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     <h3>Get both of Sanger's books — <em>free.</em></h3>
     <p>Two books on building wealth that lasts. Enter your name and email and we'll send them straight to your inbox.</p>
     <form class="popup-form" id="popup-form">
+            <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
       <input type="text" name="firstName" placeholder="First name" required>
       <input type="email" name="email" placeholder="Email address" required>
       <input type="hidden" name="source" value="blog-popup">
@@ -220,12 +221,12 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   });
 })();
 // Popup form submit
-document.getElementById('popup-form').addEventListener('submit',function(e){
+document.getElementById('popup-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;var btn=f.querySelector('button');btn.textContent='Subscribing...';btn.disabled=true;
   fetch('/api/book-download',{
     method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({firstName:f.firstName.value,lastName:'',email:f.email.value,source:'blog-popup',referrer:document.referrer||'',utm_source:new URLSearchParams(window.location.search).get('utm_source')||'',utm_medium:new URLSearchParams(window.location.search).get('utm_medium')||'',utm_campaign:new URLSearchParams(window.location.search).get('utm_campaign')||''})
+    body:JSON.stringify({firstName:f.firstName.value,lastName:'',email:f.email.value,source:'blog-popup',website:f.website?f.website.value:'',_t:_t,referrer:document.referrer||'',utm_source:new URLSearchParams(window.location.search).get('utm_source')||'',utm_medium:new URLSearchParams(window.location.search).get('utm_medium')||'',utm_campaign:new URLSearchParams(window.location.search).get('utm_campaign')||''})
   }).then(function(){
     f.innerHTML='<p style="font-size:16px;color:var(--navy);font-weight:600;padding:12px 0;margin-bottom:8px">You\'re in!</p><p style="font-size:14px;color:var(--text-2);line-height:1.6">We just sent both of Sanger\'s books to your inbox. Check your email (or spam folder) for the download links.</p>';
   });

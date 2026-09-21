@@ -90,6 +90,8 @@ async function notifyTeam(firstName, lastName, email, source) {
   });
 }
 
+const { isSpam } = require('./_spam-filter');
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -98,6 +100,12 @@ module.exports = async function handler(req, res) {
   const { firstName, lastName, email, source, referrer, utm_source, utm_medium, utm_campaign } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email required' });
+  }
+
+  const spam = isSpam(req.body);
+  if (spam.blocked) {
+    console.log(`Spam blocked (${spam.reason}): ${email}`);
+    return res.status(200).json({ ok: true });
   }
 
   try {
