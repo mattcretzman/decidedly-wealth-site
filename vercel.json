@@ -1,6 +1,19 @@
 {
   "buildCommand": "",
   "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.decidedlywealth.com"
+        }
+      ],
+      "destination": "https://decidedlywealth.com/$1",
+      "permanent": true
+    }
+  ],
   "crons": [
     {
       "path": "/api/ads-email?key=dwm-ops-2026",

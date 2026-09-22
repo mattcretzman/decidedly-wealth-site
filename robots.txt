@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /books-thank-you.html
+Disallow: /api/
+Disallow: /ops/
+
+Sitemap: https://decidedlywealth.com/sitemap.xml
