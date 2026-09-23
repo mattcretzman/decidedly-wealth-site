@@ -60,12 +60,48 @@ function isSpam(body) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       return { blocked: true, reason: 'invalid_format' };
     }
+
+    // Block Gmail dot-alias abuse (e.g. r.o.be.r.t.s.v.al@gmail.com).
+    // Real users almost never use 4+ dots; spam rings use it to reuse one inbox.
+    if (/^(gmail|googlemail)\.com$/.test(domain) && (local.match(/\./g) || []).length >= 4) {
+      return { blocked: true, reason: 'gmail_dot_alias' };
+    }
   }
 
-  // 4. Name check — block if name contains URLs or HTML
-  const name = `${body.firstName || ''} ${body.lastName || ''}`;
+  // 4. Name checks
+  const first = (body.firstName || '').trim();
+  const last = (body.lastName || '').trim();
+  const name = `${first} ${last}`;
+
   if (/<[^>]+>/.test(name) || /https?:\/\//i.test(name)) {
     return { blocked: true, reason: 'html_in_name' };
+  }
+
+  // A submission with no name at all bypassed the form UI, where both fields
+  // are required. Only block when BOTH are empty: the blog popup collects a
+  // first name alone, and real leads have come in that way.
+  if (!first && !last) {
+    return { blocked: true, reason: 'missing_name' };
+  }
+
+  for (const token of [first, last].filter(Boolean)) {
+    // Random-string names: "TbzXVXXOjCfLjlLhK", "wBeuHFOSsnxSTyjMY".
+    // 3+ capitals after the first letter is vanishingly rare in real names
+    // (McDonald, DeAngelo, O'Brien all have at most one).
+    const innerCaps = (token.slice(1).match(/[A-Z]/g) || []).length;
+    if (innerCaps >= 3) {
+      return { blocked: true, reason: 'random_name' };
+    }
+
+    // Keyboard-mash names have almost no vowels. Threshold set below
+    // real surnames like Cretzman and Stungyte, which sit at 0.25.
+    const letters = token.replace(/[^A-Za-z]/g, '');
+    if (letters.length >= 8) {
+      const vowels = (letters.match(/[aeiouAEIOU]/g) || []).length;
+      if (vowels / letters.length < 0.22) {
+        return { blocked: true, reason: 'random_name' };
+      }
+    }
   }
 
   // 5. Message check — block if message is stuffed with URLs
