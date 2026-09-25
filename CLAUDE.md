@@ -109,3 +109,30 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 3. Read the content audit for Exit Planning source content from FMG
 4. Read keyword-data.md for SEO targeting
 5. Build the Exit Planning page following brand rules above
+
+## Session Log — Sep 25, 2026
+
+### Published
+- `blog/i-thought-id-feel-free.html` (RJ, scheduled Oct 7 — emotional side of the exit)
+- `blog/all-your-eggs-in-one-basket.html` (RJ, scheduled Oct 14 — concentrated stock position)
+- Both built from the `whats-your-business-really-worth.html` template. Gated, Article schema, canonical, per-post gate source IDs so downloads attribute to the right post.
+- Added to Insights index + sitemap. Commit `ff5c29c`.
+- **RJ's own writing is pre-approved — it does NOT need Dori/Kestra review.** Only content we author does.
+
+### Current verified counts (do not trust older numbers in this file)
+26 HTML pages | 29 sitemap URLs | 25 canonicals | 15 pages with schema blocks.
+
+### Spam filter
+`api/_spam-filter.js` — honeypot, sub-3s submit, disposable domains, numeric/fake locals, gmail dot-alias abuse (4+ dots), random-name detection (3+ inner caps, or <22% vowels on 8+ letters), URL stuffing. **Only blocks on missing name when BOTH first and last are empty** — the blog popup collects first name alone and real leads come in that way. Took junk book downloads from 19/48h to zero.
+
+### Reply routing (lives outside this repo)
+`~/reply-webhook/src/api/webhook.js` on Vercel, alias reply-webhook-ten.vercel.app. Routes Reply.io prospect replies to the owning advisor by sequence-name prefix ("rj //", "wyatt //", "sanger //"). Sends full conversation history from `/v3/contacts/{id}/activities`, LinkedIn URL, firmographics. Reply-To is channel-aware: email replies go back to the prospect, LinkedIn replies go to Matt only because genmail.com addresses are placeholders, not inboxes.
+
+### Google Ads
+Account **8793593741**. `login_customer_id` must equal that account, not the MCC.
+Sep 16-22 vs Sep 9-15: clicks 25 → 53, CPC $11.14 → $6.71, CTR 5.3% → 7.2%, conversions 0 → 2.
+**The refresh token in ~/google-ads.yaml expires every ~7 days** (Testing-mode OAuth client). Re-auth with /tmp/reauth_gads.py, or fix permanently by setting the OAuth consent screen to "In production".
+
+### Client comms rules learned this session
+- Never frame delivered work as a problem we discovered. "The search foundation went live", not "Google had no map of the site." Matt: *"that makes us look bad."*
+- Verify claimed firsts against what the client has already reported. Wyatt had counted 5-6 leads and Sanger had meetings before Mark Bishara booked; Mark's real distinction is that he was a cold-email win, which is rare.
