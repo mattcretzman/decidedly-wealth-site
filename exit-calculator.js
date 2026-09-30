@@ -118,8 +118,17 @@
   function showScore(r){
     var c = 2 * Math.PI * 52;
     $('gfg').style.strokeDasharray = c; $('gfg').style.strokeDashoffset = c;
-    requestAnimationFrame(function(){ $('gfg').style.strokeDashoffset = c * (1 - r.score / 100); });
-    var n = 0, t = setInterval(function(){ n += 2; if (n >= r.score){ n = r.score; clearInterval(t); } $('score').textContent = n; }, 18);
+    var t0 = null, done = false;
+    var finish = function(){ done = true; $('gfg').style.strokeDashoffset = c * (1 - r.score / 100); $('score').textContent = r.score; };
+    var tick = function(ts){
+      if (done) return;
+      if (t0 === null){ t0 = ts; $('gfg').style.strokeDashoffset = c * (1 - r.score / 100); }
+      var p = Math.min(1, (ts - t0) / 900);
+      $('score').textContent = Math.round(r.score * p);
+      if (p < 1) requestAnimationFrame(tick); else finish();
+    };
+    requestAnimationFrame(tick);
+    setTimeout(finish, 1300);   // background tabs throttle animation frames; always land on the final value
     var label = r.score >= 80 ? 'Buyer ready' : r.score >= 55 ? 'Getting there' : 'Early stage';
     $('score-head').textContent = label;
     $('score-line').textContent = r.score >= 80
