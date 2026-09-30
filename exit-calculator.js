@@ -1,35 +1,62 @@
 /* Decidedly Wealth: Exit Planning Calculator (short version)
  *
- * MODEL NOTE: the multiple ranges below are WORKING VALUES for the preview.
- * They must be replaced with sourced data (Founders Advisors' method and/or
- * RJ's researched multiples) and approved by compliance before launch.
+ * MODEL NOTE: the multiple ranges below are sourced from published private
+ * company transaction data (IBBA and M&A Source Market Pulse, GF Data,
+ * BVR DealStats Value Index, Pepperdine Private Capital Markets Report),
+ * as of 2026. They are general market ranges, not an appraisal, and they
+ * still require compliance review before launch.
+ * Full source table and methodology: ops/calculator-multiples-sources.md
  */
 (function(){
   'use strict';
 
-  // Base EBITDA multiple range by profit size (smaller businesses sell for lower multiples)
+  /* SOURCES FOR SIZE_BANDS (multiple of the single profit input)
+   * 1. IBBA and M&A Source Market Pulse, Q1 2025 to Q2 2026: median multiples by
+   *    deal price. Under $2M price = multiple of SDE: under $500K 2.0x,
+   *    $500K to $1M 2.8x, $1M to $2M 3.0x to 3.3x. $2M to $50M price = multiple
+   *    of EBITDA: $2M to $5M 3.5x to 4.1x, $5M to $50M 4.5x to 5.8x.
+   * 2. GF Data (ACG), Q3 2025 report: average TEV / adjusted EBITDA for private
+   *    equity deals by EBITDA size, 2003 to Q3 2025 average (2025 YTD):
+   *    $3M to $5M 6.4x (6.7x), $5M to $8M 6.8x (7.4x), $8M to $10M 7.0x (6.8x),
+   *    over $10M 7.4x (8.3x). Averages of PE deals, which skew above typical.
+   * 3. Pepperdine Private Capital Markets Report 2026 (via published summary):
+   *    median deal multiples about 4x to 5x EBITDA under $1M EBITDA, rising to
+   *    7x to 8.5x above $10M EBITDA.
+   * Bands 1 and 2 use SDE multiples (profit includes owner pay). Band 3 blends
+   * SDE and EBITDA figures. Bands 4 to 6 use EBITDA multiples, set at or below
+   * the source midpoints to stay conservative.
+   */
   var SIZE_BANDS = [
-    { max: 500e3,    lo: 2.5, hi: 3.5 },
-    { max: 1e6,      lo: 3.0, hi: 4.5 },
-    { max: 3e6,      lo: 4.0, hi: 5.5 },
-    { max: 10e6,     lo: 5.0, hi: 7.0 },
-    { max: Infinity, lo: 6.0, hi: 8.5 }
+    { max: 250e3,    lo: 2.0, hi: 2.8 },   // SDE: IBBA under $1M price
+    { max: 750e3,    lo: 2.5, hi: 3.3 },   // SDE: IBBA $500K to $2M price
+    { max: 2e6,      lo: 3.0, hi: 4.0 },   // SDE to EBITDA: IBBA $1M to $5M price
+    { max: 5e6,      lo: 4.0, hi: 5.5 },   // EBITDA: IBBA $5M to $50M, Pepperdine, GF Data $3M to $5M
+    { max: 10e6,     lo: 5.0, hi: 7.0 },   // EBITDA: IBBA $5M to $50M, GF Data $5M to $10M
+    { max: Infinity, lo: 6.5, hi: 8.0 }    // EBITDA: GF Data over $10M, Pepperdine over $10M
   ];
 
-  // Industry adjustment applied to the size band
+  /* SOURCES FOR INDUSTRIES (factor applied to the size band)
+   * Primary: BVR DealStats Value Index, Q1 2025 edition (data through 2024),
+   * Exhibits 9 and 10: median selling price / SDE and selling price / EBITDA by
+   * NAICS sector, private targets. Factor = sector median / all-sector median,
+   * 2022 to 2024 average, SDE and EBITDA ratios averaged.
+   * Cross-check: GF Data Q3 2025, TEV / EBITDA by industry ($10M to $250M TEV),
+   * and BizBuySell 2025 cash flow multiples. Rounded to 0.05 and pulled toward
+   * 1.00 where the data is volatile or thin.
+   */
   var INDUSTRIES = [
-    ['Construction and trades', 0.85],
-    ['Distribution and wholesale', 0.95],
-    ['Financial and insurance services', 1.10],
-    ['Healthcare services', 1.15],
-    ['Manufacturing', 1.00],
-    ['Oil, gas and energy services', 0.85],
-    ['Professional services', 0.95],
-    ['Real estate services', 0.95],
-    ['Restaurants and hospitality', 0.75],
-    ['Retail', 0.80],
-    ['Technology and software', 1.25],
-    ['Transportation and logistics', 0.90],
+    ['Construction and trades', 1.00],            // NAICS 23: EBITDA 0.98, SDE 1.06
+    ['Distribution and wholesale', 1.05],         // NAICS 42: EBITDA 1.14, SDE 1.29; GF Data 0.99
+    ['Financial and insurance services', 1.10],   // NAICS 52: EBITDA 1.32, SDE 1.17; volatile, held low
+    ['Healthcare services', 1.05],                // NAICS 62: EBITDA 0.97, SDE 1.03; GF Data 1.12 to 1.16
+    ['Manufacturing', 1.05],                      // NAICS 31-33: EBITDA 1.17, SDE 1.15; GF Data 0.92
+    ['Oil, gas and energy services', 1.00],       // NAICS 21: too few annual deals in DealStats; no adjustment
+    ['Professional services', 1.05],              // NAICS 54: EBITDA 1.06, SDE 1.05; GF Data 1.01 to 1.03
+    ['Real estate services', 1.00],               // NAICS 53: 1.08 driven by one year (2024); held at 1.00
+    ['Restaurants and hospitality', 0.80],        // NAICS 72: EBITDA 0.70, SDE 0.83; BizBuySell 0.89
+    ['Retail', 0.95],                             // NAICS 44-45: EBITDA 0.93, SDE 1.06; GF Data 1.04
+    ['Technology and software', 1.25],            // NAICS 51: EBITDA 1.87, SDE 1.23; GF Data 0.92 to 1.25
+    ['Transportation and logistics', 1.00],       // NAICS 48-49: EBITDA 1.01, SDE 1.06
     ['Other', 1.00]
   ];
 
