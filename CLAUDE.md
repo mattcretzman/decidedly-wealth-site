@@ -18,7 +18,7 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 
 ## Compliance Rules
 - ALL content goes to Dori Stone (dori@decidedlywealth.com) for compliance review before publishing
-- Shawn Smith (Sanger's father) CAN appear in group photos and podcast mentions
+- **From Mon Oct 5 2026 Shawn is a Decidedly advisor (Sanger, Sep 30): no restrictions.** Before that: Shawn Smith (Sanger's father) CAN appear in group photos and podcast mentions
 - Shawn CANNOT be listed as a team member of Decidedly Wealth Management (separate entities, broker dealer issue)
 - Use ONLY existing approved content — do NOT invent stats, pricing, or claims
 
