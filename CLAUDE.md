@@ -156,7 +156,7 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - 91 contacts marked finished: RJ's 60, plus Partner titles, plus nonprofit boards. ISD contacts were already in RJ's 60.
 - 231 active.
 - Post-connect message changed via PUT to "I came across your business...".
-- Paused. Matt resumes it in the UI.
+- RESUMED via API Sep 30 (POST /v3/sequences/1758256/start). Active.
 
 ### Open
 - RJ's exit-planning calculator (Claude artifact). Waiting on his link.
