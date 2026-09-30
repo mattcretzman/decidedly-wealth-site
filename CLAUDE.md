@@ -164,3 +164,30 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
   - Long version behind client login.
 - New team photos incoming (Sean + Aisha joining). Confirm with Dori before listing Sean (broker-dealer rule above).
 - Rule: booking context goes to the team by email, never in GReminders notes (the client sees those).
+
+## Session Log: Sep 30, 2026 (evening)
+
+### Exit calculator (branch `exit-calculator`, NOT merged)
+- Files: `exit-planning-calculator.html`, `exit-calculator.js`, `exit-calculator.css`, `api/exit-calculator.js`.
+- Preview: decidedly-preview-git-exit-calculator-mcretzman-9359s-projects.vercel.app/exit-planning-calculator.html
+- Flow: 3 steps, free readiness score + gaps, email gate, then value range, after-tax net, wealth gap and upside.
+- Leads: Levitate tag "Exit Calculator", alert emails to Sanger, RJ and Wyatt.
+- Multiples are sourced (commit 64fda65): IBBA Market Pulse, GF Data, BVR DealStats, Pepperdine. Sources and methodology for Dori: `ops/calculator-multiples-sources.md`.
+- Page is noindex until Dori approves. To launch:
+  1. Merge the branch.
+  2. Remove the noindex meta tag.
+  3. Add the page to the sitemap and link it from exit-planning.html.
+- nav.js fires the contact-form conversion on any form submit, including the gate. The calculator also fires the gtag events `exit_calc_complete` and `exit_calc_lead`.
+
+### Platform direction (Matt's correction)
+- DW is WEALTH management, not M&A. Platform = the owner's whole balance sheet, built around the five key decisions.
+- Data sources: Black Diamond, MoneyGuide Pro, wealth.com, Wealthbox.
+- The calculator is only the front door. Transaction-only owners go to a partner (Founders Advisors).
+- Spec doc: 1pmYrhy32KgQ82KdRdVXeN-pMuYYgVwoACRKlYFa920w. Oct 1 agenda doc: 1ceaMnXkUt3QoSQGlwXekmCwqJ2sPvlllQalWQ1XvuSo. Both shared by name with Sanger, RJ and Wyatt.
+
+### Comms rule
+- Wyatt is on ALL Decidedly team comms (with Sanger and RJ).
+
+### Social posting
+- Postiz fixed. No Decidedly LinkedIn accounts are connected yet; connect RJ (and Sanger) in person via a one-time OAuth link from `GET /public/v1/social/linkedin`.
+- Posting target is 3 per week (Matt's target).
