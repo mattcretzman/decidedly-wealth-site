@@ -18,8 +18,8 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 
 ## Compliance Rules
 - ALL content goes to Dori Stone (dori@decidedlywealth.com) for compliance review before publishing
-- Sean Smith (Sanger's father) CAN appear in group photos and podcast mentions
-- Sean CANNOT be listed as a team member of Decidedly Wealth Management (separate entities, broker dealer issue)
+- Shawn Smith (Sanger's father) CAN appear in group photos and podcast mentions
+- Shawn CANNOT be listed as a team member of Decidedly Wealth Management (separate entities, broker dealer issue)
 - Use ONLY existing approved content — do NOT invent stats, pricing, or claims
 
 ## Key Files
@@ -162,7 +162,7 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - RJ's exit-planning calculator (Claude artifact). Waiting on his link.
   - Short gated site version targeting "exit planning calculator".
   - Long version behind client login.
-- New team photos incoming (Sean + Aisha joining). Confirm with Dori before listing Sean (broker-dealer rule above).
+- New team photos incoming (Shawn + Aisha joining). Confirm with Dori before listing Shawn (broker-dealer rule above).
 - Rule: booking context goes to the team by email, never in GReminders notes (the client sees those).
 
 ## Session Log: Sep 30, 2026 (evening)
