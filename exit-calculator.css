@@ -50,7 +50,7 @@
 .res-card.short b{color:#b5562b}
 .upside{background:var(--white);border-left:3px solid var(--accent);padding:16px 20px;margin-bottom:24px;color:var(--text-2)}
 .res-cta{text-align:center;background:var(--navy-deep);color:white;border-radius:var(--r);padding:36px 28px}
-.res-cta h3{font-family:var(--font-d);font-size:24px;margin-bottom:10px}
+.res-cta h3{font-family:var(--font-d);font-size:24px;margin-bottom:10px;color:white}
 .res-cta p{color:rgba(255,255,255,.7);max-width:480px;margin:0 auto 20px}
 .res-cta .bp{background:white;color:var(--navy-deep)}
 .calc-disc{font-size:12px;color:var(--text-3);line-height:1.6;margin-top:24px}

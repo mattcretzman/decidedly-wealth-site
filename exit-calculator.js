@@ -52,7 +52,7 @@
   var FED_CAP_GAINS = 0.238; // 20% long-term capital gains + 3.8% net investment income tax, simplified
 
   var $ = function(id){ return document.getElementById(id); };
-  var money = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
+  var money = function(n){ return '$' + (Math.round(n / 1e4) * 1e4).toLocaleString('en-US'); };   // estimates: nearest $10K
   var num = function(el){ return parseFloat(String(el.value).replace(/[^0-9.]/g, '')) || 0; };
   var answers = {}, step = 1, result = null;
 
