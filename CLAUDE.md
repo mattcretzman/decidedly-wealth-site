@@ -131,8 +131,36 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 ### Google Ads
 Account **8793593741**. `login_customer_id` must equal that account, not the MCC.
 Sep 16-22 vs Sep 9-15: clicks 25 → 53, CPC $11.14 → $6.71, CTR 5.3% → 7.2%, conversions 0 → 2.
-**The refresh token in ~/google-ads.yaml expires every ~7 days** (Testing-mode OAuth client). Re-auth with /tmp/reauth_gads.py, or fix permanently by setting the OAuth consent screen to "In production".
+OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~/scripts/reauth-google-ads.py`. Connection is monitored hourly by `~/scripts/connection-health.py` (Telegram alerts). Never report Ads status from memory, run the check.
 
 ### Client comms rules learned this session
 - Never frame delivered work as a problem we discovered. "The search foundation went live", not "Google had no map of the site." Matt: *"that makes us look bad."*
 - Verify claimed firsts against what the client has already reported. Wyatt had counted 5-6 leads and Sanger had meetings before Mark Bishara booked; Mark's real distinction is that he was a cold-email win, which is rare.
+
+## Session Log — Sep 30, 2026
+
+### Shipped
+- **RJ weekly report** `ops/rj-sync-sep30.html` LIVE. It includes the Ads week-over-week (Sep 23-29: 896 impr, 56 clicks, $6.22 CPC, 3 conv, $348.58). Chuck Claburn is attributed to Google Ads.
+- **RJ photo** `images/rj-brick.jpg` re-cropped from Drive original photo 24 (commit 20344f6).
+- **Blog post** `blog/significance-over-success-rj-finley.html` on branch `rj-reeling-it-in` (commit 7681252). Preview only. NOT merged, because it goes through Dori/Kestra first.
+
+### Podcast clips
+- 5 audiogram clips come from RJ's Reeling It In episode.
+  - Drive folder: 1mQ6RKWqCHPOk87WrLsTrrgO8ekwqxTvz.
+  - Build pipeline: session scratchpad `podcast/build2.py`.
+- Content calendar sheet: 1QO1QAQ3sB1SSPCsJEAtHUUXDDtJSXw4i7C_24h8fyp8.
+  - Columns: caption plus V2, first comment, compliance dropdown, RJ Approved, Posted.
+- Flow: RJ approves, then one batch goes to Dori, then Matt schedules via the API scheduling tool once RJ connects LinkedIn. Target is 3 posts/week.
+
+### RJ outreach sequence 1758256
+- 91 contacts marked finished: RJ's 60, plus Partner titles, plus nonprofit boards. ISD contacts were already in RJ's 60.
+- 231 active.
+- Post-connect message changed via PUT to "I came across your business...".
+- Paused. Matt resumes it in the UI.
+
+### Open
+- RJ's exit-planning calculator (Claude artifact). Waiting on his link.
+  - Short gated site version targeting "exit planning calculator".
+  - Long version behind client login.
+- New team photos incoming (Sean + Aisha joining). Confirm with Dori before listing Sean (broker-dealer rule above).
+- Rule: booking context goes to the team by email, never in GReminders notes (the client sees those).
