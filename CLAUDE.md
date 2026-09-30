@@ -191,3 +191,17 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 ### Social posting
 - Postiz fixed. No Decidedly LinkedIn accounts are connected yet; connect RJ (and Sanger) in person via a one-time OAuth link from `GET /public/v1/social/linkedin`.
 - Posting target is 3 per week (Matt's target).
+
+### Sanger social strategy (Sep 30, late)
+- Doc: 1JCnme2YTivNsSdDimSV99JoGgHl3FrQV7PlKPvOI2ac. Shared by name with Sanger, RJ and Wyatt.
+- Channel data: `~/scripts/podcast-clips/decidedly-yt/`.
+- YouTube @decidedlypodcast:
+  - 752 uploads: 498 long-form, 254 Shorts.
+  - Dormant since Sep 17, 2025.
+  - Median views: 359 for Shorts, 6 for long-form.
+- Plan: Sanger's personal LinkedIn is the primary channel, 3 posts a week, one back-catalog episode per week. The same clips also go to Shorts and the company page.
+- First episodes to cut: Ep160, Ep180, Ep22, Ep141, Ep156, Ep171, Ep173, Ep108.
+- `podcast.html` has stale claims: "new episodes every week" and "750 episodes". Fix after approval.
+- Sanger's father is spelled **Shawn** D. Smith (site + YouTube), not Sean.
+- The Oct 1 agenda has "Sanger's social media" as item 4.
+- Edit shared Google Docs in place with `gws docs batchUpdate` so links stay stable.
