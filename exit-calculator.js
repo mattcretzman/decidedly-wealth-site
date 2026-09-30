@@ -1,4 +1,4 @@
-/* Decidedly Wealth — Exit Planning Calculator (short version)
+/* Decidedly Wealth: Exit Planning Calculator (short version)
  *
  * MODEL NOTE: the multiple ranges below are WORKING VALUES for the preview.
  * They must be replaced with sourced data (Founders Advisors' method and/or
