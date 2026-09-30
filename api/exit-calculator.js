@@ -3,7 +3,8 @@ const LEVITATE_KEY = process.env.LEVITATE_API_KEY;
 
 const TEAM = [
   'rj@decidedlywealth.com',
-  'sanger@decidedlywealth.com'
+  'sanger@decidedlywealth.com',
+  'wyatt@decidedlywealth.com'
 ];
 
 const { isSpam } = require('./_spam-filter');
