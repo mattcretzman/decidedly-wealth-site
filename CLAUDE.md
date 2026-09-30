@@ -147,7 +147,7 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 ### Podcast clips
 - 5 audiogram clips come from RJ's Reeling It In episode.
   - Drive folder: 1mQ6RKWqCHPOk87WrLsTrrgO8ekwqxTvz.
-  - Build pipeline: session scratchpad `podcast/build2.py`.
+  - Build pipeline: `~/scripts/podcast-clips/` (build.py helpers, build2.py pipeline, verify.py Deepgram QA, calendar.py sheet builder, music/ beds + energy.py).
 - Content calendar sheet: 1QO1QAQ3sB1SSPCsJEAtHUUXDDtJSXw4i7C_24h8fyp8.
   - Columns: caption plus V2, first comment, compliance dropdown, RJ Approved, Posted.
 - Flow: RJ approves, then one batch goes to Dori, then Matt schedules via the API scheduling tool once RJ connects LinkedIn. Target is 3 posts/week.
