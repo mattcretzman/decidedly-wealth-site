@@ -1,0 +1,3 @@
+# Internal files: never serve these from the site
+*.md
+.claude

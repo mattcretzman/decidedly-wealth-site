@@ -3,7 +3,7 @@
 ## Project Overview
 New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - **Client:** Sanger Smith, sanger@decidedlywealth.com
-- **Engagement:** Accelerator, $6,900/mo, 12 months, signed Jul 24
+- **Engagement:** Accelerator, 12 months, signed Jul 24 (terms in private notes)
 - **Domain:** decidedlywealth.com (DNS switch from FMG to Vercel when ready)
 - **Preview URL:** deploy to Vercel as decidedly-preview for now
 - **Kickoff call:** Jul 30 — COMPLETED
@@ -237,4 +237,3 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 ### Rules learned
 - Wyatt is on all team comms.
 - Five decisions exact wording: Decide who you are / Decide where you are / Decide where you are going / Decide how you are going to get there / Decide who matters.
-- Never put the client's Kestra/Claude compliance banter in writing.
