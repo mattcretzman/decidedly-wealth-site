@@ -205,3 +205,36 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Sanger's father is spelled **Shawn** D. Smith (site + YouTube), not Sean.
 - The Oct 1 agenda has "Sanger's social media" as item 4.
 - Edit shared Google Docs in place with `gws docs batchUpdate` so links stay stable.
+
+## Session Log: Oct 1-3, 2026
+
+### Preview branches (NOT merged; all pending Dori)
+| Branch | What |
+|---|---|
+| `team-oct5` | Shawn D. Smith (Private Wealth Advisor; MBA, CFP, ChFC, APMA, BFA, CKA) + Aisha Ann Rada (Financial Planning Associate). Photos, no bios yet. Homepage team grid set to 3 columns. **Go live Mon Oct 5 once Dori approves.** |
+| `team-photos` | Built on team-oct5. Real group shots replace ai-exit-planning.jpg and ai-growth.jpg, plus a team banner on Who We Are. |
+| `podcast-copy` | "750+ episodes" changed to "nearly 200"; removed the weekly-release claims. |
+| `exit-calculator` | Generic calculator with sourced multiples. |
+| `rj-reeling-it-in` | RJ blog post. Merge before the Oct 12 LinkedIn post goes out. |
+| `niche-calculators` | HVAC + dental calculators + industry landing pages (commit 46903d0). Upgrades in progress: audience images, sliders, dollar value levers, "what your exit buys", market momentum, roadmap. |
+
+- Vercel shortens long branch names: niche preview = decidedly-preview-git-niche-cal-1c168c-mcretzman-9359s-projects.vercel.app.
+
+### Social
+- Postiz: Sanger + RJ LinkedIn connected. 13 posts loaded as DRAFTS; promote via PUT /posts/{id}/status after Dori approves.
+- Ledgers: ~/scripts/podcast-clips/sanger/postiz/ and ~/scripts/podcast-clips/rj-postiz/.
+- Clip rules:
+  - Complete thoughts only, never cut a speaker mid-passion. 1-3 min is fine.
+  - Music-swell outro + logo end card.
+  - QA by re-transcription. Deepgram is out of credit, so use local whisper.
+- Month 2 content in production: ~/scripts/podcast-clips/sanger-month2/.
+
+### Google Ads
+- STOPPED serving Oct 1: all 3 campaigns NOT_ELIGIBLE, reason unknown via API, likely billing.
+- Needs a UI check by an account user. matt@stormbreakerdigital.com has no UI access.
+- connection-health.py now fails the check if ads are not serving.
+
+### Rules learned
+- Wyatt is on all team comms.
+- Five decisions exact wording: Decide who you are / Decide where you are / Decide where you are going / Decide how you are going to get there / Decide who matters.
+- Never put the client's Kestra/Claude compliance banter in writing.
