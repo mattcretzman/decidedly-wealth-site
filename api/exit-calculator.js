@@ -7,19 +7,29 @@ const TEAM = [
   'wyatt@decidedlywealth.com'
 ];
 
+// Industry calculators: page key -> Levitate tag and label for the alert subject.
+// Unknown or missing keys fall back to the generic calculator.
+const INDUSTRY_TAGS = {
+  hvac: 'HVAC',
+  dental: 'Dental'
+};
+
 const { isSpam } = require('./_spam-filter');
 
 const usd = (n) => '$' + Math.round(Number(n) || 0).toLocaleString('en-US');
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-async function notifyTeam(firstName, email, answers, r) {
+async function notifyTeam(firstName, email, answers, r, industryTag, tags) {
   if (!RESEND_KEY) return;
   const row = (k, v) => `<tr><td style="padding:7px 12px;border-bottom:1px solid #eee;font-weight:600;color:#1a2744;width:220px">${k}</td><td style="padding:7px 12px;border-bottom:1px solid #eee;color:#333">${v}</td></tr>`;
-  const qa = Object.entries(answers || {}).map(([k, v]) => row(esc(k), esc(v))).join('');
+  // Industry pages send [question, answer] pairs; older clients sent { id: answer }
+  const pairs = Array.isArray(answers) ? answers : Object.entries(answers || {});
+  const qa = pairs.map((p) => row(esc(p && p[0]), esc(p && p[1]))).join('');
+  const label = industryTag ? industryTag + ' Exit Calculator' : 'Exit Calculator';
   const html = `
     <div style="font-family:sans-serif;max-width:600px">
-      <h2 style="color:#1a2744;margin-bottom:4px">Exit Calculator Lead</h2>
-      <p style="color:#666;margin-top:0">${esc(firstName)} (${esc(email)}) finished the exit planning calculator.</p>
+      <h2 style="color:#1a2744;margin-bottom:4px">${label} Lead</h2>
+      <p style="color:#666;margin-top:0">${esc(firstName)} (${esc(email)}) finished the ${industryTag ? esc(industryTag) + ' ' : ''}exit planning calculator.</p>
       <table style="width:100%;border-collapse:collapse">
         ${row('Industry', esc(r.industry))}
         ${row('Revenue', usd(r.revenue))}
@@ -34,7 +44,7 @@ async function notifyTeam(firstName, email, answers, r) {
       </table>
       <h3 style="color:#1a2744;margin:18px 0 6px;font-size:15px">Readiness answers</h3>
       <table style="width:100%;border-collapse:collapse">${qa}</table>
-      <p style="color:#666;font-size:13px;margin-top:16px">Contact created in Levitate tagged: Website Lead, Exit Calculator.</p>
+      <p style="color:#666;font-size:13px;margin-top:16px">Contact created in Levitate tagged: ${esc(tags.join(', '))}.</p>
     </div>`;
   await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -43,7 +53,7 @@ async function notifyTeam(firstName, email, answers, r) {
       from: 'Decidedly Wealth <matt@stormbreakerdigital.com>',
       to: TEAM,
       reply_to: email,
-      subject: `Exit Calculator Lead: ${firstName || email} (score ${r.score}, ${usd(r.vLo)} to ${usd(r.vHi)})`,
+      subject: `${label} Lead: ${firstName || email} (score ${r.score}, ${usd(r.vLo)} to ${usd(r.vHi)})`,
       html
     })
   });
@@ -54,7 +64,9 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, email, answers, result } = req.body || {};
+  const { firstName, email, answers, result, industry } = req.body || {};
+  const industryTag = Object.prototype.hasOwnProperty.call(INDUSTRY_TAGS, industry) ? INDUSTRY_TAGS[industry] : '';
+  const tags = ['Website Lead', 'Exit Calculator'].concat(industryTag ? [industryTag] : []);
   if (!email || !result) {
     return res.status(400).json({ error: 'Email and result required' });
   }
@@ -74,7 +86,7 @@ module.exports = async function handler(req, res) {
           firstName: firstName || '',
           lastName: '',
           emailAddresses: [{ label: 'Primary', value: email }],
-          tags: ['Website Lead', 'Exit Calculator'],
+          tags,
           visibility: 'shared'
         })
       });
@@ -85,7 +97,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    await notifyTeam(firstName, email, answers, result);
+    await notifyTeam(firstName, email, answers, result, industryTag, tags);
   } catch (err) {
     console.error('Notification error:', err.message);
   }

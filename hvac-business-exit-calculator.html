@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18360721058"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","AW-18360721058");
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HVAC Business Exit Calculator: What Is Your HVAC Business Worth? | Decidedly Wealth</title>
+<meta name="description" content="What is your HVAC business worth? A free exit calculator for Texas HVAC owners: readiness score, an estimated value range, and what you would keep after taxes.">
+<link rel="canonical" href="https://decidedlywealth.com/hvac-business-exit-calculator.html">
+<!-- Open Graph / LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://decidedlywealth.com/hvac-business-exit-calculator.html">
+<meta property="og:title" content="HVAC Business Exit Calculator for Texas Owners | Decidedly Wealth Management">
+<meta property="og:description" content="What is your HVAC business worth? A free exit calculator for Texas HVAC owners: readiness score, an estimated value range, and what you would keep after taxes.">
+<meta property="og:image" content="https://decidedlywealth.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://decidedlywealth.com/images/og-image.png">
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- PREVIEW: remove noindex after compliance approval (Dori) -->
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="exit-calculator.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "name": "HVAC Business Exit Calculator",
+  "description": "What is your HVAC business worth? A free exit calculator for Texas HVAC owners: readiness score, an estimated value range, and what you would keep after taxes.",
+  "url": "https://decidedlywealth.com/hvac-business-exit-calculator.html",
+  "about": {
+    "@id": "https://decidedlywealth.com/#organization"
+  },
+  "provider": {
+    "@id": "https://decidedlywealth.com/#organization"
+  }
+}
+</script>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="ni">
+    <a href="/" class="nl"><img src="images/decidedly-logo-white.png" alt="Decidedly Wealth Management" class="logo-light"><img src="images/decidedly-logo.png" alt="Decidedly Wealth Management" class="logo-dark"></a>
+    <ul class="nk" id="nk">
+      <li class="dd"><a href="/who-we-are.html">Who We Are</a>
+        <ul class="dd-menu">
+          <li><a href="/sangers-story.html">Sanger's Story</a></li>
+          <li><a href="/who-we-serve.html">Who We Serve</a></li>
+          <li><a href="/cepa-explained.html">CEPA Explained</a></li>
+        </ul>
+      </li>
+      <li class="dd"><a href="/services.html">What We Do</a>
+        <ul class="dd-menu">
+          <li><a href="/exit-planning.html">Exit Planning</a></li>
+          <li><a href="/business-succession-planning.html">Business Succession</a></li>
+          <li><a href="/business-valuation.html">Business Valuation</a></li>
+          <li><a href="/post-exit-wealth-management.html">Post-Exit Wealth</a></li>
+          <li><a href="/family-business-advisory.html">Family Business Advisory</a></li>
+          <li><a href="/decision-lab.html">The Decision Lab</a></li>
+        </ul>
+      </li>
+      <li><a href="/books.html">Free Books</a></li>
+      <li><a href="/blog.html">Insights</a></li>
+      <li><a href="/client-portal.html">Client Login</a></li>
+      <li><a href="/contact.html" class="nc">Get in Touch</a></li>
+    </ul>
+    <button class="nt" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="min-height:52vh">
+  <div class="hero-tx"></div>
+  <div class="ctn">
+    <div class="hc">
+      <div class="ey" style="color:var(--accent);margin-bottom:16px">HVAC Business Exit Calculator</div>
+      <h1>What is your HVAC business <em>worth?</em></h1>
+      <p class="hs">A calculator for Texas HVAC owners. Three short steps: see how ready your company is to sell, what a buyer might pay, and whether the sale funds the life you want after it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="calc-sec">
+  <div class="ctn">
+    <div class="calc" id="calc">
+      <div class="calc-prog"><div class="calc-bar" id="bar"></div></div>
+      <div class="calc-steps"><span class="on">1. Your business</span><span>2. Readiness</span><span>3. Your number</span></div>
+
+      <!-- STEP 1 -->
+      <div class="step on" data-step="1">
+        <h2>Tell us about the business</h2>
+        <label>Main type of work
+          <select id="industry"></select>
+        </label>
+        <label>Annual revenue
+          <div class="money"><span>$</span><input id="revenue" inputmode="numeric" placeholder="3,500,000"></div>
+        </label>
+        <label>Annual profit before your own pay, interest, taxes and depreciation
+          <div class="money"><span>$</span><input id="profit" inputmode="numeric" placeholder="700,000"></div>
+          <small>Not sure? Start with net profit and add back your own salary, truck and perks.</small>
+        </label>
+        <div class="calc-nav"><span></span><button class="bp" data-next>Next <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button></div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step" data-step="2">
+        <h2>How ready is it to sell?</h2>
+        <p class="step-sub">Buyers of HVAC companies pay more for recurring revenue and a team that runs without the owner. Answer honestly. Nobody sees this but you.</p>
+        <div id="questions"></div>
+        <div class="calc-nav"><button class="back" data-back>Back</button><button class="bp" data-next>Next <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button></div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step" data-step="3">
+        <h2>What do you need from the sale?</h2>
+        <label>When would you like to exit?
+          <select id="timeline">
+            <option value="1-2">In the next 1 to 2 years</option>
+            <option value="3-5" selected>In 3 to 5 years</option>
+            <option value="5-10">In 5 to 10 years</option>
+            <option value="10+">10 years or more</option>
+          </select>
+        </label>
+        <label>Debt the business would need to pay off at sale
+          <div class="money"><span>$</span><input id="debt" inputmode="numeric" placeholder="0"></div>
+        </label>
+        <label>How much do you need to walk away with, after taxes, to fund the life you want?
+          <div class="money"><span>$</span><input id="need" inputmode="numeric" placeholder="5,000,000"></div>
+        </label>
+        <label>Where do you live?
+          <select id="state">
+            <option value="0">Texas (no state income tax)</option>
+            <option value="0.05">Another state</option>
+          </select>
+        </label>
+        <div class="calc-nav"><button class="back" data-back>Back</button><button class="bp" data-next>See my results <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button></div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="step" data-step="4">
+        <div class="res-top">
+          <div class="gauge"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="g-bg"/><circle cx="60" cy="60" r="52" class="g-fg" id="gfg"/></svg><div class="g-num"><span id="score">0</span><small>of 100</small></div></div>
+          <div>
+            <div class="ey" style="color:var(--accent)">Exit Readiness Score</div>
+            <h2 id="score-head">Your results</h2>
+            <p id="score-line" class="step-sub"></p>
+          </div>
+        </div>
+        <h3 class="gaps-h">Where buyers will push on price</h3>
+        <ul class="gaps" id="gaps"></ul>
+
+        <div id="locked">
+          <div class="blur-card" aria-hidden="true">
+            <div class="kv"><span>Estimated value range</span><b>$#,###,### to $#,###,###</b></div>
+            <div class="kv"><span>What you keep after taxes and debt</span><b>$#,###,###</b></div>
+            <div class="kv"><span>Your wealth gap</span><b>$#,###,###</b></div>
+          </div>
+          <div class="gate-box">
+            <div class="ey">Your full report</div>
+            <h3>See your value range and your <em>wealth gap</em></h3>
+            <p>Where we'll send your results. One of our advisors may follow up. No pressure, no sales pitch.</p>
+            <form class="gate-form" id="gate">
+              <input name="first" placeholder="First name" required autocomplete="given-name">
+              <input name="email" type="email" placeholder="Email" required autocomplete="email">
+              <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+              <button type="submit">Show me</button>
+            </form>
+            <div class="gate-note">Free &middot; Private &middot; Takes 5 seconds</div>
+          </div>
+        </div>
+
+        <div id="unlocked" hidden>
+          <div class="res-grid">
+            <div class="res-card"><span>Estimated value range</span><b id="r-val"></b><small id="r-mult"></small></div>
+            <div class="res-card"><span>What you keep after taxes and debt</span><b id="r-net"></b><small id="r-tax"></small></div>
+            <div class="res-card" id="gap-card"><span>Your wealth gap</span><b id="r-gap"></b><small id="r-gap-note"></small></div>
+          </div>
+          <div class="section-accent upside" id="upside"></div>
+          <div class="res-cta">
+            <h3>Close the gap before you sell, not after.</h3>
+            <p>In a free Decision Lab session, we walk through these numbers with you, look at what you would keep after taxes, and map what it takes to exit on your terms.</p>
+            <a class="bp" href="https://app.greminders.com/c/sanger/decisionlabinit" target="_blank" rel="noopener">Book a Decision Lab session <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </div>
+        <p class="calc-disc">This calculator gives a rough, educational estimate based on the answers you enter and general market ranges. It is not an appraisal, a formal business valuation, or tax, legal or investment advice. Actual sale prices depend on buyers, deal terms, timing and many factors a short questionnaire can't capture. Tax estimates assume most of the sale is taxed as a long-term capital gain and are simplified. Talk to a qualified professional before making decisions.</p>
+        <div class="calc-nav"><button class="back" data-restart>Start over</button><span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT THIS CALCULATOR -->
+<section style="background:var(--white);border-top:1px solid var(--border)">
+  <div class="ctn">
+    <div class="r">
+      <div class="ey">About This Calculator</div>
+      <h2>A starting point, not an <em>appraisal.</em></h2>
+    </div>
+    <div class="sg r" style="margin-top:32px"><div class="sc"><h3>How this calculator works</h3><p>You enter one profit number: what the company earns before your own pay, interest, taxes and depreciation. The calculator picks a range of multiples for an HVAC company your size, adjusts it for the kind of work you do, and uses your readiness answers to place you inside that range. The ranges come from published sale data for HVAC businesses and private companies. The sources are listed for our compliance team and available on request.</p></div><div class="sc"><h3>Why the answers matter as much as the profit</h3><p>Two HVAC companies with the same profit can sell for very different prices. Buyers pay more for maintenance agreement revenue, licensed technicians who stay, and an owner who is no longer running calls. They pay less for builder-heavy revenue and an aging fleet. Those are the questions in step 2.</p></div><div class="sc"><h3>The number that matters most is what you keep</h3><p>The sale price is not your number. What you keep after taxes and debt is. Texas has no state income tax, so the estimate assumes a federal long-term capital gains rate unless you live elsewhere. Your actual tax depends on how the deal is structured, which is worth planning years before a sale.</p></div></div>
+    <p class="r" style="margin-top:32px;font-size:16px;color:var(--text-2)">Decidedly Wealth Management is a wealth management firm. We do not broker business sales. We help owners plan the personal side: what they keep, what it funds, and who it serves. <a href="/wealth-management-for-hvac-business-owners.html" style="color:var(--navy);text-decoration:underline">How we work with HVAC business owners &rarr;</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="ctn">
+    <div class="fi">
+      <div>
+        <div class="fb">Decidedly Wealth Management</div>
+        <div class="fa">6100 Camp Bowie Blvd, Suite 24<br>Fort Worth, TX 76116<br>(817) 615-9711</div>
+      </div>
+      <div class="fa" style="text-align:right">
+        <a href="/who-we-are.html">Who We Are</a> · <a href="/services.html">What We Do</a> · <a href="/contact.html">Contact</a> · <a href="/podcast.html">Podcast</a> · <a href="/books.html">Books</a> · <a href="/client-portal.html">Client Portal</a><br>
+        <span style="font-size:11px"><a href="/exit-planning.html">Exit Planning</a> · <a href="/business-succession-planning.html">Succession</a> · <a href="/business-valuation.html">Valuation</a> · <a href="/post-exit-wealth-management.html">Post-Exit Wealth</a> · <a href="/family-business-advisory.html">Family Advisory</a></span><br>
+        <span style="font-size:11px"><a href="/sangers-story.html">Sanger's Story</a> · <a href="/who-we-serve.html">Who We Serve</a> · <a href="/cepa-explained.html">CEPA Explained</a></span><br>
+        <a href="mailto:contact@decidedlywealth.com">contact@decidedlywealth.com</a><br>
+        <a href="https://linkedin.com/in/sanger-d-smith-b1690647/">LinkedIn</a> &middot;
+        <a href="https://youtube.com/@decidedlypodcast">YouTube</a><br><span style="font-size:11px"><a href="/exit-planning-fort-worth.html">Fort Worth</a> · <a href="/exit-planning-dallas.html">Dallas</a> · <a href="/exit-planning-southlake.html">Southlake</a> · <a href="/exit-planning-frisco.html">Frisco</a> · <a href="/exit-planning-arlington.html">Arlington</a></span>
+      </div>
+    </div>
+    <div class="fc">Securities offered through Kestra Investment Services, LLC (Kestra IS), member <a href="https://www.finra.org" target="_blank" style="color:inherit">FINRA</a>/<a href="https://www.sipc.org" target="_blank" style="color:inherit">SIPC</a>. Investment Advisory Services offered through Kestra Advisory Services, LLC (Kestra AS), an affiliate of Kestra IS. Decidedly Wealth Management, LLC and any other entity listed herein are not affiliated with Kestra IS or Kestra AS. This site is published for residents of the United States only. Registered Representatives of Kestra IS and Investment Advisor Representatives of Kestra AS may only conduct business with residents of the states and jurisdictions in which they are properly registered. Therefore, a response to a request for information may be delayed. Not all products and services referenced on this site are available in every state and through every representative or advisor listed. For additional information, please contact our Compliance department at 844-5-KESTRA (844-553-7872). Investor Disclosures: <a href="https://www.kestrafinancial.com/disclosures" target="_blank" style="color:inherit">kestrafinancial.com/disclosures</a><br><a href="https://brokercheck.finra.org" target="_blank" style="color:inherit">Check the background of your financial professional on FINRA&#x27;s BrokerCheck</a>.<br>&copy; 2026 Decidedly Wealth Management. <a href="/privacy.html" style="color:inherit">Privacy</a> &middot; <a href="/disclosures.html" style="color:inherit">Disclosures</a></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>window.CALC_INDUSTRY = 'hvac';</script>
+<script src="/exit-calculator.js"></script>
+</body>
+</html>
