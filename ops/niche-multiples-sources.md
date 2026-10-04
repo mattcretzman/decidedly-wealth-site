@@ -154,3 +154,47 @@ Limitations:
 - **"plan for it early, while more options are open"** (decision 5 on both landing pages). This is a general statement about estate planning before a sale, not a promise.
 - **"one of the largest DSOs in the country is headquartered in North Texas"** and **"Some of the largest [HVAC platforms] are based in Dallas-Fort Worth"**. These are factual and sourced above; no firm is named.
 - **The disclaimer on both landing pages** states that Decidedly does not broker sales or provide formal business valuations.
+
+## Update October 3, 2026: added features (also for review)
+
+### Market momentum sections (HVAC and dental landing pages and calculators)
+
+Each stat and example on the page comes from a source listed below. The pages name no buyer in the body text. The source line names the companies because that is where the facts come from.
+
+| Page text | Source |
+|---|---|
+| HVAC: "The company that calls itself America's largest residential HVAC, plumbing and electrical services business is now headquartered in Dallas, with 75 local brands in 46 states." | Dallas Innovates, May 28, 2026, on Apex Service Partners' minority investment from Apollo Funds (Alpine Investors also invested more). https://dallasinnovates.com/dallas-based-apex-service-partners-gets-minority-investment-from-apollo-funds/ ; Business Wire release of the same date: https://www.businesswire.com/news/home/20260528216487/en/ |
+| HVAC: "A national residential HVAC, plumbing and electrical platform bought a North Texas service company founded in 2004. The company kept its name and its leadership." (Jan 2026) | Champions Group Holdings press release, Jan 21, 2026, on its acquisition of Lex Cooling, Heating, Plumbing and Electrical. https://championsgroupholdings.com/2026/01/21/champions-group-expands-texas-footprint-with-acquisition-of-lex-cooling-heating-plumbing-electrical/ |
+| HVAC: "A commercial HVAC platform formed by a private equity firm in February 2025 made a Wylie, Texas mechanical contractor its second add-on acquisition." (Jan 2026) | AE Industrial Partners press release, Jan 20, 2026, on United Building Solutions acquiring DFW Mechanical Group. https://www.aeroequity.com/united-building-solutions-acquires-dfw-mechanical-group/ |
+| Dental: "73%: Share of U.S. dentists who owned their practice in 2023, down from 85% in 2005." | ADA Health Policy Institute, Practice Ownership Trends in Dentistry: A New Look at Old Data, June 2025. https://www.ada.org/-/media/project/ada-organization/ada/ada-org/files/resources/research/hpi/practice_ownership_trends_dentistry_new_look_old_data.pdf |
+| Dental: "27%: Share of dentists less than 10 years out of dental school who were affiliated with a DSO in 2024, up from 24% in 2023." | Same ADA HPI brief, June 2025. Also reported in ADA News, Nov 17, 2025. |
+| Dental: "800: Practices one North Texas based DSO had partnered with by late 2025, after adding 47 practices that year alone." | Group Dentistry Now, DSO Deal Roundup, Oct 1, 2025 (MB2 Dental, headquartered in Carrollton, TX). https://www.groupdentistrynow.com/dso-group-blog/dso-deals-september-2025/ |
+
+Each section closes with "Buyers are active. Prepared owners get better options." The section text says the market data "says nothing about what any one company will sell for." The source line reads "Examples of market activity only. Not an endorsement of any buyer and not a prediction about any sale."
+
+We did not use some figures because we could not trace them to a primary report:
+- "PE add-ons up 88% in 2025"
+- "PE is now more than half of HVAC M&A"
+- "about a quarter of Texas dentists are DSO-affiliated"
+
+### Value levers (all three calculators, behind the email gate)
+
+For each readiness question that did not get full marks, the calculator re-runs the same model with only that answer changed to its best option. It reports the change in the midpoint value, rounded to $10K. The section is labeled "Estimate" and explains the method in one line. Levers are sorted by dollar amount, largest first.
+
+These are model outputs, not predictions of what a buyer would pay. They add up, give or take rounding, to the "if this business scored 100" upside figure the calculator already showed.
+
+### "What your exit buys" (all three calculators, behind the email gate)
+
+The math is shown on the page:
+- Monthly figure = amount kept after estimated taxes and debt × 4% ÷ 12, rounded to $100.
+- The owner's stated after-tax need gets the same math, and the page shows the ratio between the two.
+
+The label reads "Illustration only, not a projection or investment advice. Actual results vary. Assumes a flat 4% drawn each year from the amount you keep, before income taxes, with no growth or inflation." The 4% is a round illustration rate. It is not a recommended withdrawal rate. **Dori: please confirm this wording is acceptable, or give a preferred rate or phrasing.**
+
+### Imagery
+
+All photos are AI-generated (fal.ai, seedream v4) and show no real people or businesses. Faces are turned away or too distant to make out, and there are no logos or captions implying clients. Alt text describes each scene generically. Files are in `images/niche/`.
+
+### Video slot
+
+Each landing page has a commented-out section for a Sanger video. Nothing is embedded until the clip is approved.
