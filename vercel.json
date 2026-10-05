@@ -12,6 +12,16 @@
       ],
       "destination": "https://decidedlywealth.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/services.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/who-we-are.html",
+      "permanent": true
     }
   ],
   "crons": [
