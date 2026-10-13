@@ -135,7 +135,7 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 
 ### Client comms rules learned this session
 - Never frame delivered work as a problem we discovered. "The search foundation went live", not "Google had no map of the site." Matt: *"that makes us look bad."*
-- Verify claimed firsts against what the client has already reported. Wyatt had counted 5-6 leads and Sanger had meetings before a prospect booked; Mark's real distinction is that he was a cold-email win, which is rare.
+- Verify claimed firsts against what the client has already reported. Wyatt had counted 5-6 leads and Sanger had meetings before a prospect booked; the real distinction was that it was a cold-email win, which is rare.
 
 ## Session Log — Sep 30, 2026
 
