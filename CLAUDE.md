@@ -135,12 +135,12 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 
 ### Client comms rules learned this session
 - Never frame delivered work as a problem we discovered. "The search foundation went live", not "Google had no map of the site." Matt: *"that makes us look bad."*
-- Verify claimed firsts against what the client has already reported. Wyatt had counted 5-6 leads and Sanger had meetings before Mark Bishara booked; Mark's real distinction is that he was a cold-email win, which is rare.
+- Verify claimed firsts against what the client has already reported. Wyatt had counted 5-6 leads and Sanger had meetings before a prospect booked; Mark's real distinction is that he was a cold-email win, which is rare.
 
 ## Session Log — Sep 30, 2026
 
 ### Shipped
-- **RJ weekly report** `ops/rj-sync-sep30.html` LIVE. It includes the Ads week-over-week (Sep 23-29: 896 impr, 56 clicks, $6.22 CPC, 3 conv, $348.58). Chuck Claburn is attributed to Google Ads.
+- **RJ weekly report** `ops/rj-sync-sep30.html` LIVE. It includes the Ads week-over-week (Sep 23-29: 896 impr, 56 clicks, $6.22 CPC, 3 conv, $348.58). A lead who became a meeting is attributed to Google Ads.
 - **RJ photo** `images/rj-brick.jpg` re-cropped from Drive original photo 24 (commit 20344f6).
 - **Blog post** `blog/significance-over-success-rj-finley.html` on branch `rj-reeling-it-in` (commit 7681252). Preview only. NOT merged, because it goes through Dori/Kestra first.
 
