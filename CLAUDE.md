@@ -237,3 +237,7 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 ### Rules learned
 - Wyatt is on all team comms.
 - Five decisions exact wording: Decide who you are / Decide where you are / Decide where you are going / Decide how you are going to get there / Decide who matters.
+
+## Reports (Oct 13, 2026)
+- Weekly client reports are NOT kept in this repo. This repo is public on GitHub. Reports live in a separate private, password-protected project; see private notes.
+- Old `/ops/rj-sync-*.html` addresses redirect there (vercel.json). `ops/dashboard.html` stays here: it has its own access key and shows no names.
