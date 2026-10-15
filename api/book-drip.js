@@ -55,7 +55,7 @@ function getDripEmail(week, firstName) {
     3: {
       subject: `Do you actually know what your business is worth?`,
       body: `<p>Hey ${name},</p>
-<p>Every business owner I've ever met has a number in their head. What they think their company is worth. And in 20 years of doing this, I can tell you: that number is almost always wrong.</p>
+<p>Every business owner I've ever met has a number in their head. What they think their company is worth. And in my years of doing this, I can tell you: that number is almost always wrong.</p>
 <p>Sometimes high, sometimes low. But almost never accurate. And the gap between what you think it's worth and what a buyer would actually pay? That's where bad decisions get made.</p>
 <p>People take deals they shouldn't. Or they wait too long because they're anchored to a fantasy number. Or they don't plan at all because they assume the number will take care of everything.</p>
 <p>A real valuation isn't about the math. It's about making the <em>right</em> decision with real information instead of a guess.</p>
