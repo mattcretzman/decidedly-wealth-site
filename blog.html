@@ -279,7 +279,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   });
 })();
 // Popup form submit
-document.getElementById('popup-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
+window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('popup-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;var btn=f.querySelector('button');btn.textContent='Subscribing...';btn.disabled=true;
   fetch('/api/book-download',{
