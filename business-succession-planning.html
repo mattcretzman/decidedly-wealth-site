@@ -266,7 +266,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 var s=document.getElementById('sticky-cta');
 if(s&&window.innerWidth<=768){window.addEventListener('scroll',function(){s.style.display=scrollY>600?'block':'none'});}
 document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
-document.querySelector('.contact-form form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
+window._formLoadTime=window._formLoadTime||Date.now();document.querySelector('.contact-form form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;var btn=f.querySelector('button');var orig=btn.innerHTML;
   btn.textContent='Sending...';btn.disabled=true;
