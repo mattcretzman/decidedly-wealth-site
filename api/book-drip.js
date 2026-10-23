@@ -19,6 +19,7 @@ const INTERNAL_EMAILS = [
 // Two-email follow-up (RJ, Oct 19 2026): one note at day 14, one at day 21, then done.
 // Leads from before CUTOVER (old 8-week emails, mostly bots while the form bug was live) get nothing more.
 const CUTOVER = new Date('2026-10-19T15:50:00Z'); // forms started accepting real visitors at 15:53 UTC Oct 19
+const BOOK_SOURCES = ['books-page', 'blog-popup'];
 const DRIP_SCHEDULE = [
   { week: 1, days: 14 },
   { week: 2, days: 21 }
@@ -105,6 +106,8 @@ module.exports = async function handler(req, res) {
 
     if (!email || !timestamp) continue;
     if (INTERNAL_EMAILS.includes(email.toLowerCase())) continue;
+    // The contact form writes to this same sheet (phone in column E). Only book requests get the follow-ups.
+    if (!BOOK_SOURCES.includes((row[4] || '').trim())) continue;
     if (dripsSent >= DRIP_SCHEDULE.length) continue;
 
     const signupDate = new Date(timestamp);
