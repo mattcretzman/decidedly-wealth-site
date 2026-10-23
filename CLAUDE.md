@@ -17,7 +17,9 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - **CSS rule:** `h1 em, h2 em, h3 em { font-style: italic; font-weight: 700; }`
 
 ## Compliance Rules
-- ALL content goes to Dori Stone (dori@decidedlywealth.com) for compliance review before publishing
+- ALL content gets compliance approval before publishing. Since Oct 14, 2026 RJ submits each item himself (ticket numbers T1, T2, ...). We prepare a ready-to-paste packet per ticket: PDFs in a public Drive folder + a row on BOTH tabs of the compliance tracker (Queue + Submit card view). RJ asked that both tabs stay current.
+- Publish exactly what was approved. Approved items go live only after RJ forwards the approval notice.
+- BANNED WORD (RJ + Wyatt, Oct 19 2026): never use "take" in any form (takes, taken, taking, takeaway, mistake). Check with `grep -n -i -E '\b\w*tak\w*\b'`. No em or en dashes in new copy.
 - **From Mon Oct 5 2026 Shawn is a Decidedly advisor (Sanger, Sep 30): no restrictions.** Before that: Shawn Smith (Sanger's father) CAN appear in group photos and podcast mentions
 - Shawn CANNOT be listed as a team member of Decidedly Wealth Management (separate entities, broker dealer issue)
 - Use ONLY existing approved content — do NOT invent stats, pricing, or claims
@@ -241,3 +243,12 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 ## Reports (Oct 13, 2026)
 - Weekly client reports are NOT kept in this repo. This repo is public on GitHub. Reports live in a separate private, password-protected project; see private notes.
 - Old `/ops/rj-sync-*.html` addresses redirect there (vercel.json). `ops/dashboard.html` stays here: it has its own access key and shows no names.
+
+## Session Log: Oct 19-23, 2026
+- Oct 19: all site forms were rejecting real visitors since Sep 21 (spam filter's 3-second check had no load time). Fixed with `window._formLoadTime` on every form page (497967b).
+- Oct 19: book follow-up drip cut to 2 emails, day 14 and day 21, for signups after the cutover (01dd84a). Covered by the T10 approval per RJ, Oct 22.
+- Oct 19-22: "take" removed from 12 live pages (fd3fbc0); team photos (9619e85); RJ's Oct 28 article live, gated (964907a).
+- Oct 22: conversion tag verified firing on books-thank-you.html (Ads conversion request returns 200). Form submits also fire from nav.js.
+- Oct 22-23: T16 = 4 podcast articles on branch `podcast-batch-oct22`, NOT merged until approved: deciding-to-exit-your-business (Ep.22, Scott Snider), your-money-story (Ep.95), planning-your-retirement (Ep.156), raising-financially-savvy-kids (Ep.158). On publish, add blog.html cards + sitemap entries.
+- PDF packets: headless Chrome prints blank sections because `.r` reveal elements start at opacity 0, and the fixed nav overlaps text. Inject `.r{opacity:1!important;transform:none!important}` and `nav{position:absolute!important}` before `--print-to-pdf`.
+- Unmerged branches waiting on approval: podcast-count-fix (T5), exit-calculator + niche-calculators (T6), content-expansion-sep10 (T8, needs "take" fixes), rj-reeling-it-in (T2), team-bios (Dori), podcast-batch-oct22 (T16).
