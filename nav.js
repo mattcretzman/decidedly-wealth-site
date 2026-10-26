@@ -27,7 +27,7 @@
 })();
 
 /* Scroll nav + reveal animations */
-window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('s',scrollY>40)});
+window.addEventListener('scroll',function(){var n=document.getElementById('nav');if(n)n.classList.toggle('s',scrollY>40)});
 var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('v');o.unobserve(e.target)}})},{threshold:.08});
 document.querySelectorAll('.r,.stages-head .ey,.intro .ey,.team .ey,.pod-text .ey,.cta-final .ey,.story-opening .ey').forEach(function(el){o.observe(el)});
 
