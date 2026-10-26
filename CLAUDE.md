@@ -252,3 +252,8 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Oct 22-23: T16 = 4 podcast articles on branch `podcast-batch-oct22`, NOT merged until approved: deciding-to-exit-your-business (Ep.22, Scott Snider), your-money-story (Ep.95), planning-your-retirement (Ep.156), raising-financially-savvy-kids (Ep.158). On publish, add blog.html cards + sitemap entries.
 - PDF packets: headless Chrome prints blank sections because `.r` reveal elements start at opacity 0, and the fixed nav overlaps text. Inject `.r{opacity:1!important;transform:none!important}` and `nav{position:absolute!important}` before `--print-to-pdf`.
 - Unmerged branches waiting on approval: podcast-count-fix (T5), exit-calculator + niche-calculators (T6), content-expansion-sep10 (T8, needs "take" fixes), rj-reeling-it-in (T2), team-bios (Dori), podcast-batch-oct22 (T16).
+
+## Microsoft Clarity (Oct 26, 2026)
+- Project id `z3uvmtk1b8` (Matt's Clarity account). Strict masking (all text masked).
+- Tag is on marketing pages only. NOT on contact, books, books-thank-you, client-portal, disclosures, privacy. Every `<form>` carries `data-clarity-mask="True"`.
+- New pages: add the Clarity snippet before `</head>` unless the page collects personal info or is legal/portal.
