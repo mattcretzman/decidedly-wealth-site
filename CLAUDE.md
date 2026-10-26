@@ -255,5 +255,5 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 
 ## Microsoft Clarity (Oct 26, 2026)
 - Project id `z3uvmtk1b8` (Matt's Clarity account). Strict masking (all text masked).
-- Tag is on marketing pages only. NOT on contact, books, books-thank-you, client-portal, disclosures, privacy. Every `<form>` carries `data-clarity-mask="True"`.
-- New pages: add the Clarity snippet before `</head>` unless the page collects personal info or is legal/portal.
+- Tag is on every page (Matt, Oct 26: contact and books are the pages that matter). Every `<form>` carries `data-clarity-mask="True"`.
+- New pages: add the Clarity snippet before `</head>` and the mask attribute on any form.
