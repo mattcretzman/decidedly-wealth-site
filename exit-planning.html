@@ -45,6 +45,8 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   }
 }
 </script>
+<!-- Microsoft Clarity (strict masking; not on contact, books, thank-you, client portal pages) -->
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z3uvmtk1b8");</script>
 </head>
 <body>
 
@@ -337,7 +339,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
       </div>
       <div class="contact-form r" style="background:white;color:var(--text)">
         <h3 style="color:var(--navy-deep)">Book a free conversation.</h3>
-        <form>
+        <form data-clarity-mask="True">
             <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
             <div class="form-group"><label for="first">First Name</label><input type="text" id="first" name="first" required></div>

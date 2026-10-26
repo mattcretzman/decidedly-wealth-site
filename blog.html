@@ -61,6 +61,8 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 .popup-note{font-family:var(--font-m);font-size:10px;color:var(--text-3);margin-top:8px;letter-spacing:.04em}
 @media(max-width:768px){.blog-grid{grid-template-columns:1fr}}
 </style>
+<!-- Microsoft Clarity (strict masking; not on contact, books, thank-you, client portal pages) -->
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z3uvmtk1b8");</script>
 </head>
 <body>
 
@@ -259,7 +261,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     <div class="ey" style="text-align:center">Free Books</div>
     <h3>Get both of Sanger's books — <em>free.</em></h3>
     <p>Two books on building wealth that lasts. Enter your name and email and we'll send them straight to your inbox.</p>
-    <form class="popup-form" id="popup-form">
+    <form data-clarity-mask="True" class="popup-form" id="popup-form">
             <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
       <input type="text" name="firstName" placeholder="First name" required>
       <input type="email" name="email" placeholder="Email address" required>
