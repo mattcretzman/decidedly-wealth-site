@@ -263,5 +263,5 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Ads diagnosis (Sep 1-Oct 26): valuation page 177 clicks / $1,293 / 0 conversions (DIY "how to value a business" searches); Exit Planning 4 conv in Sep, 0 in Oct; all campaigns on Maximize Clicks. 5 ad conversions Sep 21-Oct 9 were lost to the form spam-check bug fixed Oct 19.
 - Tests live: 26 phrase negatives on both non-brand campaigns; valuation ad now points to exit-planning.html (`~/scripts/decidedly/ads_oct26_tests.py`). Compare on Nov 2.
 - Microsoft Clarity live on every page (see section above). RJ notified (cc Wyatt).
-- Still open: Vercel GOOGLE_ADS_* env values are stale (weekly ads email + ops dashboard broken). Copy from `~/google-ads.yaml`, redeploy. Blocked by auto mode; needs Matt.
+- Fixed: Vercel GOOGLE_ADS_* env values refreshed from `~/google-ads.yaml` and prod redeployed; /api/ads-data returns data and the Monday ads email test arrived. Whenever `~/google-ads.yaml` is re-authed, update these four Vercel env values too (`vercel env rm/add NAME production`), then `vercel redeploy <current prod url> --target production`.
 - Next page test: valuation landing page built around the calculator (needs Kestra, T6 or new ticket).
