@@ -36,6 +36,7 @@ document.querySelectorAll('.r,.stages-head .ey,.intro .ey,.team .ey,.pod-text .e
   if(typeof gtag==='undefined')return;
   /* Contact form submissions */
   document.querySelectorAll('form').forEach(function(f){
+    if(f.hasAttribute('data-own-conversion'))return; /* page fires its own conversion (value calculator) */
     f.addEventListener('submit',function(){
       gtag('event','conversion',{'send_to':'AW-18360721058/XxZFCK3bqN8cEKK9ibNE'});
     });
