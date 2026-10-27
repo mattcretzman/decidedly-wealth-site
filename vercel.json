@@ -12,6 +12,21 @@
       ],
       "destination": "https://decidedlywealth.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/services.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/who-we-are.html",
+      "permanent": true
+    },
+    {
+      "source": "/ops/:report(rj-sync-[a-z0-9-]+\\.html)",
+      "destination": "https://decidedly-staging.vercel.app/reports/:report",
+      "permanent": true
     }
   ],
   "crons": [
