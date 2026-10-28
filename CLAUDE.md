@@ -265,3 +265,9 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Microsoft Clarity live on every page (see section above). RJ notified (cc Wyatt).
 - Fixed: Vercel GOOGLE_ADS_* env values refreshed from `~/google-ads.yaml` and prod redeployed; /api/ads-data returns data and the Monday ads email test arrived. Whenever `~/google-ads.yaml` is re-authed, update these four Vercel env values too (`vercel env rm/add NAME production`), then `vercel redeploy <current prod url> --target production`.
 - Next page test: valuation landing page built around the calculator (needs Kestra, T6 or new ticket).
+
+## Oct 27, 2026
+- Compliance tracker synced from RJ's Kestra review screen: both tabs carry each ticket's Kestra tracking number (Queue column Q; card view status line). T1 and T2 approved, T17 submitted. Kestra disapproved the first December outreach version on Oct 23; the resubmission is pending.
+- T2 (Significance Over Success) publish prep is on branch `rj-reeling-it-in`: current nav/footer, canonical + schema, Clarity, Insights card, sitemap. Article text matches the approved version except one quote reworded to drop "take". Merge only after RJ OKs that change. It publishes ungated, as submitted.
+- T1 (RJ clips): the six Postiz drafts have past dates. New schedule proposed to RJ (Oct 29 to Nov 16, 8am CT). After Nov 1, 8am CT = 14:00 UTC.
+- Google Ads API no longer needs a developer token (verified Oct 27: calls succeed without it). Required: OAuth client ID, client secret, refresh token, and login-customer-id 8793593741 for this account.
