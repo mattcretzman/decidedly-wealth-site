@@ -271,3 +271,11 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - T2 (Significance Over Success) publish prep is on branch `rj-reeling-it-in`: current nav/footer, canonical + schema, Clarity, Insights card, sitemap. Article text matches the approved version except one quote reworded to drop "take". Merge only after RJ OKs that change. It publishes ungated, as submitted.
 - T1 (RJ clips): the six Postiz drafts have past dates. New schedule proposed to RJ (Oct 29 to Nov 16, 8am CT). After Nov 1, 8am CT = 14:00 UTC.
 - Google Ads API no longer needs a developer token (verified Oct 27: calls succeed without it). Required: OAuth client ID, client secret, refresh token, and login-customer-id 8793593741 for this account.
+
+### Oct 27 night: publish status
+- LIVE: T2 (def4aae), T5 podcast count (7f0078f, 13 pages verified).
+- T1 clips scheduled in Postiz (Nov 2, 5, 9, 12, 16, 8am CT). Write-up post held: caption never submitted.
+- T6 `niche-calculators` (d55e8b4) and T8 `t8-podcast-blogs` (729b2bb) ready, NOT merged: waiting RJ OK on post-approval wording changes (emailed Oct 27).
+- T8 left out 3 posts whose approved PDFs were truncated (headless Chrome prints `.r` reveal sections blank). They need full-text resubmission.
+- `exit-planning.html` still says "750+ Episodes" twice; needs a submission.
+- Dash checks: scan for `&mdash;`/`&ndash;` entities too, not only the characters.
