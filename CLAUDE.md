@@ -279,3 +279,9 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - T8 left out 3 posts whose approved PDFs were truncated (headless Chrome prints `.r` reveal sections blank). They need full-text resubmission.
 - `exit-planning.html` still says "750+ Episodes" twice; needs a submission.
 - Dash checks: scan for `&mdash;`/`&ndash;` entities too, not only the characters.
+
+### Oct 28: T6 + T8 LIVE, NCE link fixed
+- Merged to main: T6 calculators + dentist/HVAC pages (niche-calculators), T8 five podcast posts (t8-podcast-blogs), sitemap conflict resolved (60 URLs). Live and verified 200, no noindex, Clarity on.
+- T8 gates: RJ's approval says post website articles "as the gated version, the same copy I sent you." Gates restored on creating-a-family-business-legacy and purposeful-philanthropy-meaningful-impact exactly as submitted (box mid-article, text continues below), plus honeypot/_t/Clarity mask.
+- client-portal.html: National Charitable link now https://natcharitable.fcsuite.com/erp/portal (NCE's own Donor Portal link); was a Blackbaud sign-in to nationalcharitable.donorcentral.com.
+- RJ rule: small post-approval wording changes unrelated to investments don't need his sign-off. Emails to RJ: state the exact ask in the first line.
