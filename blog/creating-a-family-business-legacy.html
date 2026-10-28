@@ -116,9 +116,22 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 
       <p>And if the family never sits down and has that conversation, if the founder just assumes that legacy means "keep the business going," you end up with a plan that nobody has buy-in on. That's when things fall apart.</p>
 
+      <div class="gate">
+        <div class="gate-fade">
           <p><strong>Nike told me about a client whose father had passed away.</strong> He'd done the technical legacy planning. He pulled in his attorney. Set up the trusts and foundations. Everything was buttoned up on paper. But when he died, the four siblings couldn't make a single productive decision together...</p>
-
-
+        </div>
+        <div class="gate-box">
+          <div class="ey">Keep Reading</div>
+          <h3>The rest is in your <em>inbox.</em></h3>
+          <p>The real reason family succession plans fail, why "shirtsleeves to shirtsleeves" keeps happening, and the one conversation most families skip entirely. Drop your email and I'll send you the full piece, plus a new decision every Wednesday.</p>
+          <form data-clarity-mask="True" class="gate-form" id="gate-form">
+            <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
+            <input type="email" name="email" placeholder="Your email address" required>
+            <button type="submit">Send Me The Rest</button>
+          </form>
+          <div class="gate-note">Free &middot; Every Wednesday &middot; Unsubscribe anytime</div>
+        </div>
+      </div>
       <p>Each sibling had their own idea of what Dad would have wanted. Each had their own priorities. And the squabbling turned into repeatable conflicts where they simply could not make decisions together. It threatened the survival of their partnership. They stopped having meetings entirely. Each wanted to sell their share.</p>
 
       <p>That's when it hit Nike. The industry spends too much time speaking in the language of the technical, and not enough in the language of the relational. The relational is actually the foundation.</p>
@@ -175,6 +188,18 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   </div>
 </footer>
 
+<script>
+window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('gate-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
+  e.preventDefault();
+  var f=this;var btn=f.querySelector('button');btn.textContent='Sending...';btn.disabled=true;
+  fetch('/api/newsletter-signup',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:f.email.value,source:'blog-gate-family-legacy',website:f.website?f.website.value:'',_t:_t})
+  }).then(function(){
+    f.innerHTML='<p style="font-size:15px;color:white;font-weight:600;padding:8px 0">You\'re in! Check your inbox for the full piece, and a new decision lands every Wednesday.</p>';
+  });
+});
+</script>
 <script src="/nav.js"></script>
 <script src="/conversion-tracking.js"></script>
 </body>

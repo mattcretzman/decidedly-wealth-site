@@ -120,9 +120,22 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 
       <p>I see this all the time. I have helped clients sell their business, receive a large lump sum of capital, and even when it is clearly more than they will ever need, they are resistant to shifting their relationship with that money. They are measuring their security, their worth, their identity by the number in the account. And that mindset, the one that served them so well while they were building, becomes the very thing holding them back from impact.</p>
 
+      <div class="gate">
+        <div class="gate-fade">
           <p><strong>Three orientations toward wealth.</strong> Alex frames it as three stages. There is the "aspire and acquire" stage, when you are growing your wealth. There is "manage and maintain," where maybe you have sold the business and you are trying to hold on to what you have. And then there is "distribute and dispense," where you have done the math and...</p>
-
-
+        </div>
+        <div class="gate-box">
+          <div class="ey">Keep Reading</div>
+          <h3>The rest is in your <em>inbox.</em></h3>
+          <p>The three orientations toward wealth that determine your giving, why "strategic philanthropy" is not the only path, and the one question that unlocks everything. Drop your email and I will send the full piece, plus a new decision every Wednesday.</p>
+          <form data-clarity-mask="True" class="gate-form" id="gate-form">
+            <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
+            <input type="email" name="email" placeholder="Your email address" required>
+            <button type="submit">Send Me The Rest</button>
+          </form>
+          <div class="gate-note">Free &middot; Every Wednesday &middot; Unsubscribe anytime</div>
+        </div>
+      </div>
       <p><strong>Three orientations toward wealth.</strong> Alex frames it as three stages. There is the "aspire and acquire" stage, when you are growing your wealth. There is "manage and maintain," where maybe you have sold the business and you are trying to hold on to what you have. And then there is "distribute and dispense," where you have said, "I have enough. I am giving a significant portion of this away."</p>
 
       <p>Most entrepreneurs are anchored in that first stage. Always growing. That is the mindset. And their giving never keeps pace with their wealth because they have not made the psychological shift to the next orientation. They have not had the conversation with themselves about what their money is actually for.</p>
@@ -173,6 +186,18 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   </div>
 </footer>
 
+<script>
+window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('gate-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
+  e.preventDefault();
+  var f=this;var btn=f.querySelector('button');btn.textContent='Sending...';btn.disabled=true;
+  fetch('/api/newsletter-signup',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:f.email.value,source:'blog-gate-purposeful-philanthropy',website:f.website?f.website.value:'',_t:_t})
+  }).then(function(){
+    f.innerHTML='<p style="font-size:15px;color:white;font-weight:600;padding:8px 0">You\'re in! Check your inbox for the full piece, and a new decision lands every Wednesday.</p>';
+  });
+});
+</script>
 <script src="/nav.js"></script>
 <script src="/conversion-tracking.js"></script>
 </body>
