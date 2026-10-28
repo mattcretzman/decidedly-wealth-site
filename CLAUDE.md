@@ -17,7 +17,9 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - **CSS rule:** `h1 em, h2 em, h3 em { font-style: italic; font-weight: 700; }`
 
 ## Compliance Rules
-- ALL content goes to Dori Stone (dori@decidedlywealth.com) for compliance review before publishing
+- ALL content gets compliance approval before publishing. Since Oct 14, 2026 RJ submits each item himself (ticket numbers T1, T2, ...). We prepare a ready-to-paste packet per ticket: PDFs in a public Drive folder + a row on BOTH tabs of the compliance tracker (Queue + Submit card view). RJ asked that both tabs stay current.
+- Publish exactly what was approved. Approved items go live only after RJ forwards the approval notice.
+- BANNED WORD (RJ + Wyatt, Oct 19 2026): never use "take" in any form (takes, taken, taking, takeaway, mistake). Check with `grep -n -i -E '\b\w*tak\w*\b'`. No em or en dashes in new copy.
 - **From Mon Oct 5 2026 Shawn is a Decidedly advisor (Sanger, Sep 30): no restrictions.** Before that: Shawn Smith (Sanger's father) CAN appear in group photos and podcast mentions
 - Shawn CANNOT be listed as a team member of Decidedly Wealth Management (separate entities, broker dealer issue)
 - Use ONLY existing approved content — do NOT invent stats, pricing, or claims
@@ -241,3 +243,31 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 ## Reports (Oct 13, 2026)
 - Weekly client reports are NOT kept in this repo. This repo is public on GitHub. Reports live in a separate private, password-protected project; see private notes.
 - Old `/ops/rj-sync-*.html` addresses redirect there (vercel.json). `ops/dashboard.html` stays here: it has its own access key and shows no names.
+
+## Session Log: Oct 19-23, 2026
+- Oct 19: all site forms were rejecting real visitors since Sep 21 (spam filter's 3-second check had no load time). Fixed with `window._formLoadTime` on every form page (497967b).
+- Oct 19: book follow-up drip cut to 2 emails, day 14 and day 21, for signups after the cutover (01dd84a). Covered by the T10 approval per RJ, Oct 22.
+- Oct 19-22: "take" removed from 12 live pages (fd3fbc0); team photos (9619e85); RJ's Oct 28 article live, gated (964907a).
+- Oct 22: conversion tag verified firing on books-thank-you.html (Ads conversion request returns 200). Form submits also fire from nav.js.
+- Oct 22-23: T16 = 4 podcast articles on branch `podcast-batch-oct22`, NOT merged until approved: deciding-to-exit-your-business (Ep.22, Scott Snider), your-money-story (Ep.95), planning-your-retirement (Ep.156), raising-financially-savvy-kids (Ep.158). On publish, add blog.html cards + sitemap entries.
+- PDF packets: headless Chrome prints blank sections because `.r` reveal elements start at opacity 0, and the fixed nav overlaps text. Inject `.r{opacity:1!important;transform:none!important}` and `nav{position:absolute!important}` before `--print-to-pdf`.
+- Unmerged branches waiting on approval: podcast-count-fix (T5), exit-calculator + niche-calculators (T6), content-expansion-sep10 (T8, needs "take" fixes), rj-reeling-it-in (T2), team-bios (Dori), podcast-batch-oct22 (T16).
+
+## Microsoft Clarity (Oct 26, 2026)
+- Project id `z3uvmtk1b8` (Matt's Clarity account). Strict masking (all text masked).
+- Tag is on every page (Matt, Oct 26: contact and books are the pages that matter). Every `<form>` carries `data-clarity-mask="True"`.
+- New pages: add the Clarity snippet before `</head>` and the mask attribute on any form.
+
+## Session Log: Oct 26, 2026
+- Full check: site + all 49 sitemap URLs 200; no new leads since Oct 21; Kestra backlog (RJ called, approvals coming).
+- Ads diagnosis (Sep 1-Oct 26): valuation page 177 clicks / $1,293 / 0 conversions (DIY "how to value a business" searches); Exit Planning 4 conv in Sep, 0 in Oct; all campaigns on Maximize Clicks. 5 ad conversions Sep 21-Oct 9 were lost to the form spam-check bug fixed Oct 19.
+- Tests live: 26 phrase negatives on both non-brand campaigns; valuation ad now points to exit-planning.html (`~/scripts/decidedly/ads_oct26_tests.py`). Compare on Nov 2.
+- Microsoft Clarity live on every page (see section above). RJ notified (cc Wyatt).
+- Fixed: Vercel GOOGLE_ADS_* env values refreshed from `~/google-ads.yaml` and prod redeployed; /api/ads-data returns data and the Monday ads email test arrived. Whenever `~/google-ads.yaml` is re-authed, update these four Vercel env values too (`vercel env rm/add NAME production`), then `vercel redeploy <current prod url> --target production`.
+- Next page test: valuation landing page built around the calculator (needs Kestra, T6 or new ticket).
+
+## Oct 27, 2026
+- Compliance tracker synced from RJ's Kestra review screen: both tabs carry each ticket's Kestra tracking number (Queue column Q; card view status line). T1 and T2 approved, T17 submitted. Kestra disapproved the first December outreach version on Oct 23; the resubmission is pending.
+- T2 (Significance Over Success) publish prep is on branch `rj-reeling-it-in`: current nav/footer, canonical + schema, Clarity, Insights card, sitemap. Article text matches the approved version except one quote reworded to drop "take". Merge only after RJ OKs that change. It publishes ungated, as submitted.
+- T1 (RJ clips): the six Postiz drafts have past dates. New schedule proposed to RJ (Oct 29 to Nov 16, 8am CT). After Nov 1, 8am CT = 14:00 UTC.
+- Google Ads API no longer needs a developer token (verified Oct 27: calls succeed without it). Required: OAuth client ID, client secret, refresh token, and login-customer-id 8793593741 for this account.

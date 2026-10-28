@@ -61,6 +61,8 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 .popup-note{font-family:var(--font-m);font-size:10px;color:var(--text-3);margin-top:8px;letter-spacing:.04em}
 @media(max-width:768px){.blog-grid{grid-template-columns:1fr}}
 </style>
+<!-- Microsoft Clarity (strict masking; forms masked) -->
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z3uvmtk1b8");</script>
 </head>
 <body>
 
@@ -106,6 +108,20 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   <div class="ctn">
 
     <div class="blog-grid">
+
+      <a href="/blog/significance-over-success-rj-finley.html" class="blog-card r">
+        <div class="ey">Reeling It In</div>
+        <h3>Significance Over <em>Success</em></h3>
+        <p>RJ Finley joined Collin Bass on Reeling It In to talk about why most people have values, not financial goals, and the five key decisions that align money with what matters.</p>
+        <div class="blog-date">By RJ Finley &middot; October 2026</div>
+      </a>
+
+      <a href="/blog/the-plan-says-youre-fine.html" class="blog-card r">
+        <div class="ey">When the Numbers Aren&rsquo;t Enough</div>
+        <h3>The Plan Says You&rsquo;re Fine. So Why Don&rsquo;t You <em>Feel</em> Fine?</h3>
+        <p>Darren&rsquo;s financial plan said he would be fine, and he didn&rsquo;t believe it. What a plan can&rsquo;t tell you, and why more money rarely settles the feeling.</p>
+        <div class="blog-date">By RJ Finley &middot; October 28, 2026</div>
+      </a>
 
       <a href="/blog/your-money-should-feel-like-freedom.html" class="blog-card r">
         <div class="ey">The Real Purpose of Money</div>
@@ -252,7 +268,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     <div class="ey" style="text-align:center">Free Books</div>
     <h3>Get both of Sanger's books — <em>free.</em></h3>
     <p>Two books on building wealth that lasts. Enter your name and email and we'll send them straight to your inbox.</p>
-    <form class="popup-form" id="popup-form">
+    <form data-clarity-mask="True" class="popup-form" id="popup-form">
             <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
       <input type="text" name="firstName" placeholder="First name" required>
       <input type="email" name="email" placeholder="Email address" required>
@@ -279,7 +295,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   });
 })();
 // Popup form submit
-document.getElementById('popup-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
+window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('popup-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;var btn=f.querySelector('button');btn.textContent='Subscribing...';btn.disabled=true;
   fetch('/api/book-download',{

@@ -57,6 +57,8 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 .book-topics li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--navy);opacity:.3;flex-shrink:0}
 @media(max-width:768px){.book-hero-grid{grid-template-columns:1fr}.book-covers{order:-1}.book-detail-grid{grid-template-columns:1fr;text-align:center}.book-detail-cover{max-width:200px;margin:0 auto}.book-detail .pod-link{justify-content:center}.book-form .form-row{grid-template-columns:1fr}.book-cover-img{width:140px}}
 </style>
+<!-- Microsoft Clarity (strict masking; forms masked) -->
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z3uvmtk1b8");</script>
 </head>
 <body>
 
@@ -121,7 +123,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
       <div class="ey">Get Your Free Copies</div>
       <h2>Enter your email and we'll send<br>both books <em>instantly.</em></h2>
       <p>No cost. No catch. Just two books worth of hard-won wisdom from a father and son who've spent decades guiding family businesses.</p>
-      <form class="book-form" id="book-form">
+      <form data-clarity-mask="True" class="book-form" id="book-form">
             <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <input type="text" name="firstName" placeholder="First name" required>
@@ -226,7 +228,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 </footer>
 
 <script>
-document.getElementById('book-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
+window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('book-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;
   var btn=f.querySelector('button');
