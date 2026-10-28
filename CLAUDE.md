@@ -3,7 +3,7 @@
 ## Project Overview
 New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - **Client:** Sanger Smith, sanger@decidedlywealth.com
-- **Engagement:** Accelerator, $6,900/mo, 12 months, signed Jul 24
+- **Engagement:** Accelerator, 12 months, signed Jul 24 (terms in private notes)
 - **Domain:** decidedlywealth.com (DNS switch from FMG to Vercel when ready)
 - **Preview URL:** deploy to Vercel as decidedly-preview for now
 - **Kickoff call:** Jul 30 — COMPLETED
@@ -17,9 +17,11 @@ New website for Sanger Smith / Decidedly Wealth Management. Replacing FMG Suite.
 - **CSS rule:** `h1 em, h2 em, h3 em { font-style: italic; font-weight: 700; }`
 
 ## Compliance Rules
-- ALL content goes to Dori Stone (dori@decidedlywealth.com) for compliance review before publishing
-- Sean Smith (Sanger's father) CAN appear in group photos and podcast mentions
-- Sean CANNOT be listed as a team member of Decidedly Wealth Management (separate entities, broker dealer issue)
+- ALL content gets compliance approval before publishing. Since Oct 14, 2026 RJ submits each item himself (ticket numbers T1, T2, ...). We prepare a ready-to-paste packet per ticket: PDFs in a public Drive folder + a row on BOTH tabs of the compliance tracker (Queue + Submit card view). RJ asked that both tabs stay current.
+- Publish exactly what was approved. Approved items go live only after RJ forwards the approval notice.
+- BANNED WORD (RJ + Wyatt, Oct 19 2026): never use "take" in any form (takes, taken, taking, takeaway, mistake). Check with `grep -n -i -E '\b\w*tak\w*\b'`. No em or en dashes in new copy.
+- **From Mon Oct 5 2026 Shawn is a Decidedly advisor (Sanger, Sep 30): no restrictions.** Before that: Shawn Smith (Sanger's father) CAN appear in group photos and podcast mentions
+- Shawn CANNOT be listed as a team member of Decidedly Wealth Management (separate entities, broker dealer issue)
 - Use ONLY existing approved content — do NOT invent stats, pricing, or claims
 
 ## Key Files
@@ -135,12 +137,12 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 
 ### Client comms rules learned this session
 - Never frame delivered work as a problem we discovered. "The search foundation went live", not "Google had no map of the site." Matt: *"that makes us look bad."*
-- Verify claimed firsts against what the client has already reported. Wyatt had counted 5-6 leads and Sanger had meetings before Mark Bishara booked; Mark's real distinction is that he was a cold-email win, which is rare.
+- Verify claimed firsts against what the client has already reported. Wyatt had counted 5-6 leads and Sanger had meetings before a prospect booked; the real distinction was that it was a cold-email win, which is rare.
 
 ## Session Log — Sep 30, 2026
 
 ### Shipped
-- **RJ weekly report** `ops/rj-sync-sep30.html` LIVE. It includes the Ads week-over-week (Sep 23-29: 896 impr, 56 clicks, $6.22 CPC, 3 conv, $348.58). Chuck Claburn is attributed to Google Ads.
+- **RJ weekly report** `ops/rj-sync-sep30.html` LIVE. It includes the Ads week-over-week (Sep 23-29: 896 impr, 56 clicks, $6.22 CPC, 3 conv, $348.58). A lead who became a meeting is attributed to Google Ads.
 - **RJ photo** `images/rj-brick.jpg` re-cropped from Drive original photo 24 (commit 20344f6).
 - **Blog post** `blog/significance-over-success-rj-finley.html` on branch `rj-reeling-it-in` (commit 7681252). Preview only. NOT merged, because it goes through Dori/Kestra first.
 
@@ -162,5 +164,110 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - RJ's exit-planning calculator (Claude artifact). Waiting on his link.
   - Short gated site version targeting "exit planning calculator".
   - Long version behind client login.
-- New team photos incoming (Sean + Aisha joining). Confirm with Dori before listing Sean (broker-dealer rule above).
+- New team photos incoming (Shawn + Aisha joining). Confirm with Dori before listing Shawn (broker-dealer rule above).
 - Rule: booking context goes to the team by email, never in GReminders notes (the client sees those).
+
+## Session Log: Sep 30, 2026 (evening)
+
+### Exit calculator (branch `exit-calculator`, NOT merged)
+- Files: `exit-planning-calculator.html`, `exit-calculator.js`, `exit-calculator.css`, `api/exit-calculator.js`.
+- Preview: decidedly-preview-git-exit-calculator-mcretzman-9359s-projects.vercel.app/exit-planning-calculator.html
+- Flow: 3 steps, free readiness score + gaps, email gate, then value range, after-tax net, wealth gap and upside.
+- Leads: Levitate tag "Exit Calculator", alert emails to Sanger, RJ and Wyatt.
+- Multiples are sourced (commit 64fda65): IBBA Market Pulse, GF Data, BVR DealStats, Pepperdine. Sources and methodology for Dori: `ops/calculator-multiples-sources.md`.
+- Page is noindex until Dori approves. To launch:
+  1. Merge the branch.
+  2. Remove the noindex meta tag.
+  3. Add the page to the sitemap and link it from exit-planning.html.
+- nav.js fires the contact-form conversion on any form submit, including the gate. The calculator also fires the gtag events `exit_calc_complete` and `exit_calc_lead`.
+
+### Platform direction (Matt's correction)
+- DW is WEALTH management, not M&A. Platform = the owner's whole balance sheet, built around the five key decisions.
+- Data sources: Black Diamond, MoneyGuide Pro, wealth.com, Wealthbox.
+- The calculator is only the front door. Transaction-only owners go to a partner (Founders Advisors).
+- Spec doc: 1pmYrhy32KgQ82KdRdVXeN-pMuYYgVwoACRKlYFa920w. Oct 1 agenda doc: 1ceaMnXkUt3QoSQGlwXekmCwqJ2sPvlllQalWQ1XvuSo. Both shared by name with Sanger, RJ and Wyatt.
+
+### Comms rule
+- Wyatt is on ALL Decidedly team comms (with Sanger and RJ).
+
+### Social posting
+- Postiz fixed. No Decidedly LinkedIn accounts are connected yet; connect RJ (and Sanger) in person via a one-time OAuth link from `GET /public/v1/social/linkedin`.
+- Posting target is 3 per week (Matt's target).
+
+### Sanger social strategy (Sep 30, late)
+- Doc: 1JCnme2YTivNsSdDimSV99JoGgHl3FrQV7PlKPvOI2ac. Shared by name with Sanger, RJ and Wyatt.
+- Channel data: `~/scripts/podcast-clips/decidedly-yt/`.
+- YouTube @decidedlypodcast:
+  - 752 uploads: 498 long-form, 254 Shorts.
+  - Dormant since Sep 17, 2025.
+  - Median views: 359 for Shorts, 6 for long-form.
+- Plan: Sanger's personal LinkedIn is the primary channel, 3 posts a week, one back-catalog episode per week. The same clips also go to Shorts and the company page.
+- First episodes to cut: Ep160, Ep180, Ep22, Ep141, Ep156, Ep171, Ep173, Ep108.
+- `podcast.html` has stale claims: "new episodes every week" and "750 episodes". Fix after approval.
+- Sanger's father is spelled **Shawn** D. Smith (site + YouTube), not Sean.
+- The Oct 1 agenda has "Sanger's social media" as item 4.
+- Edit shared Google Docs in place with `gws docs batchUpdate` so links stay stable.
+
+## Session Log: Oct 1-3, 2026
+
+### Preview branches (NOT merged; all pending Dori)
+| Branch | What |
+|---|---|
+| `team-oct5` | Shawn D. Smith (Private Wealth Advisor; MBA, CFP, ChFC, APMA, BFA, CKA) + Aisha Ann Rada (Financial Planning Associate). Photos, no bios yet. Homepage team grid set to 3 columns. **Go live Mon Oct 5 once Dori approves.** |
+| `team-photos` | Built on team-oct5. Real group shots replace ai-exit-planning.jpg and ai-growth.jpg, plus a team banner on Who We Are. |
+| `podcast-copy` | "750+ episodes" changed to "nearly 200"; removed the weekly-release claims. |
+| `exit-calculator` | Generic calculator with sourced multiples. |
+| `rj-reeling-it-in` | RJ blog post. Merge before the Oct 12 LinkedIn post goes out. |
+| `niche-calculators` | HVAC + dental calculators + industry landing pages (commit 46903d0). Upgrades in progress: audience images, sliders, dollar value levers, "what your exit buys", market momentum, roadmap. |
+
+- Vercel shortens long branch names: niche preview = decidedly-preview-git-niche-cal-1c168c-mcretzman-9359s-projects.vercel.app.
+
+### Social
+- Postiz: Sanger + RJ LinkedIn connected. 13 posts loaded as DRAFTS; promote via PUT /posts/{id}/status after Dori approves.
+- Ledgers: ~/scripts/podcast-clips/sanger/postiz/ and ~/scripts/podcast-clips/rj-postiz/.
+- Clip rules:
+  - Complete thoughts only, never cut a speaker mid-passion. 1-3 min is fine.
+  - Music-swell outro + logo end card.
+  - QA by re-transcription. Deepgram is out of credit, so use local whisper.
+- Month 2 content in production: ~/scripts/podcast-clips/sanger-month2/.
+
+### Google Ads
+- STOPPED serving Oct 1: all 3 campaigns NOT_ELIGIBLE, reason unknown via API, likely billing.
+- Needs a UI check by an account user. matt@stormbreakerdigital.com has no UI access.
+- connection-health.py now fails the check if ads are not serving.
+
+### Rules learned
+- Wyatt is on all team comms.
+- Five decisions exact wording: Decide who you are / Decide where you are / Decide where you are going / Decide how you are going to get there / Decide who matters.
+
+## Reports (Oct 13, 2026)
+- Weekly client reports are NOT kept in this repo. This repo is public on GitHub. Reports live in a separate private, password-protected project; see private notes.
+- Old `/ops/rj-sync-*.html` addresses redirect there (vercel.json). `ops/dashboard.html` stays here: it has its own access key and shows no names.
+
+## Session Log: Oct 19-23, 2026
+- Oct 19: all site forms were rejecting real visitors since Sep 21 (spam filter's 3-second check had no load time). Fixed with `window._formLoadTime` on every form page (497967b).
+- Oct 19: book follow-up drip cut to 2 emails, day 14 and day 21, for signups after the cutover (01dd84a). Covered by the T10 approval per RJ, Oct 22.
+- Oct 19-22: "take" removed from 12 live pages (fd3fbc0); team photos (9619e85); RJ's Oct 28 article live, gated (964907a).
+- Oct 22: conversion tag verified firing on books-thank-you.html (Ads conversion request returns 200). Form submits also fire from nav.js.
+- Oct 22-23: T16 = 4 podcast articles on branch `podcast-batch-oct22`, NOT merged until approved: deciding-to-exit-your-business (Ep.22, Scott Snider), your-money-story (Ep.95), planning-your-retirement (Ep.156), raising-financially-savvy-kids (Ep.158). On publish, add blog.html cards + sitemap entries.
+- PDF packets: headless Chrome prints blank sections because `.r` reveal elements start at opacity 0, and the fixed nav overlaps text. Inject `.r{opacity:1!important;transform:none!important}` and `nav{position:absolute!important}` before `--print-to-pdf`.
+- Unmerged branches waiting on approval: podcast-count-fix (T5), exit-calculator + niche-calculators (T6), content-expansion-sep10 (T8, needs "take" fixes), rj-reeling-it-in (T2), team-bios (Dori), podcast-batch-oct22 (T16).
+
+## Microsoft Clarity (Oct 26, 2026)
+- Project id `z3uvmtk1b8` (Matt's Clarity account). Strict masking (all text masked).
+- Tag is on every page (Matt, Oct 26: contact and books are the pages that matter). Every `<form>` carries `data-clarity-mask="True"`.
+- New pages: add the Clarity snippet before `</head>` and the mask attribute on any form.
+
+## Session Log: Oct 26, 2026
+- Full check: site + all 49 sitemap URLs 200; no new leads since Oct 21; Kestra backlog (RJ called, approvals coming).
+- Ads diagnosis (Sep 1-Oct 26): valuation page 177 clicks / $1,293 / 0 conversions (DIY "how to value a business" searches); Exit Planning 4 conv in Sep, 0 in Oct; all campaigns on Maximize Clicks. 5 ad conversions Sep 21-Oct 9 were lost to the form spam-check bug fixed Oct 19.
+- Tests live: 26 phrase negatives on both non-brand campaigns; valuation ad now points to exit-planning.html (`~/scripts/decidedly/ads_oct26_tests.py`). Compare on Nov 2.
+- Microsoft Clarity live on every page (see section above). RJ notified (cc Wyatt).
+- Fixed: Vercel GOOGLE_ADS_* env values refreshed from `~/google-ads.yaml` and prod redeployed; /api/ads-data returns data and the Monday ads email test arrived. Whenever `~/google-ads.yaml` is re-authed, update these four Vercel env values too (`vercel env rm/add NAME production`), then `vercel redeploy <current prod url> --target production`.
+- Next page test: valuation landing page built around the calculator (needs Kestra, T6 or new ticket).
+
+## Oct 27, 2026
+- Compliance tracker synced from RJ's Kestra review screen: both tabs carry each ticket's Kestra tracking number (Queue column Q; card view status line). T1 and T2 approved, T17 submitted. Kestra disapproved the first December outreach version on Oct 23; the resubmission is pending.
+- T2 (Significance Over Success) publish prep is on branch `rj-reeling-it-in`: current nav/footer, canonical + schema, Clarity, Insights card, sitemap. Article text matches the approved version except one quote reworded to drop "take". Merge only after RJ OKs that change. It publishes ungated, as submitted.
+- T1 (RJ clips): the six Postiz drafts have past dates. New schedule proposed to RJ (Oct 29 to Nov 16, 8am CT). After Nov 1, 8am CT = 14:00 UTC.
+- Google Ads API no longer needs a developer token (verified Oct 27: calls succeed without it). Required: OAuth client ID, client secret, refresh token, and login-customer-id 8793593741 for this account.

@@ -69,6 +69,8 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   }
 }
 </script>
+<!-- Microsoft Clarity (strict masking; forms masked) -->
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z3uvmtk1b8");</script>
 </head>
 <body>
 
@@ -142,7 +144,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
           <div class="ey">Keep Reading</div>
           <h3>The three ways are in your <em>inbox.</em></h3>
           <p>A 10b5-1 plan, gifting and trust strategies, and tax sequencing across years. How David used all three over 18 months to diversify without handing it all to the IRS. Drop your email and I'll send you the full piece, plus a new decision every Wednesday.</p>
-          <form class="gate-form" id="gate-form">
+          <form data-clarity-mask="True" class="gate-form" id="gate-form">
             <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
             <input type="email" name="email" placeholder="Your email address" required>
             <button type="submit">Send Me The Rest</button>
@@ -176,7 +178,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 </footer>
 
 <script>
-document.getElementById('gate-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
+window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('gate-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;var btn=f.querySelector('button');btn.textContent='Sending...';btn.disabled=true;
   fetch('/api/newsletter-signup',{

@@ -69,6 +69,8 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   }
 }
 </script>
+<!-- Microsoft Clarity (strict masking; forms masked) -->
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z3uvmtk1b8");</script>
 </head>
 <body>
 
@@ -124,7 +126,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 
       <p>So here's what I walk through with everyone before they step away. Three things, and only one of them is about the business.</p>
 
-      <p><strong>First, can the business actually run without you?</strong> This is the one founders usually have handled, or think they do. Buyers want to know the company doesn't live or die on your daily involvement. That means your key processes are written down instead of living in your head, your leadership team can actually make decisions without calling you, and your books are clean enough to survive due diligence without a story attached to every line. Lisa already had a strong team. But she went further and spent months mentoring her COO to take over the relationships and the big calls. That move did two things. It reassured the buyer, and it gave Lisa the quiet confidence that she wasn't leaving a mess behind.</p>
+      <p><strong>First, can the business actually run without you?</strong> This is the one founders usually have handled, or think they do. Buyers want to know the company doesn't live or die on your daily involvement. That means your key processes are written down instead of living in your head, your leadership team can actually make decisions without calling you, and your books are clean enough to survive due diligence without a story attached to every line. Lisa already had a strong team. But she went further and spent months mentoring her COO to step into the relationships and the big calls. That move did two things. It reassured the buyer, and it gave Lisa the quiet confidence that she wasn't leaving a mess behind.</p>
 
       <div class="gate">
         <div class="gate-fade">
@@ -134,7 +136,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
           <div class="ey">Keep Reading</div>
           <h3>The rest is in your <em>inbox.</em></h3>
           <p>The two questions most founders never ask before they sell, the bridge that kept Lisa from falling off a cliff, and what a good transition is actually measured by. Drop your email and I'll send you the full piece, plus a new decision every Wednesday.</p>
-          <form class="gate-form" id="gate-form">
+          <form data-clarity-mask="True" class="gate-form" id="gate-form">
             <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" tabindex="-1" autocomplete="off">
             <input type="email" name="email" placeholder="Your email address" required>
             <button type="submit">Send Me The Rest</button>
@@ -168,7 +170,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 </footer>
 
 <script>
-document.getElementById('gate-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
+window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('gate-form').addEventListener('submit',function(e){var _t=window._formLoadTime||Date.now();
   e.preventDefault();
   var f=this;var btn=f.querySelector('button');btn.textContent='Sending...';btn.disabled=true;
   fetch('/api/newsletter-signup',{
