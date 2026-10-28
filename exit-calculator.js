@@ -164,7 +164,7 @@
         { id: 'fleet', w: 10, q: 'Are your trucks and equipment in good shape, with no big replacement bill due in the next two years?',
           opts: YES_GOOD,
           fix: 'Getting trucks and equipment in good shape',
-          gap: 'Fleet and equipment. An aging fleet is a cost the buyer will have to pay, and they will usually take it off the price.' },
+          gap: 'Fleet and equipment. An aging fleet is a cost the buyer will have to pay, and they will usually subtract it from the price.' },
         { id: 'books', w: 15, q: 'Are your financials reviewed or audited by a CPA, with job costing you trust?',
           opts: YES_GOOD,
           fix: 'Getting CPA-reviewed financials and job costing you trust',
@@ -486,7 +486,7 @@
     $('buys-p').textContent = keep > 0
       ? 'Invested and drawn at 4% a year, the ' + money(keep) + ' you would keep comes to about ' + money100(mo) + ' a month. ' +
         'The ' + money(r.need) + ' you said you need would come to about ' + money100(needMo) + ' a month on the same math, so this sale covers about ' + share + '% of the life you described.'
-      : 'On these numbers, taxes and debt would take most of the sale. That is exactly the situation a plan made years ahead can change.';
+      : 'On these numbers, taxes and debt would use up most of the sale. That is exactly the situation a plan made years ahead can change.';
   }
 
   document.querySelectorAll('[data-next]').forEach(function(b){
