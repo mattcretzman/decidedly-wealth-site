@@ -16,6 +16,11 @@ const INTERNAL_EMAILS = [
   'morgan@decidedlymoney.com'
 ];
 
+// Book requesters who are already working with an advisor get no follow-ups.
+const DO_NOT_SEND = [
+  'michael@keystonedental.org' // Michael Martin: engagement meeting Oct 30, 2026 (Matt, Nov 2)
+];
+
 // Two-email follow-up (RJ, Oct 19 2026): one note at day 14, one at day 21, then done.
 // Leads from before CUTOVER (old 8-week emails, mostly bots while the form bug was live) get nothing more.
 const CUTOVER = new Date('2026-10-19T15:50:00Z'); // forms started accepting real visitors at 15:53 UTC Oct 19
@@ -106,6 +111,7 @@ module.exports = async function handler(req, res) {
 
     if (!email || !timestamp) continue;
     if (INTERNAL_EMAILS.includes(email.toLowerCase())) continue;
+    if (DO_NOT_SEND.includes(email.toLowerCase())) continue;
     // The contact form writes to this same sheet (phone in column E). Only book requests get the follow-ups.
     if (!BOOK_SOURCES.includes((row[4] || '').trim())) continue;
     if (dripsSent >= DRIP_SCHEDULE.length) continue;
