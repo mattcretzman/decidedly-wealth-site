@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
   try {
     // Fetch ads data from our own endpoint
     const baseUrl = `https://${req.headers.host}`;
-    const dataResp = await fetch(`${baseUrl}/api/ads-data?key=${DASH_KEY}`);
+    const dataResp = await fetch(`${baseUrl}/api/ads-data?key=${DASH_KEY}&completed=1`);
     const data = await dataResp.json();
 
     if (data.error) {
@@ -23,11 +23,13 @@ module.exports = async function handler(req, res) {
     const tw = data.thisWeek.totals;
     const lw = data.lastWeek.totals;
     const campaigns = data.thisWeek.campaigns;
+    const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const weekLabel = `${fmt(data.range.from)} to ${fmt(data.range.to)}, ${data.range.to.slice(0, 4)}`;
     const leads = data.leads.filter(l => {
-      const d = new Date(l.date);
-      const weekAgo = new Date();
-      weekAgo.setDate(weekAgo.getDate() - 7);
-      return d >= weekAgo;
+      const t = new Date(l.date);
+      if (isNaN(t)) return false;
+      const d = t.toISOString().slice(0, 10);
+      return d >= data.range.from && d <= data.range.to;
     });
 
     function delta(curr, prev) {
@@ -61,7 +63,7 @@ module.exports = async function handler(req, res) {
         <td style="padding:6px 10px;border-bottom:1px solid #eee;font-size:13px">${l.source}</td>
         <td style="padding:6px 10px;border-bottom:1px solid #eee;font-size:13px">${new Date(l.date).toLocaleDateString()}</td>
       </tr>
-    `).join('') : '<tr><td colspan="4" style="padding:12px;color:#999;text-align:center">No leads this week</td></tr>';
+    `).join('') : '<tr><td colspan="4" style="padding:12px;color:#999;text-align:center">No leads last week</td></tr>';
 
     // Search terms that need attention (high spend, no clicks or irrelevant-looking)
     const flaggedTerms = (data.searchTerms || []).filter(t => t.clicks === 0 && t.impressions > 5);
@@ -81,11 +83,11 @@ module.exports = async function handler(req, res) {
     <div style="font-family:sans-serif;max-width:680px;margin:0 auto">
       <div style="background:#1a2744;padding:24px 32px;border-radius:8px 8px 0 0">
         <h1 style="color:#d4a243;margin:0;font-size:20px">Decidedly Wealth - Weekly Ads Report</h1>
-        <p style="color:#8899aa;margin:4px 0 0;font-size:13px">Week of ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+        <p style="color:#8899aa;margin:4px 0 0;font-size:13px">Week of ${weekLabel}</p>
       </div>
 
       <div style="background:#f8f9fa;padding:24px 32px;border:1px solid #e5e7eb">
-        <h2 style="color:#1a2744;font-size:15px;margin:0 0 16px">This Week vs Last Week</h2>
+        <h2 style="color:#1a2744;font-size:15px;margin:0 0 16px">Last Week vs Week Before</h2>
         <table style="width:100%">
           <tr>
             <td style="text-align:center;padding:8px">
@@ -129,7 +131,7 @@ module.exports = async function handler(req, res) {
       </div>
 
       <div style="background:white;padding:24px 32px;border:1px solid #e5e7eb;border-top:0">
-        <h2 style="color:#1a2744;font-size:15px;margin:0 0 12px">Leads This Week (${leads.length})</h2>
+        <h2 style="color:#1a2744;font-size:15px;margin:0 0 12px">Leads Last Week (${leads.length})</h2>
         <table style="width:100%;border-collapse:collapse;font-size:13px">
           <tr style="background:#f0f1f3">
             <th style="padding:6px 10px;text-align:left">Name</th>
@@ -170,7 +172,7 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         from: 'Decidedly Wealth Ops <matt@stormbreakerdigital.com>',
         to: ['matt@stormbreakerdigital.com'],
-        subject: `DWM Ads: $${tw.cost.toFixed(0)} spent, ${tw.clicks} clicks, ${tw.conversions} leads this week`,
+        subject: `DWM Ads: $${tw.cost.toFixed(0)} spent, ${tw.clicks} clicks, ${tw.conversions} leads last week`,
         html
       })
     });
