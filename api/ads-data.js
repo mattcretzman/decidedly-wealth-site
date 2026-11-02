@@ -154,10 +154,19 @@ module.exports = async function handler(req, res) {
     const now = new Date();
 
     // This week (Mon-today)
-    const today = new Date(now);
+    let today = new Date(now);
     const dayOfWeek = today.getDay();
-    const monday = new Date(today);
+    let monday = new Date(today);
     monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+
+    // ?completed=1: report the last full Mon-Sun week instead of week to date
+    // (the Monday email runs at 8am, when "this week" has almost no data)
+    if (req.query.completed === '1') {
+      today = new Date(monday);
+      today.setDate(monday.getDate() - 1);
+      monday = new Date(today);
+      monday.setDate(today.getDate() - 6);
+    }
 
     // Last week
     const lastMonday = new Date(monday);
@@ -179,6 +188,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       generated: now.toISOString(),
+      range: { from: dateStr(monday), to: dateStr(today) },
       thisWeek,
       lastWeek,
       last30,
