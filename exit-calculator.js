@@ -513,5 +513,7 @@
                              answers: answerText(), result: payload })
     }).then(reveal, reveal);
     if (window.gtag) gtag('event', 'exit_calc_lead', { calc_industry: CFG.key || 'generic' });
+    // Google Ads conversion for pages that set one (the ad landing page sets "Value Calculator Lead").
+    if (window.gtag && window.CALC_CONVERSION) gtag('event', 'conversion', { send_to: window.CALC_CONVERSION });
   });
 })();
