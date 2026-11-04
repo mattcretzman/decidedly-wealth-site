@@ -285,3 +285,31 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - T8 gates: RJ's approval says post website articles "as the gated version, the same copy I sent you." Gates restored on creating-a-family-business-legacy and purposeful-philanthropy-meaningful-impact exactly as submitted (box mid-article, text continues below), plus honeypot/_t/Clarity mask.
 - client-portal.html: National Charitable link now https://natcharitable.fcsuite.com/erp/portal (NCE's own Donor Portal link); was a Blackbaud sign-in to nationalcharitable.donorcentral.com.
 - RJ rule: small post-approval wording changes unrelated to investments don't need his sign-off. Emails to RJ: state the exact ask in the first line.
+
+## Nov 3-4, 2026
+### Publishing rule (RJ, Nov 4 call): replaces "merge on APPROVED"
+- When RJ sends an article, publish it on the site **gated**, assuming it will be approved. Send him the link.
+- If Kestra disapproves, pull the page.
+- RJ never posts to LinkedIn before approval.
+- RJ is sending 3 more articles by Fri Nov 6.
+
+### Shipped
+- Bios merge (1bc1c7a), live.
+- T17 `business-worth.html` (177607f). This is the ad landing page (Kestra ACR 9202353) and stays noindex. Google Ads ad 819904328818 (Business Succession > Business Valuation) was repointed there with `~/scripts/decidedly/ads_nov4_t17.py`; it is back in review.
+- Nov 11 article `blog/what-your-money-is-for.html` (2bb5542/dc00a5c). Gated after "Your money is a tool"; blog.html card + sitemap entry added. Text matched word for word to RJ's PDF. Watch for Kestra's verdict.
+- T18 (election article): RJ withdrew it Nov 4. Not publishing.
+- T16: RJ submitted it Nov 4. Publish on approval (blog.html card + sitemap).
+- Sanger December posts (T12): 12 queued in Postiz for Dec 3-31, Tue/Wed/Thu at 9am CT (ledger `~/scripts/podcast-clips/sanger-month3/postiz/ledger.json`).
+
+### Weekly sync report
+- `~/Projects/decidedly-staging/reports/rj-sync-nov4.html` ("Weekly Sync · Nov 4"). Written for the whole team: refer to RJ by name, never "you".
+- The Sanger podcast is NOT active. Never propose an episode.
+
+### Compliance tracker sheet
+- `1asPiKY3FEPyS6MY5z6zPJsMawca9vhKb5JuCb9ZwtaY`, with tabs "Submit (card view)" and "Queue".
+- RJ wants approved items moved off Queue (to a separate tab).
+- RJ uses a personal Google account. Link sharing is temporarily set to anyone-with-link editor; set it back to reader once he is shared directly.
+- Nov 4 the whole Workspace org went read-only from over-quota storage, which made Sheets writes return 403. Storage was cleared the same day.
+
+### Approval checks
+- Search Gmail for "APPROVED:" subjects on every check. The T17/T12/T14 approvals (Oct 28-29) were missed for a week.
