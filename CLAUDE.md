@@ -336,3 +336,9 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 
 ### Deploys
 - Vercel git deploys can lag about 15 min. Wait; a manual `vercel deploy --prod` isn't needed.
+
+### Compliance T20 (retargeting ads)
+- Drive packet 1d5cx3YJJdRqxsyNKuhl8ciX10QqTjerH: the ad preview PDF plus the images.
+- Tracker: Queue row and card view T20.
+- RJ asked to submit (email thread 1a1ad6be27b882d2).
+- On APPROVED, Sanger's budget OK is still needed. Then enable Google display campaign 24429877569 and build the LinkedIn campaign (needs a payment method and 300+ in the audience).
