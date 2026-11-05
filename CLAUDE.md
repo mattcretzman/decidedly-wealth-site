@@ -342,3 +342,9 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Tracker: Queue row and card view T20.
 - RJ asked to submit (email thread 1a1ad6be27b882d2).
 - On APPROVED, Sanger's budget OK is still needed. Then enable Google display campaign 24429877569 and build the LinkedIn campaign (needs a payment method and 300+ in the audience).
+
+### T21 claymation video (Nov 5)
+- RJ's Oct 28 article as a 75s clay animation. The narration and captions are the approved text word for word.
+- Drive: folder 1hsZNlBpb33tmib8teNKO9iZNV1oq1CR1. Tracker: Queue row and card view rows.
+- Sent to RJ cc Wyatt and Sanger for review (thread 1a1adb4550b3f9ab).
+- Pipeline: `~/scripts/decidedly/video-pilot/`. A repeatable series from the weekly articles for the company page and RJ's profile.
