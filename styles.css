@@ -167,6 +167,9 @@ nav .dd-menu li a,nav:not(.s) .dd-menu li a,.nav-inner-page .dd-menu li a{color:
 .tm-photo{background:var(--warm);border-radius:50%;aspect-ratio:1;margin-bottom:16px;border:1px solid var(--border);overflow:hidden;max-width:220px;margin-left:auto;margin-right:auto}
 .tm-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .tm:hover .tm-photo img{transform:scale(1.06)}
+.tm-link{display:block;color:inherit;text-decoration:none}
+.tm-link:hover h4{color:var(--accent)}
+.bio-grid[id]{scroll-margin-top:90px}
 .tm-ph{font-family:var(--font-m);font-size:10px;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase}
 .tm h4{font-size:17px;margin-bottom:2px}
 .tm-role{font-size:13px;color:var(--text-2)}
@@ -351,7 +354,6 @@ footer .fa a:hover::after{width:100%}
 
 /* === Bio Photo Hover === */
 .bio-photo img{transition:transform .6s cubic-bezier(.22,1,.36,1)}
-.bio-photo:hover img{transform:scale(1.04)}
 
 /* === Story Cred Cards === */
 .story-cred-card{transition:border-color .4s,box-shadow .4s,transform .4s}
