@@ -313,3 +313,26 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 
 ### Approval checks
 - Search Gmail for "APPROVED:" subjects on every check. The T17/T12/T14 approvals (Oct 28-29) were missed for a week.
+
+## Nov 5, 2026
+
+### Shipped to main
+- 4a7efe3: Clarity dead-click fix. Home team cards link to who-we-are.html#<name>; bio-photo hover zoom removed. Visible text unchanged.
+- b6563f4: LinkedIn Insight Tag (partner 10344852) before the last `</body>` on 62 pages, calculators included. NOT on client-portal.html, the Google verification file, or ops/dashboard.html. New pages get the tag too.
+
+### Staged, not merged
+- Branch `t16-live` (b67570a): T16 blog batch 2 (4 articles). On APPROVED, merge it, set the sitemap lastmod to the real date, and verify live.
+
+### Retargeting
+- Google Ads 8793593741:
+  - All visitors 9448258782 and All Converters 9447250886 are attached in observation to the 3 search campaigns.
+  - Display campaign 24429877569 "DWM | Retargeting | Display" is PAUSED: $10/day, books offer to books.html with utm_medium=display. It excludes converters and "Client portal visitors" 9501039631.
+  - Script: `~/scripts/decidedly/ads_nov5_display_retargeting.py`.
+  - Enable only after Sanger approves the budget and Kestra approves the creative (T20).
+- LinkedIn ad account 511329742:
+  - Matt is Account Manager. Amplified Advisors is set to Viewer.
+  - The account is on hold until a payment method is added.
+  - Audiences: site visitors (180d) and company page visitors (365d).
+
+### Deploys
+- Vercel git deploys can lag about 15 min. Wait; a manual `vercel deploy --prod` isn't needed.
