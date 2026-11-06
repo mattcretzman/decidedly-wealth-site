@@ -348,3 +348,10 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Drive: folder 1hsZNlBpb33tmib8teNKO9iZNV1oq1CR1. Tracker: Queue row and card view rows.
 - Sent to RJ cc Wyatt and Sanger for review (thread 1a1adb4550b3f9ab).
 - Pipeline: `~/scripts/decidedly/video-pilot/`. A repeatable series from the weekly articles for the company page and RJ's profile.
+
+## Nov 6, 2026
+- Kestra APPROVED: T19 Nov 11 article (9219509), T20 retargeting ads (9223993), T16 blog batch 2 (9220548). Tracker rows moved to "Approved & Closed".
+- T16 LIVE: main 8254463 = merge of t16-live onto main, plus the LinkedIn Insight Tag on the 4 new articles (t16-live predated the tag) and sitemap lastmod 2026-11-06. Live files verified identical. Any branch cut before b6563f4 needs the Insight Tag added before merge.
+- Google display retargeting 24429877569 ENABLED ($10/day, serving, learning). Script `~/scripts/decidedly/ads_nov6_enable_retargeting.py`. Sanger trusts Matt's judgment on modest spend: no budget asks.
+- LinkedIn campaign waits on Sanger's card on ad account 511329742 (asked, thread 1a1b2c7fcdd94458) and a website audience of 300+.
+- T21 claymation video on Hold: RJ may tweak the script and record his own voice. Wyatt and Sanger prefer the AI voice. An ElevenLabs clone of RJ's voice has to be made on RJ's own account and shared to Matt's via a private link.
