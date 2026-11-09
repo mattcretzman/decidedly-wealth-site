@@ -25,7 +25,14 @@ module.exports = async function handler(req, res) {
     const campaigns = data.thisWeek.campaigns;
     const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     const weekLabel = `${fmt(data.range.from)} to ${fmt(data.range.to)}, ${data.range.to.slice(0, 4)}`;
+    // Known spam senders and vendor pitches from the contact form; they never count as leads.
+    const SPAM_DOMAINS = ['decentgears.com', 'renaissancedatalabs.com'];
+    const isSpam = l => {
+      const email = (l.email || '').toLowerCase();
+      return SPAM_DOMAINS.some(d => email.endsWith('@' + d)) || /test user/i.test(`${l.firstName} ${l.lastName}`);
+    };
     const leads = data.leads.filter(l => {
+      if (isSpam(l)) return false;
       const t = new Date(l.date);
       if (isNaN(t)) return false;
       const d = t.toISOString().slice(0, 10);
