@@ -19,7 +19,7 @@ const { isSpam } = require('./_spam-filter');
 const usd = (n) => '$' + Math.round(Number(n) || 0).toLocaleString('en-US');
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-async function notifyTeam(firstName, email, answers, r, industryTag, tags) {
+async function notifyTeam(firstName, email, phone, answers, r, industryTag, tags) {
   if (!RESEND_KEY) return;
   const row = (k, v) => `<tr><td style="padding:7px 12px;border-bottom:1px solid #eee;font-weight:600;color:#1a2744;width:220px">${k}</td><td style="padding:7px 12px;border-bottom:1px solid #eee;color:#333">${v}</td></tr>`;
   // Industry pages send [question, answer] pairs; older clients sent { id: answer }
@@ -31,6 +31,7 @@ async function notifyTeam(firstName, email, answers, r, industryTag, tags) {
       <h2 style="color:#1a2744;margin-bottom:4px">${label} Lead</h2>
       <p style="color:#666;margin-top:0">${esc(firstName)} (${esc(email)}) finished the ${industryTag ? esc(industryTag) + ' ' : ''}exit planning calculator.</p>
       <table style="width:100%;border-collapse:collapse">
+        ${row('Phone', phone ? esc(phone) : 'Not given')}
         ${row('Industry', esc(r.industry))}
         ${row('Revenue', usd(r.revenue))}
         ${row('Profit (before owner pay, ITDA)', usd(r.profit))}
@@ -64,7 +65,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, email, answers, result, industry } = req.body || {};
+  const { firstName, email, phone, answers, result, industry } = req.body || {};
   const industryTag = Object.prototype.hasOwnProperty.call(INDUSTRY_TAGS, industry) ? INDUSTRY_TAGS[industry] : '';
   const tags = ['Website Lead', 'Exit Calculator'].concat(industryTag ? [industryTag] : []);
   if (!email || !result) {
@@ -86,6 +87,7 @@ module.exports = async function handler(req, res) {
           firstName: firstName || '',
           lastName: '',
           emailAddresses: [{ label: 'Primary', value: email }],
+          ...(phone ? { phoneNumbers: [{ label: 'Primary', value: phone }] } : {}),
           tags,
           visibility: 'shared'
         })
@@ -97,7 +99,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    await notifyTeam(firstName, email, answers, result, industryTag, tags);
+    await notifyTeam(firstName, email, phone, answers, result, industryTag, tags);
   } catch (err) {
     console.error('Notification error:', err.message);
   }

@@ -508,7 +508,7 @@
     var payload = {}; Object.keys(result).forEach(function(k){ if (k !== 'pts') payload[k] = result[k]; });
     fetch('/api/exit-calculator', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstName: f.first.value, email: f.email.value, website: f.website.value, _t: loadedAt,
+      body: JSON.stringify({ firstName: f.first.value, email: f.email.value, phone: f.phone ? f.phone.value.trim() : '', website: f.website.value, _t: loadedAt,
                              source: 'exit-calculator' + (CFG.key ? '-' + CFG.key : ''), industry: CFG.key,
                              answers: answerText(), result: payload })
     }).then(reveal, reveal);

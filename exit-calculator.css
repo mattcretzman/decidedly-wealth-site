@@ -59,10 +59,10 @@
 .gate-box h3{color:white;margin-bottom:10px;font-family:var(--font-d);font-size:24px}
 .gate-box h3 em{color:var(--accent);font-style:italic;font-weight:700}
 .gate-box>p{font-size:15px;color:rgba(255,255,255,.65);max-width:440px;margin:0 auto 20px}
-.gate-form{display:flex;gap:10px;max-width:520px;margin:0 auto}
-.gate-form input{flex:1;min-width:0;padding:13px 16px;border:1px solid rgba(255,255,255,.2);border-radius:var(--r);font-family:var(--font-b);font-size:15px;color:white;background:rgba(255,255,255,.08);outline:none}
+.gate-form{display:flex;flex-wrap:wrap;gap:10px;max-width:520px;margin:0 auto}
+.gate-form input{flex:1 1 140px;min-width:0;padding:13px 16px;border:1px solid rgba(255,255,255,.2);border-radius:var(--r);font-family:var(--font-b);font-size:15px;color:white;background:rgba(255,255,255,.08);outline:none}
 .gate-form input::placeholder{color:rgba(255,255,255,.5)}
-.gate-form button{padding:13px 24px;font-size:14px;font-weight:600;color:var(--navy-deep);background:white;border:none;border-radius:var(--r);cursor:pointer;font-family:var(--font-b)}
+.gate-form button{flex:1 1 100%;padding:13px 24px;font-size:14px;font-weight:600;color:var(--navy-deep);background:white;border:none;border-radius:var(--r);cursor:pointer;font-family:var(--font-b)}
 .gate-note{font-family:var(--font-m);font-size:10px;color:rgba(255,255,255,.4);margin-top:12px}
 @media(max-width:768px){
   .calc{margin-top:-80px;padding:28px 20px}
