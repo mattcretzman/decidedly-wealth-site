@@ -355,3 +355,19 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Google display retargeting 24429877569 ENABLED ($10/day, serving, learning). Script `~/scripts/decidedly/ads_nov6_enable_retargeting.py`. Sanger trusts Matt's judgment on modest spend: no budget asks.
 - LinkedIn campaign waits on Sanger's card on ad account 511329742 (asked, thread 1a1b2c7fcdd94458) and a website audience of 300+.
 - T21 claymation video on Hold: RJ may tweak the script and record his own voice. Wyatt and Sanger prefer the AI voice. An ElevenLabs clone of RJ's voice has to be made on RJ's own account and shared to Matt's via a private link.
+
+## Session Log: Nov 11, 2026 (lead capture + follow-up)
+
+### Shipped (b167c7a)
+- `api/exit-calculator.js` now appends every calculator lead to the leads sheet (DWM_BOOK_SHEET_ID, Sheet1). The source goes in column E as `exit-calculator` or `exit-calculator-<industry>`, and the phone goes in col J. Before this, calculator leads went only to the alert email and Levitate. `book-drip.js` still mails only `books-page` / `blog-popup` rows.
+- Google Ads "Book Download" conversion (AW-18360721058/Qbj3CLbbqN8cEKK9ibNE): removed `trackBookDownloads()` from `conversion-tracking.js`. It used to fire on any click of a books link. Real requests now count only on `books-thank-you.html` (inline tag) and after a successful blog popup submit (`blog.html`, `r.ok`). The Nov 4 "book lead" in the weekly email was one of those clicks.
+
+### Lead follow-up (lives outside this repo)
+- `~/scripts/decidedly/lead-followup/run.py` runs every 30 min via launchd `com.stormbreaker.dw-lead-followup`.
+  - It reads the leads sheet and finds each lead's LinkedIn (Deepline waterfall plus a name check).
+  - It enrolls found leads in Reply.io seq 1817051, which sends an RJ connect request with no note, then waits 21 days for an accept. If they accept, RJ views their profile.
+  - When a lead accepts, it emails RJ, cc Wyatt and Sanger.
+  - It writes sheet columns K-M (LinkedIn / lookup / RJ LinkedIn).
+- `check.py` runs hourly inside `~/scripts/connection-health.py` and Telegrams on failure. It also flags any lead alert email with no sheet row, which catches a form here that stops writing to the sheet.
+- T25 (Kestra, submitted by RJ): the post-accept LinkedIn message plus 4-email drips for calculator and contact leads. On approval, build the drip here the way `book-drip.js` works.
+- Memory: systems/dw-lead-followup.md.
