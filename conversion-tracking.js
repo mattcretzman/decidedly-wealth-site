@@ -3,7 +3,8 @@
  * Fires gtag conversion events for:
  *   1. Contact form submissions (AW-18360721058/XxZFCK3bqN8cEKK9ibNE)
  *   2. Phone call clicks (AW-18360721058/IfezCODhud8cEKK9ibNE)
- *   3. Book download clicks (AW-18360721058/Qbj3CLbbqN8cEKK9ibNE)
+ *   Book requests are counted on books-thank-you.html and after the blog popup succeeds,
+ *   never on a link click (a click on a books link is not a request).
  *
  * Include this script on every page AFTER the gtag config snippet.
  * It hooks into existing DOM elements — no changes needed to page HTML.
@@ -21,7 +22,6 @@
   function init() {
     trackFormSubmissions();
     trackPhoneClicks();
-    trackBookDownloads();
   }
 
   // 1. Contact Form Submission
@@ -47,16 +47,6 @@
     phoneLinks.forEach(function(link) {
       link.addEventListener('click', function() {
         fireConversion('AW-18360721058/IfezCODhud8cEKK9ibNE', 'phone_click');
-      });
-    });
-  }
-
-  // 3. Book Download Clicks
-  function trackBookDownloads() {
-    var bookLinks = document.querySelectorAll('a[href*="books.html"], a[href*="get-books"]');
-    bookLinks.forEach(function(link) {
-      link.addEventListener('click', function() {
-        fireConversion('AW-18360721058/Qbj3CLbbqN8cEKK9ibNE', 'book_download');
       });
     });
   }

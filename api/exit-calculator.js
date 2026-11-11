@@ -1,3 +1,7 @@
+const { google } = require('googleapis');
+
+const SHEET_ID = process.env.DWM_BOOK_SHEET_ID;
+const SA_KEY = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY || '{}');
 const RESEND_KEY = process.env.RESEND_API_KEY;
 const LEVITATE_KEY = process.env.LEVITATE_API_KEY;
 
@@ -96,6 +100,27 @@ module.exports = async function handler(req, res) {
     }
   } catch (err) {
     console.error('Levitate error:', err.message);
+  }
+
+  // Every lead gets a row in the leads sheet, so the follow-up job sees it.
+  // Source goes in column E like book requests; book-drip only mails books-page/blog-popup rows.
+  try {
+    if (SHEET_ID && SA_KEY.client_email) {
+      const auth = new google.auth.JWT(SA_KEY.client_email, null, SA_KEY.private_key, ['https://www.googleapis.com/auth/spreadsheets']);
+      const sheets = google.sheets({ version: 'v4', auth });
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: SHEET_ID,
+        range: 'Sheet1!A:J',
+        valueInputOption: 'USER_ENTERED',
+        requestBody: { values: [[
+          new Date().toISOString(), firstName || '', '', email,
+          'exit-calculator' + (industryTag ? '-' + industry : ''), '', '', '', '',
+          phone ? 'Phone: ' + phone : ''
+        ]] }
+      });
+    }
+  } catch (err) {
+    console.error('Sheet append error:', err.message);
   }
 
   try {
