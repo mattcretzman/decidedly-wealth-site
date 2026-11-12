@@ -3,6 +3,8 @@ const { google } = require('googleapis');
 const SHEET_ID = process.env.DWM_BOOK_SHEET_ID;
 const SA_KEY = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY || '{}');
 const RESEND_KEY = process.env.RESEND_API_KEY;
+const LEVITATE_KEY = process.env.LEVITATE_API_KEY;
+const YWD_TAG = 'Your Weekly Decision Subscriber';
 const DASHBOARD_KEY = process.env.DASHBOARD_KEY;
 const BOOKING_URL = 'https://app.greminders.com/c/sanger/decisionlabinit';
 
@@ -55,6 +57,41 @@ function getDripEmail(week, firstName) {
   return emails[week] || null;
 }
 
+// After the last drip email, the reader joins RJ's Your Weekly Decision list (RJ, Nov 11 2026).
+// Adds the tag to the existing Levitate contact (PATCH replaces tags, so merge), or creates the contact.
+async function addToWeeklyDecision(email, firstName, lastName) {
+  const headers = { 'Authorization': `Bearer ${LEVITATE_KEY}`, 'Content-Type': 'application/json' };
+  const base = 'https://api.levitate.ai/public/v1/Contacts';
+  const found = await fetch(`${base}?email=${encodeURIComponent(email)}`, { headers });
+  if (!found.ok) throw new Error(`Levitate lookup ${found.status}`);
+  const matches = ((await found.json()).value?.values || [])
+    .filter(c => (c.primaryEmail || '').toLowerCase() === email.toLowerCase());
+
+  if (matches.length) {
+    for (const c of matches) {
+      const tags = c.tags || [];
+      if (tags.includes(YWD_TAG)) continue;
+      const r = await fetch(`${base}/${c.id}`, {
+        method: 'PATCH', headers, body: JSON.stringify({ tags: [...tags, YWD_TAG] })
+      });
+      if (!r.ok) throw new Error(`Levitate tag ${r.status}: ${(await r.text()).substring(0, 200)}`);
+    }
+    return 'tagged';
+  }
+
+  const r = await fetch(base, {
+    method: 'POST', headers,
+    body: JSON.stringify({
+      firstName: firstName || '', lastName: lastName || '',
+      emailAddresses: [{ label: 'Primary', value: email }],
+      tags: ['Website Lead', 'Book Download', YWD_TAG],
+      visibility: 'shared'
+    })
+  });
+  if (!r.ok) throw new Error(`Levitate create ${r.status}: ${(await r.text()).substring(0, 200)}`);
+  return 'created';
+}
+
 function wrapEmail(bodyHtml) {
   return `<div style="font-family:'DM Sans',Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1a2744;font-size:16px;line-height:1.7">
   <div style="text-align:center;padding:32px 0 24px">
@@ -88,10 +125,12 @@ module.exports = async function handler(req, res) {
   );
   const sheets = google.sheets({ version: 'v4', auth });
 
-  // Read all rows: A=Timestamp, B=FirstName, C=LastName, D=Email, ..., J=DripsSent
+  // Read all rows: A=Timestamp, B=FirstName, C=LastName, D=Email, E=Source, J=Self-Attribution,
+  // K-M=LinkedIn follow-up, N=Drips sent, O=Weekly Decision.
+  // Drips used to be counted in J, which the thank-you page also writes (attribution answer), so they now live in N.
   const range = await sheets.spreadsheets.values.get({
     spreadsheetId: SHEET_ID,
-    range: 'Sheet1!A:J'
+    range: 'Sheet1!A:O'
   });
   const rows = range.data.values || [];
   if (rows.length <= 1) {
@@ -107,17 +146,39 @@ module.exports = async function handler(req, res) {
     const timestamp = row[0];
     const firstName = row[1] || '';
     const email = row[3] || '';
-    const dripsSent = parseInt(row[9] || '0', 10);
+    const lastName = row[2] || '';
+    const legacyDrips = /^[12]$/.test((row[9] || '').trim()) ? parseInt(row[9], 10) : 0;
+    let dripsSent = parseInt(row[13] || '', 10) || legacyDrips;
+    const ywd = (row[14] || '').trim();
 
     if (!email || !timestamp) continue;
     if (INTERNAL_EMAILS.includes(email.toLowerCase())) continue;
     if (DO_NOT_SEND.includes(email.toLowerCase())) continue;
     // The contact form writes to this same sheet (phone in column E). Only book requests get the follow-ups.
     if (!BOOK_SOURCES.includes((row[4] || '').trim())) continue;
-    if (dripsSent >= DRIP_SCHEDULE.length) continue;
 
     const signupDate = new Date(timestamp);
     if (signupDate < CUTOVER) continue;
+
+    if (dripsSent >= DRIP_SCHEDULE.length) {
+      if (!ywd && LEVITATE_KEY) {
+        try {
+          const result = await addToWeeklyDecision(email, firstName, lastName);
+          await sheets.spreadsheets.values.update({
+            spreadsheetId: SHEET_ID,
+            range: `Sheet1!O${i + 1}`,
+            valueInputOption: 'RAW',
+            requestBody: { values: [[`Added ${now.toISOString().slice(0, 10)}`]] }
+          });
+          log.push({ email, step: 'weekly-decision', status: result });
+          console.log(`Weekly Decision: ${result} ${email}`);
+        } catch (err) {
+          log.push({ email, step: 'weekly-decision', status: 'error', error: err.message });
+          console.error(`Weekly Decision error for ${email}: ${err.message}`);
+        }
+      }
+      continue;
+    }
     const daysSinceSignup = Math.floor((now - signupDate) / (1000 * 60 * 60 * 24));
 
     // Find the next drip to send
@@ -142,10 +203,10 @@ module.exports = async function handler(req, res) {
       });
 
       if (sendRes.ok) {
-        // Update the DripsSent column (column J = index 9)
+        // Drips sent: column N
         await sheets.spreadsheets.values.update({
           spreadsheetId: SHEET_ID,
-          range: `Sheet1!J${i + 1}`,
+          range: `Sheet1!N${i + 1}`,
           valueInputOption: 'USER_ENTERED',
           requestBody: { values: [[nextDrip.week]] }
         });
