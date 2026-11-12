@@ -371,3 +371,9 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - `check.py` runs hourly inside `~/scripts/connection-health.py` and Telegrams on failure. It also flags any lead alert email with no sheet row, which catches a form here that stops writing to the sheet.
 - T25 (Kestra, submitted by RJ): the post-accept LinkedIn message plus 4-email drips for calculator and contact leads. On approval, build the drip here the way `book-drip.js` works.
 - Memory: systems/dw-lead-followup.md.
+
+## Nov 12, 2026 (analytics, competitor research, ad experiment, T28)
+- Calculator conversion: `exit-planning-calculator.html` sets `window.CALC_CONVERSION = 'AW-18360721058/VIXrCPbuy6odEKK9ibNE'` before `exit-calculator.js` (e2045e6), so calculator leads count as the Value Calculator Lead conversion.
+- Google Ads experiment 10062055211 "Exit Planning LP test: page vs calculator (Nov 2026)", Nov 12 to Dec 24, 50/50. Treatment sends Exit Planning ads to `/exit-planning-calculator.html`. Campaign 24108492197 moved to its own $35/day budget (experiments can't use a shared budget). Scripts: `~/scripts/decidedly/ads-experiments/`. Read results on booked calls Dec 24.
+- Branch `t28-readiness` (4de875b, pushed, NOT merged): four personal readiness questions + four pillar bars in the calculator results, a results email to the owner from sanger@ (`sendReport` in `api/exit-calculator.js`), a second hero button on exit-planning.html and business-valuation.html, two home-page links to the Fort Worth pages. Sent to RJ for Kestra Nov 12 (one combined PDF, packet in `~/scripts/decidedly/t28-readiness/`). Merge ONLY after Kestra APPROVED and after the Dec 24 experiment ends.
+- Monthly competitor scoreboard: `~/scripts/decidedly/scoreboard/` (launchd com.stormbreaker.dw-scoreboard, 1st of month 8:15). Baseline Nov 2026: #1 "exit planning advisor fort worth", #5 "business exit planning dallas"; Google reviews DW 22 vs Strittmatter 158.
