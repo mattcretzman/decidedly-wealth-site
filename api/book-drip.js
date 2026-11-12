@@ -20,7 +20,8 @@ const INTERNAL_EMAILS = [
 
 // Book requesters who are already working with an advisor get no follow-ups.
 const DO_NOT_SEND = [
-  'michael@keystonedental.org' // Michael Martin: engagement meeting Oct 30, 2026 (Matt, Nov 2)
+  'michael@keystonedental.org', // Michael Martin: engagement meeting Oct 30, 2026 (Matt, Nov 2)
+  'danny.salas@me.com' // Danny Salas: "we are engaged with nothing further to do" (RJ, Nov 11)
 ];
 
 // Two-email follow-up (RJ, Oct 19 2026): one note at day 14, one at day 21, then done.
