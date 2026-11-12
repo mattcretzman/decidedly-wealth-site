@@ -94,6 +94,19 @@
       gap: 'Growth trend. Buyers pay for where the business is going, and a flat or falling trend lowers the multiple.' }
   ];
 
+  // Owner readiness: the personal side of an exit. Only pages with a #pquestions block ask these.
+  // They are scored as their own pillars and never change the business score or the value math.
+  var PERSONAL = [
+    { id: 'next', pillar: 'you', opts: YES_GOOD, q: 'Do you know what you want to do with your time after the sale?',
+      gap: 'Life after the sale. Knowing what comes next makes the decision to sell, and its timing, much clearer.' },
+    { id: 'plan', pillar: 'you', opts: YES_GOOD, q: 'Do you have a written exit plan?',
+      gap: 'A written plan. It ties the business, the money and the timing together, so nothing gets decided under pressure.' },
+    { id: 'family', pillar: 'family', opts: YES_GOOD, q: 'Have you talked with your spouse or family about when you exit and what comes next?',
+      gap: 'Family alignment. Your exit changes life for the whole family, so these conversations belong early.' },
+    { id: 'successor', pillar: 'family', opts: YES_GOOD, q: 'Is it settled who runs the business after you: family, your team, or an outside buyer?',
+      gap: 'Who runs it next. Family, your team and an outside buyer each need different preparation, and the choice shapes the timeline.' }
+  ];
+
   /* ---------------------------------------------------------------------
    * INDUSTRY CONFIGS
    * Same shape as the generic config: bands (multiples of the profit input),
@@ -333,6 +346,13 @@
       q.opts.map(function(o, k){ return '<button type="button" aria-pressed="false" data-v="' + k + '">' + o[0] + '</button>'; }).join('') +
       '</div></div>');
   });
+  var PERS = $('pquestions') ? PERSONAL : [];
+  PERS.forEach(function(q){
+    $('pquestions').insertAdjacentHTML('beforeend',
+      '<div class="q" data-q="' + q.id + '" role="group" aria-label="' + q.q.replace(/"/g, '&quot;') + '"><p>' + q.q + '</p><div class="opts">' +
+      q.opts.map(function(o, k){ return '<button type="button" aria-pressed="false" data-v="' + k + '">' + o[0] + '</button>'; }).join('') +
+      '</div></div>');
+  });
   document.querySelectorAll('.q').forEach(function(el){
     el.addEventListener('click', function(e){
       var b = e.target.closest('button'); if (!b) return;
@@ -369,7 +389,7 @@
     var ok = true, mark = function(el, bad){ el.closest('label').classList.toggle('err', bad); if (bad) ok = false; };
     if (s === 1){ mark($('industry'), $('industry').value === ''); mark($('profit'), num($('profit')) <= 0); }
     if (s === 2){ CFG.questions.forEach(function(q){ if (answers[q.id] === undefined){ document.querySelector('[data-q="' + q.id + '"]').classList.add('err'); ok = false; } }); }
-    if (s === 3){ mark($('need'), num($('need')) <= 0); }
+    if (s === 3){ mark($('need'), num($('need')) <= 0); PERS.forEach(function(q){ if (answers[q.id] === undefined){ document.querySelector('[data-q="' + q.id + '"]').classList.add('err'); ok = false; } }); }
     return ok;
   }
 
@@ -384,7 +404,7 @@
 
   // Readable answers for the team alert: [question, answer] pairs
   function answerText(){
-    return CFG.questions.map(function(q){ return [q.q, q.opts[answers[q.id]][0]]; });
+    return CFG.questions.concat(PERS).map(function(q){ return [q.q, q.opts[answers[q.id]][0]]; });
   }
 
   // Core model. Pure function of the inputs and an answer set, so value levers can re-run it.
@@ -406,7 +426,36 @@
              taxRate: taxRate, debt: debt, need: need, net: net, gap: need - net, upside: Math.max(0, ready - vMid),
              revenue: num($('revenue')), timeline: $('timeline').value };
   }
-  function compute(){ return computeWith(answers); }
+  function compute(){
+    var r = computeWith(answers);
+    r.gapTexts = topGaps(r).map(function(q){ return q.gap; });
+    if (PERS.length){
+      var avg = function(p){ var qs = PERS.filter(function(q){ return q.pillar === p; });
+        return Math.round(qs.reduce(function(t, q){ return t + q.opts[answers[q.id]][1]; }, 0) / qs.length * 100); };
+      r.you = avg('you'); r.family = avg('family');
+      r.pgaps = PERS.filter(function(q){ return q.opts[answers[q.id]][1] < 1; }).map(function(q){ return q.gap; });
+    }
+    return r;
+  }
+  function topGaps(r){
+    return CFG.questions.filter(function(q){ return r.pts[q.id] < 1; }).sort(function(a, b){ return (b.w * (1 - r.pts[b.id])) - (a.w * (1 - r.pts[a.id])); }).slice(0, 3);
+  }
+  // Four pillars: business (the score), money (unlocks with the report), you, and family
+  function pillars(r, unlocked){
+    if (!$('pillars')) return;
+    var cover = r.need > 0 ? Math.max(0, Math.min(100, Math.round(Math.max(0, r.net) / r.need * 100))) : 100;
+    var row = function(name, v, note){
+      return '<div class="pil"><span>' + name + '</span><div class="pil-bar"><i style="--w:' + (v === null ? 0 : Math.max(4, v)) + '%"></i></div>' +
+             '<b>' + (v === null ? note : v + '%') + '</b></div>';
+    };
+    $('pillars').innerHTML = row('Business readiness', r.score) +
+      row('Financial independence', unlocked ? cover : null, 'In your report') +
+      row('Your next chapter', r.you) + row('Family and successor', r.family);
+    $('pillars').hidden = false;
+    $('pgaps').innerHTML = (r.pgaps || []).map(function(g){ return '<li>' + g + '</li>'; }).join('') ||
+      '<li>You have thought through the personal side. That puts you ahead of most owners.</li>';
+    $('pgaps-box').hidden = false;
+  }
 
   // Value levers: for each gap, the change in mid value if that one answer were its best option
   function levers(r){
@@ -440,13 +489,15 @@
       : r.score >= 55
         ? 'You have a real foundation, and a few gaps that could cost you at the closing table. Most can be closed in one to three years.'
         : 'Right now a buyer would likely see risk that pushes the price down. The good news: these are fixable with time and a plan.';
-    var gaps = CFG.questions.filter(function(q){ return r.pts[q.id] < 1; }).sort(function(a, b){ return (b.w * (1 - r.pts[b.id])) - (a.w * (1 - r.pts[a.id])); }).slice(0, 3);
+    var gaps = topGaps(r);
+    if (PERS.length) pillars(r, false);
     $('gaps').innerHTML = gaps.length
       ? gaps.map(function(q){ return '<li>' + q.gap + '</li>'; }).join('')
       : '<li>No major gaps from these questions. A full review looks deeper at contracts, taxes, and deal structure.</li>';
   }
 
   function showFull(r){
+    if (PERS.length) pillars(r, true);
     var nn = CFG.key ? CFG.noun : r.industry.toLowerCase() + ' business';
     var article = CFG.article || (/^[aeiou]/.test(nn) ? 'an' : 'a');
     $('r-val').innerHTML = '<span id="rv-lo"></span> to <span id="rv-hi"></span>';

@@ -100,7 +100,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   <div class="ctn">
     <div class="calc" id="calc">
       <div class="calc-prog"><div class="calc-bar" id="bar"></div></div>
-      <div class="calc-steps"><span class="on">1. Your business</span><span>2. Readiness</span><span>3. Your number</span></div>
+      <div class="calc-steps"><span class="on">1. Your business</span><span>2. Readiness</span><span>3. You and your number</span></div>
 
       <!-- STEP 1 -->
       <div class="step on" data-step="1">
@@ -149,6 +149,11 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
             <option value="0.05">Another state</option>
           </select>
         </label>
+        <div id="personal">
+          <h3 class="pers-h">And you?</h3>
+          <p class="step-sub">A business can be ready before its owner is. Four quick questions about the personal side.</p>
+          <div id="pquestions"></div>
+        </div>
         <div class="calc-nav"><button class="back" data-back>Back</button><button class="bp" data-next>See my results <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button></div>
       </div>
 
@@ -162,8 +167,13 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
             <p id="score-line" class="step-sub"></p>
           </div>
         </div>
+        <div class="pillars" id="pillars" hidden></div>
         <h3 class="gaps-h">Where buyers will push on price</h3>
         <ul class="gaps" id="gaps"></ul>
+        <div id="pgaps-box" hidden>
+          <h3 class="gaps-h">On the personal side</h3>
+          <ul class="gaps" id="pgaps"></ul>
+        </div>
 
         <div id="locked">
           <div class="blur-card" aria-hidden="true">

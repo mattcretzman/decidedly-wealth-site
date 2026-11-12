@@ -124,3 +124,12 @@
 }
 .res-card b span{display:inline;font:inherit;color:inherit;letter-spacing:inherit;text-transform:none;margin:0}
 .buys p.lev-note{font-size:12px;color:var(--text-3);line-height:1.6}
+/* Owner readiness pillars (exit-planning-calculator.html) */
+.pers-h{font-family:var(--font-d);font-size:22px;color:var(--navy-deep);margin:28px 0 4px}
+.pillars{margin:22px 0 4px;padding:18px 20px;border:1px solid var(--border);border-radius:12px;background:#fff}
+.pil{display:grid;grid-template-columns:190px 1fr 96px;align-items:center;gap:14px;padding:7px 0}
+.pil span{font-size:14px;color:var(--text-2)}
+.pil b{font-size:14px;color:var(--navy-deep);text-align:right}
+.pil-bar{height:8px;border-radius:4px;background:var(--border);overflow:hidden}
+.pil-bar i{display:block;height:100%;width:var(--w);background:var(--accent);border-radius:4px;transition:width .8s ease}
+@media (max-width:600px){.pil{grid-template-columns:1fr 70px}.pil-bar{grid-column:1 / -1;order:3}}

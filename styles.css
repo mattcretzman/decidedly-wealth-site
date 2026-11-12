@@ -380,3 +380,10 @@ footer .fa a:hover::after{width:100%}
   footer .fa[style*="text-align:right"]{text-align:left!important}
 }
 
+
+/* Secondary hero CTA + service card links (T28) */
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.bp-ghost{background:transparent;color:white;border:1px solid rgba(255,255,255,.55)}
+.bp-ghost:hover{background:rgba(255,255,255,.1)}
+.sc-link{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;color:var(--accent);text-decoration:none}
+.sc-link:hover{text-decoration:underline}
