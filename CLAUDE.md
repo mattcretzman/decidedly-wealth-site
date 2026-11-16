@@ -378,3 +378,7 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Branch `t28-readiness` (4de875b, pushed, NOT merged): four personal readiness questions + four pillar bars in the calculator results, a results email to the owner from sanger@ (`sendReport` in `api/exit-calculator.js`), a second hero button on exit-planning.html and business-valuation.html, two home-page links to the Fort Worth pages. Sent to RJ for Kestra Nov 12 (one combined PDF, packet in `~/scripts/decidedly/t28-readiness/`). Merge ONLY after Kestra APPROVED and after the Dec 24 experiment ends.
 - Monthly competitor scoreboard: `~/scripts/decidedly/scoreboard/` (launchd com.stormbreaker.dw-scoreboard, 1st of month 8:15). Baseline Nov 2026: #1 "exit planning advisor fort worth", #5 "business exit planning dallas"; Google reviews DW 22 vs Strittmatter 158.
 - Nov 13: 11/18 Weekly Decision "Four Tax Decisions That Can't Wait" Kestra APPROVED (ACR 9229747) and published (merge of wd-nov18, 5c6cb9e). Live page verified identical to main.
+
+## Nov 16, 2026
+- 11/25 Weekly Decision "The Thanksgiving Conversation You've Been Putting Off" LIVE (99cac7a, branch wd-nov25): blog/thanksgiving-conversation-youve-been-putting-off.html gated after "Why Thanksgiving works", card on blog.html, sitemap. Published on RJ's written OK while still at Kestra; pull if DISAPPROVED. Gate source tag: blog-gate-thanksgiving-conversation.
+- Standing OK: the 2-line "it's live" link email to RJ goes out on publish without asking.
