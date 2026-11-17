@@ -26,6 +26,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 <link rel="stylesheet" href="/styles.css">
 <style>
 :root{--wine:#3A1528;--wine-2:#6B2741;--stem:#4F6B4A;--leaf:#6E8F5E;--leaf-2:#8DAA74;--grape:#4A2140;--grape-2:#6E3560}
+.vh+.vsec{margin-top:-1px}
 .vh{background:linear-gradient(180deg,var(--navy-deep) 0%,#1B1E52 48%,var(--wine) 100%);color:#fff;padding:150px 0 0;position:relative;overflow:hidden}
 .vh::before{content:'';position:absolute;right:-10%;top:-30%;width:70%;height:120%;background:radial-gradient(closest-side,rgba(200,149,108,.22),transparent 70%);pointer-events:none;animation:glow 9s ease-in-out infinite alternate}
 @keyframes glow{to{transform:translate(-4%,6%);opacity:.75}}
@@ -36,7 +37,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 .vh h1 em{font-style:italic;color:var(--accent)}
 .vh .post-meta{opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) 1.1s forwards}
 @keyframes rise{to{opacity:1;transform:none}}
-.vh-vine{display:block;width:100%;height:230px;margin-top:30px;position:relative;z-index:1}
+.vh-vine{display:block;width:100%;height:230px;margin:30px 0 -2px;position:relative;z-index:1}
 .vh-vine .post{stroke:#2A1A2E;stroke-width:5;stroke-linecap:round}
 .vh-vine .wire{stroke:rgba(255,255,255,.18);stroke-width:1;fill:none}
 .vh-vine .hv{fill:none;stroke:var(--stem);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:1700;stroke-dashoffset:1700;animation:draw 2.8s cubic-bezier(.45,.05,.3,1) .5s forwards}
@@ -193,7 +194,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
           <p>And here's the part almost nobody catches. Being good with your money isn't one skill. It's two completely different ones. For years, your job was building the collection. Now your job is knowing what to open, when, and who to share it with...</p>
         </div>
         <div class="gate-box">
-          <svg class="gc" viewBox="0 0 220 60" aria-hidden="true"><path d="M0 4 C60 18 160 -6 220 8"/><g transform="translate(110 10) scale(.75)"><use href="#gc"/></g></svg>
+          <svg class="gc" viewBox="0 0 220 60" aria-hidden="true"><path d="M0 4 C60 18 160 -6 220 8"/><g transform="translate(110 16) scale(.8)"><use href="#gc"/></g></svg>
           <div class="ey">Keep Reading</div>
           <h3>The best part is in your <em>inbox.</em></h3>
           <p>There's a shift most people never see coming, the reason that drop in the cellar isn't the problem it feels like, and the one question I ask that changes how people feel about spending what they built. I get into all of it in this week's email. Drop your email and I'll send you the rest, plus a new decision every Wednesday.</p>
@@ -262,7 +263,7 @@ window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('g
       var p=stem.getPointAtLength(L),q=stem.getPointAtLength(L+1),a=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI;
       var g=el('g',{transform:'translate('+p.x.toFixed(1)+' '+p.y.toFixed(1)+')'});
       if(i%5===3){
-        var cg=el('g',{transform:'translate('+(side*8*k)+' 4) scale('+(0.55*k)+')'});
+        var cg=el('g',{transform:'translate('+(side*8*k)+' 4) scale('+(0.85*k)+')'});
         var gr=el('use',{href:'#gc','class':'gr'});cg.appendChild(gr);g.appendChild(cg);
       }else{
         var lg=el('g',{transform:'rotate('+(a-62*side)+') scale('+(k*(0.8+((i*37)%5)/10))+')'});
