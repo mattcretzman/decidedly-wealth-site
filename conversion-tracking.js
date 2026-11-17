@@ -3,6 +3,9 @@
  * Fires gtag conversion events for:
  *   1. Contact form submissions (AW-18360721058/XxZFCK3bqN8cEKK9ibNE)
  *   2. Phone call clicks (AW-18360721058/IfezCODhud8cEKK9ibNE)
+ *   3. Gated-article newsletter signups -> LinkedIn conversion 30650196
+ *      ("DW newsletter signup (article gate)", Insight Tag 10344852), fired when
+ *      #gate-form swaps to its "You're in" message.
  *   Book requests are counted on books-thank-you.html and after the blog popup succeeds,
  *   never on a link click (a click on a books link is not a request).
  *
@@ -22,6 +25,24 @@
   function init() {
     trackFormSubmissions();
     trackPhoneClicks();
+    trackGateSignups();
+  }
+
+  // 3. Gated article signup (LinkedIn conversion)
+  function trackGateSignups() {
+    var form = document.getElementById('gate-form');
+    if (!form) return;
+    var fired = false;
+    var observer = new MutationObserver(function() {
+      if (!fired && form.textContent.indexOf("You're in") > -1) {
+        fired = true;
+        observer.disconnect();
+        if (typeof window.lintrk === 'function') {
+          window.lintrk('track', { conversion_id: 30650196 });
+        }
+      }
+    });
+    observer.observe(form, { childList: true, subtree: true });
   }
 
   // 1. Contact Form Submission
