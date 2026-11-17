@@ -288,8 +288,8 @@ window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('g
   build();
   var ps=body.querySelectorAll(':scope>p:not(.lead)');
   if(reduce||!('IntersectionObserver'in window)){ps.forEach(function(x){x.classList.add('in')});return}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px'});
-  ps.forEach(function(x){io.observe(x)});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -4% 0px'});
+  ps.forEach(function(x){var r=x.getBoundingClientRect();if(r.top<innerHeight){x.classList.add('in')}else{io.observe(x)}});
 })();
 </script>
 <script src="/nav.js"></script>
