@@ -59,6 +59,10 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 .popup-form button{width:100%;padding:14px;font-size:15px;font-weight:600;color:white;background:var(--navy);border:none;border-radius:var(--r);cursor:pointer;font-family:var(--font-b);transition:background .2s}
 .popup-form button:hover{background:var(--navy-light)}
 .popup-note{font-family:var(--font-m);font-size:10px;color:var(--text-3);margin-top:8px;letter-spacing:.04em}
+.topic-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.topic-chip{font-family:var(--font-m);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:10px 18px;border:1px solid var(--border);border-radius:999px;background:var(--white);color:var(--navy);transition:border-color .3s,background .3s,color .3s}
+.topic-chip:hover,.topic-chip.on{border-color:var(--navy);background:var(--navy);color:#fff}
+.blog-card.hide{display:none}
 @media(max-width:768px){.blog-grid{grid-template-columns:1fr}}
 </style>
 <!-- Microsoft Clarity (strict masking; forms masked) -->
@@ -108,156 +112,161 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 <section style="background:var(--bg)">
   <div class="ctn">
 
+    <div class="topic-row" id="topics">
+      <a href="#" class="topic-chip on" data-t="">All</a>
+      <a href="#exit-planning" class="topic-chip" data-t="exit-planning">Exit Planning</a><a href="#family" class="topic-chip" data-t="family">Family &amp; Legacy</a><a href="#meaning" class="topic-chip" data-t="meaning">Money &amp; Meaning</a><a href="#planning" class="topic-chip" data-t="planning">Taxes &amp; Planning</a><a href="#growth" class="topic-chip" data-t="growth">Growing the Business</a>
+    </div>
+
     <div class="blog-grid">
 
-      <a href="/blog/thanksgiving-conversation-youve-been-putting-off.html" class="blog-card r">
+      <a href="/blog/thanksgiving-conversation-youve-been-putting-off.html" class="blog-card r" data-topic="family">
         <div class="ey">Family Conversations</div>
         <h3>The Thanksgiving Conversation You&rsquo;ve Been <em>Putting Off</em></h3>
         <p>Thanksgiving puts nearly everyone you love in one place. Four practical questions to ask, so the people you love know where to start if something happened.</p>
         <div class="blog-date">By RJ Finley &middot; November 25, 2026</div>
       </a>
 
-      <a href="/blog/four-tax-decisions-that-cant-wait.html" class="blog-card r">
+      <a href="/blog/four-tax-decisions-that-cant-wait.html" class="blog-card r" data-topic="planning">
         <div class="ey">Year-End Decisions</div>
         <h3>Four Tax Decisions That Can&rsquo;t Wait Until <em>April</em></h3>
         <p>Several of the most useful tax decisions of the year have to be finished by December 31. Four to think through in November: Roth conversions, required withdrawals, QCDs and tax-loss harvesting.</p>
         <div class="blog-date">By RJ Finley &middot; November 18, 2026</div>
       </a>
 
-      <a href="/blog/what-your-money-is-for.html" class="blog-card r">
+      <a href="/blog/what-your-money-is-for.html" class="blog-card r" data-topic="meaning">
         <div class="ey">Giving and Service</div>
         <h3>What Your Money <em>Is For</em></h3>
         <p>Most of us spend decades building wealth and almost no time deciding what it is for. This week&rsquo;s decision: one cause for your money to serve.</p>
         <div class="blog-date">By RJ Finley &middot; November 11, 2026</div>
       </a>
 
-      <a href="/blog/deciding-to-exit-your-business.html" class="blog-card r">
+      <a href="/blog/deciding-to-exit-your-business.html" class="blog-card r" data-topic="exit-planning">
         <div class="ey">Exit Planning</div>
         <h3>Deciding to <em>exit</em> your business.</h3>
         <p>Exit planning starts with personal planning. Scott Snider of the Exit Planning Institute on the wealth gap, the four C&rsquo;s, and getting ready before you sell.</p>
         <div class="blog-date">October 2026</div>
       </a>
 
-      <a href="/blog/your-money-story.html" class="blog-card r">
+      <a href="/blog/your-money-story.html" class="blog-card r" data-topic="meaning">
         <div class="ey">Financial Behavior</div>
         <h3>What's your money <em>story?</em></h3>
         <p>Your money mindset started long before your first paycheck. Dr. Mary Bell Carlson on money scripts, financial behavior, and how you relate to money.</p>
         <div class="blog-date">October 2026</div>
       </a>
 
-      <a href="/blog/planning-your-retirement.html" class="blog-card r">
+      <a href="/blog/planning-your-retirement.html" class="blog-card r" data-topic="planning">
         <div class="ey">Retirement Planning</div>
         <h3>Stop losing sleep over the <em>details.</em></h3>
         <p>Retirement planning starts with what you want, not the technical details. Roger Whitney shares a four-pillar framework for business owners planning for retirement.</p>
         <div class="blog-date">October 2026</div>
       </a>
 
-      <a href="/blog/raising-financially-savvy-kids.html" class="blog-card r">
+      <a href="/blog/raising-financially-savvy-kids.html" class="blog-card r" data-topic="family">
         <div class="ey">Family Wealth</div>
         <h3>What my dad got right about <em>teaching</em> kids about money.</h3>
         <p>Teaching kids about money starts small. The allowance, saving and spending lessons my dad Shawn taught me, and what they mean for family wealth.</p>
         <div class="blog-date">October 2026</div>
       </a>
 
-      <a href="/blog/significance-over-success-rj-finley.html" class="blog-card r">
+      <a href="/blog/significance-over-success-rj-finley.html" class="blog-card r" data-topic="meaning">
         <div class="ey">Reeling It In</div>
         <h3>Significance Over <em>Success</em></h3>
         <p>RJ Finley joined Collin Bass on Reeling It In to talk about why most people have values, not financial goals, and the five key decisions that align money with what matters.</p>
         <div class="blog-date">By RJ Finley &middot; October 2026</div>
       </a>
 
-      <a href="/blog/the-plan-says-youre-fine.html" class="blog-card r">
+      <a href="/blog/the-plan-says-youre-fine.html" class="blog-card r" data-topic="meaning">
         <div class="ey">When the Numbers Aren&rsquo;t Enough</div>
         <h3>The Plan Says You&rsquo;re Fine. So Why Don&rsquo;t You <em>Feel</em> Fine?</h3>
         <p>Darren&rsquo;s financial plan said he would be fine, and he didn&rsquo;t believe it. What a plan can&rsquo;t tell you, and why more money rarely settles the feeling.</p>
         <div class="blog-date">By RJ Finley &middot; October 28, 2026</div>
       </a>
 
-      <a href="/blog/your-money-should-feel-like-freedom.html" class="blog-card r">
+      <a href="/blog/your-money-should-feel-like-freedom.html" class="blog-card r" data-topic="meaning">
         <div class="ey">The Real Purpose of Money</div>
         <h3>Your Money Should Feel Like <em>Freedom</em></h3>
         <p>When you think about your money, what do you feel? Why so many people who have done everything right still carry a constant hum of worry, and a better question to ask.</p>
         <div class="blog-date">By RJ Finley &middot; October 21, 2026</div>
       </a>
 
-      <a href="/blog/all-your-eggs-in-one-basket.html" class="blog-card r">
+      <a href="/blog/all-your-eggs-in-one-basket.html" class="blog-card r" data-topic="planning">
         <div class="ey">Managing a Concentrated Position</div>
         <h3>All Your Eggs in <em>One Basket</em></h3>
         <p>Most of David's net worth ended up in a single stock after the acquisition. Why selling feels like betrayal, and three ways to unwind a concentrated position.</p>
         <div class="blog-date">By RJ Finley &middot; October 14, 2026</div>
       </a>
 
-      <a href="/blog/i-thought-id-feel-free.html" class="blog-card r">
+      <a href="/blog/i-thought-id-feel-free.html" class="blog-card r" data-topic="exit-planning">
         <div class="ey">The Emotional Side of the Exit</div>
         <h3>I Thought I'd <em>Feel Free</em></h3>
         <p>Mark sold after 25 years. Three months later he called and said he did not feel free. The chapter nobody plans for, and the question worth asking before the wire hits.</p>
         <div class="blog-date">By RJ Finley &middot; October 7, 2026</div>
       </a>
 
-      <a href="/blog/transforming-wealth-to-significance.html" class="blog-card r">
+      <a href="/blog/transforming-wealth-to-significance.html" class="blog-card r" data-topic="meaning">
         <div class="ey">Wealth &amp; Significance</div>
         <h3>Transforming Wealth to Significance &mdash; What It Actually Means</h3>
         <p>People seek significance. Not always consciously, but it's there. And one of the things people really fear when they retire or leave a business is losing it.</p>
         <div class="blog-date">September 2026</div>
       </a>
 
-      <a href="/blog/how-ugg-scaled-and-sold.html" class="blog-card r">
+      <a href="/blog/how-ugg-scaled-and-sold.html" class="blog-card r" data-topic="growth">
         <div class="ey">Exit Planning</div>
         <h3>How the Founder of UGG Scaled and Sold</h3>
         <p>Brian Smith tried to quit. Multiple times. He literally could not go out of business. Every time he was ready to walk away from UGG, the phone would ring.</p>
         <div class="blog-date">September 2026</div>
       </a>
 
-      <a href="/blog/five-decisions-every-business-owner-should-make.html" class="blog-card r">
+      <a href="/blog/five-decisions-every-business-owner-should-make.html" class="blog-card r" data-topic="exit-planning">
         <div class="ey">The Decision Lab</div>
         <h3>5 Decisions Every Business Owner Should Make Today</h3>
         <p>Your financial plan should be specific to your family. There are five key decisions you've got to make to transform your wealth to significance. Let me tell you about Ken.</p>
         <div class="blog-date">September 2026</div>
       </a>
 
-      <a href="/blog/family-business-titles-or-talents.html" class="blog-card r">
+      <a href="/blog/family-business-titles-or-talents.html" class="blog-card r" data-topic="family">
         <div class="ey">Family Business</div>
         <h3>Is Your Family Business Built on Titles or Talents?</h3>
         <p>I've seen families torn apart by succession. I've also seen it done beautifully. The difference almost always comes down to one thing: did the next generation earn their seat?</p>
         <div class="blog-date">September 2026</div>
       </a>
 
-      <a href="/blog/when-to-sell-your-business.html" class="blog-card r">
+      <a href="/blog/when-to-sell-your-business.html" class="blog-card r" data-topic="exit-planning">
         <div class="ey">Exit Planning</div>
         <h3>When Is the Right Time to Sell Your Business?</h3>
         <p>There was a bakery near our office in Fort Worth. Best cookies in town. Packed every day. Then the owner just closed. She had something incredibly valuable, and she walked away from it.</p>
         <div class="blog-date">September 2026</div>
       </a>
 
-      <a href="/blog/creating-a-family-business-legacy.html" class="blog-card r">
+      <a href="/blog/creating-a-family-business-legacy.html" class="blog-card r" data-topic="family">
         <div class="ey">Family Business Legacy</div>
         <h3>Family Legacy Is More Than a Succession <em>Plan.</em></h3>
         <p>Most family businesses plan the transfer but skip the conversation that matters. Here&rsquo;s what legacy actually looks like across generations.</p>
         <div class="blog-date">September 2026</div>
       </a>
 
-      <a href="/blog/how-to-fraud-proof-your-family-business.html" class="blog-card r">
+      <a href="/blog/how-to-fraud-proof-your-family-business.html" class="blog-card r" data-topic="family">
         <div class="ey">Business Protection</div>
         <h3>How to fraud-proof your family <em>business.</em></h3>
         <p>Trust isn&rsquo;t a fraud prevention strategy. Dr. Kelly Richmond Pope explains why even the best company cultures need policies, and what business owners miss.</p>
         <div class="blog-date">September 2026</div>
       </a>
 
-      <a href="/blog/how-to-talk-about-money-without-fighting.html" class="blog-card r">
+      <a href="/blog/how-to-talk-about-money-without-fighting.html" class="blog-card r" data-topic="family">
         <div class="ey">Wealth &amp; Relationships</div>
         <h3>How to talk about money without <em>fighting.</em></h3>
         <p>Every big decision has a love component and a money component. Abby Davisson explains how couples can make better financial decisions together.</p>
         <div class="blog-date">September 2026</div>
       </a>
 
-      <a href="/blog/marketing-lessons-from-canva-evangelist.html" class="blog-card r">
+      <a href="/blog/marketing-lessons-from-canva-evangelist.html" class="blog-card r" data-topic="growth">
         <div class="ey">Business Growth</div>
         <h3>Marketing lessons from Canva&rsquo;s chief <em>evangelist.</em></h3>
         <p>Guy Kawasaki says if you&rsquo;re not saying the opposite of your competitors, you&rsquo;re not saying anything different. The opposite test and other lessons for business owners.</p>
         <div class="blog-date">September 2026</div>
       </a>
 
-      <a href="/blog/purposeful-philanthropy-meaningful-impact.html" class="blog-card r">
+      <a href="/blog/purposeful-philanthropy-meaningful-impact.html" class="blog-card r" data-topic="meaning">
         <div class="ey">Charitable Giving &amp; Legacy</div>
         <h3>Your Money Has a <em>Purpose.</em> Have You Found It Yet?</h3>
         <p>Most wealthy people never move past checkbook giving. Here is why finding meaning in your money unlocks better philanthropy and deeper fulfillment.</p>
@@ -265,21 +274,21 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
       </a>
 
 
-      <a href="/blog/whats-your-business-really-worth.html" class="blog-card r">
+      <a href="/blog/whats-your-business-really-worth.html" class="blog-card r" data-topic="exit-planning">
         <div class="ey">What It's Really Worth</div>
         <h3>What's Your Business <em>Really</em> Worth?</h3>
         <p>A business gets valued the same way a home does. Not on what it means to you, but on how well it works for the person buying it. Three things that drive the number.</p>
         <div class="blog-date">By RJ Finley &middot; September 30, 2026</div>
       </a>
 
-      <a href="/blog/you-prepared-the-business.html" class="blog-card r">
+      <a href="/blog/you-prepared-the-business.html" class="blog-card r" data-topic="exit-planning">
         <div class="ey">Before You Step Away</div>
         <h3>You Prepared the Business. Did You Prepare <em>Yourself?</em></h3>
         <p>Founders pour everything into the financial side of a sale. The person in the middle gets left out. Three things to walk through before you step away.</p>
         <div class="blog-date">By RJ Finley &middot; September 23, 2026</div>
       </a>
 
-      <a href="/blog/net-accumulator-to-net-spender.html" class="blog-card r">
+      <a href="/blog/net-accumulator-to-net-spender.html" class="blog-card r" data-topic="meaning">
         <div class="ey">Wealth &amp; Significance</div>
         <h3>You Didn&rsquo;t Plant the Vines Just to Look at Them</h3>
         <p>You ever talk to someone who&rsquo;s actually planted a vineyard? The thing that can be frustrating is the waiting. Your money works the exact same way.</p>
@@ -391,6 +400,14 @@ window._formLoadTime=window._formLoadTime||Date.now();document.getElementById('p
     f.innerHTML='<p style="font-size:16px;color:var(--navy);font-weight:600;padding:12px 0;margin-bottom:8px">You\'re in!</p><p style="font-size:14px;color:var(--text-2);line-height:1.6">We just sent both of Sanger\'s books to your inbox. Check your email (or spam folder) for the download links.</p>';
   });
 });
+</script>
+<script>
+(function(){var chips=document.querySelectorAll('#topics .topic-chip');
+function show(t){chips.forEach(function(c){c.classList.toggle('on',c.getAttribute('data-t')===t)});
+document.querySelectorAll('.blog-grid .blog-card').forEach(function(c){var k=c.getAttribute('data-topic');c.classList.toggle('hide',!!t&&k!==t)});
+document.querySelectorAll('.blog-grid .blog-cta').forEach(function(c){c.style.display=t?'none':''})}
+chips.forEach(function(c){c.addEventListener('click',function(e){e.preventDefault();var t=c.getAttribute('data-t');history.replaceState(null,'',t?'#'+t:location.pathname);show(t)})});
+show((location.hash||'').slice(1));window.addEventListener('hashchange',function(){show((location.hash||'').slice(1))});})();
 </script>
 <script src="nav.js"></script>
 <script src="/conversion-tracking.js"></script>
