@@ -31,7 +31,7 @@
   function progress() {
     var r = post.getBoundingClientRect();
     var vh = window.innerHeight;
-    var total = r.height - vh * 0.4;
+    var total = r.height - vh * 0.15;
     var done = vh * 0.6 - r.top;
     return Math.max(0, Math.min(1, total > 0 ? done / total : 1));
   }
