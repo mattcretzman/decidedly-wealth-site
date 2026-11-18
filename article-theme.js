@@ -74,7 +74,7 @@
       var side = k % 2;
       var d = document.createElement('div');
       d.className = 'at-leaf';
-      d.innerHTML = leafSvg(colors[k % colors.length], k % 3 !== 0);
+      d.innerHTML = leafSvg(colors[k % colors.length], true);
       layer.appendChild(d);
       leaves.push({ el: d, side: side, x: 0.04 + ((k * 37) % 100) / 100 * 0.12, delay: k / 8 * 0.55, spin: 120 + k * 45, sway: 18 + (k % 3) * 10 });
     }
