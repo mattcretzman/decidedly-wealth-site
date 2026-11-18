@@ -387,3 +387,7 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - `uet.js` (tag 97294196) is loaded with `<script src="/uet.js" defer></script>` before `</head>` on every public HTML page. Add the same line to any NEW page.
 - It fires custom events used as conversion goals: `book_request` (/books-thank-you or the blog popup "You're in"), `calculator_lead` (#gate submit on calculator pages), `contact_form` (contact form "Thank you"), `phone_click` (tel: links).
 - If a form's success text or element id changes, update the matching selector in uet.js or the goal stops counting.
+
+## Insights page + article themes (Nov 18, 2026, merge c3e7052)
+- blog.html shows the TOP 6 articles only (by Clarity visits; re-rank monthly), then the book CTA, then "Browse every article" -> blog-archive.html (every article + Coming Soon cards). NEW ARTICLE: add its card to blog-archive.html always, and to blog.html only if it replaces one of the six.
+- article-theme.js: scroll-linked decoration, opt in with `<body data-theme="flag">` or `data-theme="leaves"` plus `<script src="/article-theme.js" defer></script>`. Used on what-your-money-is-for (flag hoist) and the Thanksgiving article (leaves). Decorative only, aria-hidden, fades out at the footer.
