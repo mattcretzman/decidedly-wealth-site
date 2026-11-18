@@ -22,8 +22,8 @@
     '@media(max-width:1180px){.at-pole{right:6px;width:58px}.at-pole .flag{width:48px;height:26px}.at-pole{opacity:.85}}',
     /* Leaves */
     '.at-leaves{left:0;right:0;overflow:hidden}',
-    '.at-leaf{position:absolute;top:0;width:30px;height:30px;will-change:transform}',
-    '@media(max-width:1180px){.at-leaf{width:20px;height:20px;opacity:.55}}',
+    '.at-leaf{position:absolute;top:0;width:34px;height:40px;opacity:.85;will-change:transform}',
+    '@media(max-width:1180px){.at-leaf{width:22px;height:26px;opacity:.5}}',
     '@media(prefers-reduced-motion:reduce){.at-pole .flag svg{animation:none}}'
   ].join('\n');
   document.head.appendChild(css);
@@ -59,7 +59,13 @@
     };
   } else if (theme === 'leaves') {
     var colors = ['#b5673a', '#C8956C', '#9c4a24', '#d4a35a', '#8a5a2b', '#c07a3e'];
-    var leafPath = 'M15 1c2 4 6 5 9 4-1 4 1 7 5 8-4 2-5 5-4 9-3-1-6 0-8 3l-1 4-1-4c-2-3-5-4-8-3 1-4 0-7-4-9 4-1 6-4 5-8 3 1 7 0 8-4z';
+    var leafSvg = function (col, kind) {
+      var body = kind ? 'M20 3C31 9 35 22 20 37C5 22 9 9 20 3Z'
+        : 'M20 3l3.5 7 5.5-3-1 7.5 7.5-1.5-3.5 6 6.5 3-7.5 3 2.5 5.5-7.5-2-1.5 6.5-4-4.5-4 4.5-1.5-6.5-7.5 2 2.5-5.5-7.5-3 6.5-3-3.5-6 7.5 1.5-1-7.5 5.5 3Z';
+      return '<svg viewBox="0 0 40 46"><path d="' + body + '" fill="' + col + '"/>' +
+        '<path d="M20 8V44" stroke="rgba(60,30,10,.45)" stroke-width="1.2" fill="none"/>' +
+        (kind ? '<path d="M20 16l-6-4M20 22l7-5M20 28l-7-4" stroke="rgba(60,30,10,.3)" stroke-width="1" fill="none"/>' : '') + '</svg>';
+    };
     var layer = document.createElement('div');
     layer.className = 'at-layer at-leaves';
     layer.setAttribute('aria-hidden', 'true');
@@ -68,7 +74,7 @@
       var side = k % 2;
       var d = document.createElement('div');
       d.className = 'at-leaf';
-      d.innerHTML = '<svg viewBox="0 0 30 30"><path d="' + leafPath + '" fill="' + colors[k % colors.length] + '" opacity=".8"/></svg>';
+      d.innerHTML = leafSvg(colors[k % colors.length], k % 3 !== 0);
       layer.appendChild(d);
       leaves.push({ el: d, side: side, x: 0.04 + ((k * 37) % 100) / 100 * 0.12, delay: k / 8 * 0.55, spin: 120 + k * 45, sway: 18 + (k % 3) * 10 });
     }
