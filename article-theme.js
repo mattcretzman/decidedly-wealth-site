@@ -9,7 +9,7 @@
 
   var css = document.createElement('style');
   css.textContent = [
-    '.at-layer{position:fixed;top:0;bottom:0;pointer-events:none;z-index:5}',
+    '.at-layer{position:fixed;top:0;bottom:0;pointer-events:none;z-index:5;transition:opacity .4s}',
     /* Flag: right gutter on wide screens, slim edge pole on phones */
     '.at-pole{right:max(24px,calc((100vw - 720px)/2 - 150px));width:110px}',
     '.at-pole .mast{position:absolute;left:6px;top:12vh;bottom:6vh;width:4px;border-radius:2px;background:linear-gradient(90deg,#8d8d8d,#d9d9d9 45%,#9a9a9a)}',
@@ -85,9 +85,15 @@
     };
   }
   if (!update) return;
+  var foot = document.querySelector('footer');
+  var layerEl = document.querySelector('.at-layer');
+  function run() {
+    update();
+    if (foot) layerEl.style.opacity = foot.getBoundingClientRect().top < window.innerHeight - 40 ? '0' : '';
+  }
   var ticking = false;
-  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; update(); }); } }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; run(); }); } }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
-  update();
+  run();
 })();
