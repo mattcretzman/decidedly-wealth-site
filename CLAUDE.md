@@ -382,3 +382,8 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 ## Nov 16, 2026
 - 11/25 Weekly Decision "The Thanksgiving Conversation You've Been Putting Off" LIVE (99cac7a, branch wd-nov25): blog/thanksgiving-conversation-youve-been-putting-off.html gated after "Why Thanksgiving works", card on blog.html, sitemap. Published on RJ's written OK while still at Kestra; pull if DISAPPROVED. Gate source tag: blog-gate-thanksgiving-conversation.
 - Standing OK: the 2-line "it's live" link email to RJ goes out on publish without asking.
+
+## Microsoft Ads tracking (UET), added Nov 18, 2026
+- `uet.js` (tag 97294196) is loaded with `<script src="/uet.js" defer></script>` before `</head>` on every public HTML page. Add the same line to any NEW page.
+- It fires custom events used as conversion goals: `book_request` (/books-thank-you or the blog popup "You're in"), `calculator_lead` (#gate submit on calculator pages), `contact_form` (contact form "Thank you"), `phone_click` (tel: links).
+- If a form's success text or element id changes, update the matching selector in uet.js or the goal stops counting.
