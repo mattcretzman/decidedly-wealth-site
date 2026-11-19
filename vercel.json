@@ -14,6 +14,11 @@
       "permanent": true
     },
     {
+      "source": "/team/:path*",
+      "destination": "/who-we-are.html",
+      "permanent": true
+    },
+    {
       "source": "/services",
       "destination": "/services.html",
       "permanent": true
