@@ -391,3 +391,10 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 ## Insights page + article themes (Nov 18, 2026, merge c3e7052)
 - blog.html shows the TOP 6 articles only (by Clarity visits; re-rank monthly), then the book CTA, then "Browse every article" -> blog-archive.html (every article + Coming Soon cards). NEW ARTICLE: add its card to blog-archive.html always, and to blog.html only if it replaces one of the six.
 - article-theme.js: scroll-linked decoration, opt in with `<body data-theme="flag">` or `data-theme="leaves"` plus `<script src="/article-theme.js" defer></script>`. Used on what-your-money-is-for (flag hoist) and the Thanksgiving article (leaves). Decorative only, aria-hidden, fades out at the footer.
+
+## AI search fixes (Nov 19, 2026, merge 859b7ae)
+- `/team/*` 308 redirects to `/who-we-are.html` (ChatGPT still cited `/team/sanger-smith`).
+- JSON-LD `id="aeo-schema"` on who-we-are.html (Person: Sanger, Shawn, RJ, Wyatt, linked to `#org`), books.html (Book x2), podcast.html (PodcastSeries). index.html FinancialService carries `"@id": "https://decidedlywealth.com/#org"`. Only wording already on the pages.
+- `llms.txt`: page list built from existing titles + meta descriptions. Rebuild when pages are added.
+- IndexNow key file `61b286dab1f7be03b15f89b016fcc038.txt` at root. Ping after a deploy: POST https://api.indexnow.org/indexnow with host, key, keyLocation, urlList (first ping Nov 19: 68 sitemap URLs, 202).
+- Audit behind this: ~/scripts/decidedly/aeo/FINDINGS.md (internal).
