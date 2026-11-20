@@ -405,3 +405,8 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Booked meetings to Google Ads: an offline upload script (lives outside this repo) reads rows with Outcome = Meeting booked / Meeting held / Became client, a gclid in S and a date in V.
 - `api/_lead-reply.js`: same-minute reply to contact-form leads from Sanger with the booking link. OFF unless the Vercel env var `LEAD_AUTOREPLY` is `on` (needs compliance approval first).
 - Calculator: the Ads/GA conversions now fire only when `/api/exit-calculator` answers `lead: true` (spam gets a silent 200 without it).
+
+## Nov 20, 2026 (later)
+- Leads sheet: headers P1:V1 added; Outcome (U) has a dropdown (Meeting booked / Meeting held / Became client / No show / Not a fit / Spam), Meeting date (V) validates dates. The team fills these; booked meetings with a gclid upload to Google Ads conversion "Booked meeting (offline)" every 30 min (script outside this repo).
+- Google Ads non-brand campaigns (both Exit Planning test arms + Business Succession): 'sell a business' + 'how to value a business for sale' paused, 6 phrase negatives, CPC ceiling $12, ads run 6am-10pm, Dallas + Plano bids -40%. Branded unchanged.
+- Compliance tickets added: T31 (contact-form reply email) and T32 (RJ's valuation tool at decidedlyvaluation.com, a separate project RJ deploys himself).
