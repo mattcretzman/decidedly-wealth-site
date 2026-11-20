@@ -398,3 +398,10 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - `llms.txt`: page list built from existing titles + meta descriptions. Rebuild when pages are added.
 - IndexNow key file `61b286dab1f7be03b15f89b016fcc038.txt` at root. Ping after a deploy: POST https://api.indexnow.org/indexnow with host, key, keyLocation, urlList (first ping Nov 19: 68 sitemap URLs, 202).
 - Audit behind this: ~/scripts/decidedly/aeo/FINDINGS.md (internal).
+
+## Lead attribution + leads sheet layout (Nov 20, 2026, branch funnel-tracking)
+- `attribution.js` loads on every public page (before `uet.js`; add `<script src="/attribution.js"></script>` to any NEW page). It stores the latest ad click id (gclid / gbraid / wbraid / msclkid / li_fat_id / fbclid) plus first-touch UTMs, landing page and external referrer for 90 days, and adds them to the JSON body of POSTs to /api/contact-form, /api/book-download, /api/exit-calculator and /api/newsletter-signup without overwriting fields the form already sent. It never throws (storage can be blocked).
+- `api/_lead-row.js` is the ONE leads-sheet row layout (A:V). Every lead endpoint writes through `leadRow()`. P Phone, Q Interest, R Message, S Ad click id (`gclid:...`), T Landing page, U Outcome and V Meeting date (the team fills U/V). J, K-M, N-O are written by other jobs. Older contact-form rows (before this) hold phone/interest/message/source in E-H.
+- Booked meetings to Google Ads: an offline upload script (lives outside this repo) reads rows with Outcome = Meeting booked / Meeting held / Became client, a gclid in S and a date in V.
+- `api/_lead-reply.js`: same-minute reply to contact-form leads from Sanger with the booking link. OFF unless the Vercel env var `LEAD_AUTOREPLY` is `on` (needs compliance approval first).
+- Calculator: the Ads/GA conversions now fire only when `/api/exit-calculator` answers `lead: true` (spam gets a silent 200 without it).

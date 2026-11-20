@@ -511,9 +511,15 @@
       body: JSON.stringify({ firstName: f.first.value, email: f.email.value, phone: f.phone ? f.phone.value.trim() : '', website: f.website.value, _t: loadedAt,
                              source: 'exit-calculator' + (CFG.key ? '-' + CFG.key : ''), industry: CFG.key,
                              answers: answerText(), result: payload })
+    }).then(function(r){
+      // Count the lead only when the server saved a real one (spam gets a silent 200 without lead:true).
+      return r.json().then(function(j){
+        if (j && j.lead) {
+          if (window.gtag) gtag('event', 'exit_calc_lead', { calc_industry: CFG.key || 'generic' });
+          // Google Ads conversion for pages that set one (the ad landing page sets "Value Calculator Lead").
+          if (window.gtag && window.CALC_CONVERSION) gtag('event', 'conversion', { send_to: window.CALC_CONVERSION });
+        }
+      }).catch(function(){});
     }).then(reveal, reveal);
-    if (window.gtag) gtag('event', 'exit_calc_lead', { calc_industry: CFG.key || 'generic' });
-    // Google Ads conversion for pages that set one (the ad landing page sets "Value Calculator Lead").
-    if (window.gtag && window.CALC_CONVERSION) gtag('event', 'conversion', { send_to: window.CALC_CONVERSION });
   });
 })();

@@ -92,6 +92,8 @@ async function notifyTeam(firstName, lastName, email, source) {
 
 const { isSpam } = require('./_spam-filter');
 
+const { leadRow, RANGE } = require('./_lead-row');
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -119,21 +121,9 @@ module.exports = async function handler(req, res) {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: SHEET_ID,
-      range: 'Sheet1!A:I',
+      range: RANGE,
       valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [[
-          new Date().toISOString(),
-          firstName || '',
-          lastName || '',
-          email,
-          source || 'books-page',
-          referrer || '',
-          utm_source || '',
-          utm_medium || '',
-          utm_campaign || ''
-        ]]
-      }
+      requestBody: { values: [leadRow({ ...req.body, source: source || 'books-page' })] }
     });
   } catch (err) {
     console.error('Sheet append error:', err.message);

@@ -19,6 +19,7 @@ const INDUSTRY_TAGS = {
 };
 
 const { isSpam } = require('./_spam-filter');
+const { leadRow, RANGE } = require('./_lead-row');
 
 const usd = (n) => '$' + Math.round(Number(n) || 0).toLocaleString('en-US');
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -103,20 +104,16 @@ module.exports = async function handler(req, res) {
   }
 
   // Every lead gets a row in the leads sheet, so the follow-up job sees it.
-  // Source goes in column E like book requests; book-drip only mails books-page/blog-popup rows.
+  // Layout in _lead-row.js (source in E, phone in P); book-drip only mails books-page/blog-popup rows.
   try {
     if (SHEET_ID && SA_KEY.client_email) {
       const auth = new google.auth.JWT(SA_KEY.client_email, null, SA_KEY.private_key, ['https://www.googleapis.com/auth/spreadsheets']);
       const sheets = google.sheets({ version: 'v4', auth });
       await sheets.spreadsheets.values.append({
         spreadsheetId: SHEET_ID,
-        range: 'Sheet1!A:J',
+        range: RANGE,
         valueInputOption: 'USER_ENTERED',
-        requestBody: { values: [[
-          new Date().toISOString(), firstName || '', '', email,
-          'exit-calculator' + (industryTag ? '-' + industry : ''), '', '', '', '',
-          phone ? 'Phone: ' + phone : ''
-        ]] }
+        requestBody: { values: [leadRow({ ...req.body, lastName: '', source: 'exit-calculator' + (industryTag ? '-' + industry : '') })] }
       });
     }
   } catch (err) {
@@ -129,5 +126,5 @@ module.exports = async function handler(req, res) {
     console.error('Notification error:', err.message);
   }
 
-  return res.status(200).json({ ok: true });
+  return res.status(200).json({ ok: true, lead: true });
 };
