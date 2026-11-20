@@ -48,6 +48,8 @@ async function notifyTeam({ firstName, lastName, email, phone, interest, message
 }
 
 const { isSpam } = require('./_spam-filter');
+const { leadRow, RANGE } = require('./_lead-row');
+const { sendContactReply } = require('./_lead-reply');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -76,20 +78,9 @@ module.exports = async function handler(req, res) {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: SHEET_ID,
-      range: 'Sheet1!A:H',
+      range: RANGE,
       valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [[
-          new Date().toISOString(),
-          firstName || '',
-          lastName || '',
-          email,
-          phone || '',
-          interest || '',
-          message || '',
-          source || 'contact-form'
-        ]]
-      }
+      requestBody: { values: [leadRow({ ...req.body, source: source || 'contact-form' })] }
     });
   } catch (err) {
     console.error('Sheet append error:', err.message);
@@ -99,6 +90,13 @@ module.exports = async function handler(req, res) {
     await notifyTeam({ firstName, lastName, email, phone, interest, message, source: source || 'contact-form' });
   } catch (err) {
     console.error('Notification error:', err.message);
+  }
+
+  try {
+    const st = await sendContactReply(firstName, email);
+    if (st !== 'off') console.log(`Lead reply: ${st} for ${email}`);
+  } catch (err) {
+    console.error('Lead reply error:', err.message);
   }
 
   try {
