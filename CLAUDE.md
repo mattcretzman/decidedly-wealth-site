@@ -416,3 +416,14 @@ Every email/page/ad submitted to Kestra ACR must carry, right after the securiti
 `Investor Disclosures: https://www.kestrafinancial.com/disclosures`
 Check with `python3 ~/scripts/decidedly/kestra_disclosure.py <file-or-dir>` before submitting.
 Vercel git previews don't trigger on this project: preview with `vercel deploy --yes` from the branch worktree.
+
+## T25 RJ email follow-up (Nov 25, 2026, df615d0 + 4daffe6)
+- Kestra ACR 9236731. Wording is the approved packet word for word (`~/scripts/decidedly/t25-lead-followup/T25.html`); `api/_t25.js` holds it.
+- Calculator leads: B1 same minute (quotes the range the calculator showed), B2 day 3, B3 day 10, B4 day 21. Contact form leads: C1-C4 on the same days, but C1 is skipped while Sanger's T31 same-minute reply is on (`LEAD_AUTOREPLY=on`). Book leads get no T25 email (they get T15 from book-drip.js).
+- From `RJ Finley <rj@decidedlywealth.com>` via Resend. Reply-To = rj@decidedlywealth.com (RJ gets replies in Outlook) + rj@reply.decidedlywealth.com (Resend receiving domain 8a197a45..., MX `receive.forge.rmta.net` at GoDaddy).
+- `api/t25.js`: `?a=drip` (Vercel cron 14:30 UTC daily), `?a=inbound` (Resend webhook 40aa3e07..., secret in `RESEND_WEBHOOK_SECRET_DW`), `?a=unsub` (footer link). `&tab=test` runs against the "T25 Test" tab, which only mails Matt's addresses; `&now=` simulates days there.
+- Stops (column X): reply, "stop" reply, unsubscribe, bounce, spam complaint, Outcome (U) or Meeting date (V) filled, LinkedIn reply (run.py). An email reply also marks the lead finished in RJ's LinkedIn sequences.
+- Sheet1 W = last step sent `N @time`, X = stop reason, Y = calculator range. `T25 Status` tab = last drip run (health check reads it).
+- OFF until Vercel env `T25_START` (ISO time) is set; only leads on or after it get emails.
+- No List-Unsubscribe header: with it Gmail filed the notes under Promotions; without it Primary (tested).
+- Health: `~/scripts/decidedly/lead-followup/check.py` (hourly) flags a stale drip, overdue steps, send failures, sends after a stop, missing MX, webhook off. `--inject` self-test.
