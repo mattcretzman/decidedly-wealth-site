@@ -410,3 +410,9 @@ OAuth app is IN PRODUCTION (verified Sep 30). Re-auth if ever needed: `python3 ~
 - Leads sheet: headers P1:V1 added; Outcome (U) has a dropdown (Meeting booked / Meeting held / Became client / No show / Not a fit / Spam), Meeting date (V) validates dates. The team fills these; booked meetings with a gclid upload to Google Ads conversion "Booked meeting (offline)" every 30 min (script outside this repo).
 - Google Ads non-brand campaigns (both Exit Planning test arms + Business Succession): 'sell a business' + 'how to value a business for sale' paused, 6 phrase negatives, CPC ceiling $12, ads run 6am-10pm, Dallas + Plano bids -40%. Branded unchanged.
 - Compliance tickets added: T31 (contact-form reply email) and T32 (RJ's valuation tool at decidedlyvaluation.com, a separate project RJ deploys himself).
+
+## Kestra disclosure rule (Nov 25, 2026)
+Every email/page/ad submitted to Kestra ACR must carry, right after the securities disclosure:
+`Investor Disclosures: https://www.kestrafinancial.com/disclosures`
+Check with `python3 ~/scripts/decidedly/kestra_disclosure.py <file-or-dir>` before submitting.
+Vercel git previews don't trigger on this project: preview with `vercel deploy --yes` from the branch worktree.
