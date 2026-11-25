@@ -22,7 +22,7 @@ function contactReplyHtml(firstName) {
       </div>
       <div style="border-top:1px solid #e5e5e5;margin-top:32px;padding-top:16px;text-align:center">
         <p style="color:#999;font-size:11px;line-height:1.6">Decidedly Wealth Management<br>6100 Camp Bowie Blvd, Suite 24 &middot; Fort Worth, TX 76116<br>(817) 615-9711 &middot; contact@decidedlywealth.com</p>
-        <p style="color:#bbb;font-size:10px;margin-top:8px">Securities offered through Kestra Investment Services, LLC (Kestra IS), member FINRA/SIPC. Investment Advisory Services offered through Kestra Advisory Services, LLC (Kestra AS), an affiliate of Kestra IS.</p>
+        <p style="color:#bbb;font-size:10px;margin-top:8px">Securities offered through Kestra Investment Services, LLC (Kestra IS), member FINRA/SIPC. Investment Advisory Services offered through Kestra Advisory Services, LLC (Kestra AS), an affiliate of Kestra IS. Investor Disclosures: <a href="https://www.kestrafinancial.com/disclosures" style="color:#bbb">https://www.kestrafinancial.com/disclosures</a></p>
       </div>
     </div>`;
 }
