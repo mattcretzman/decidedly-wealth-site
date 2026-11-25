@@ -50,6 +50,7 @@ async function notifyTeam({ firstName, lastName, email, phone, interest, message
 const { isSpam } = require('./_spam-filter');
 const { leadRow, RANGE } = require('./_lead-row');
 const { sendContactReply } = require('./_lead-reply');
+const T25 = require('./_t25');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -75,12 +76,14 @@ module.exports = async function handler(req, res) {
       ['https://www.googleapis.com/auth/spreadsheets']
     );
     const sheets = google.sheets({ version: 'v4', auth });
+    // T25 C1 only while Sanger's same-minute reply (T31) is off; otherwise RJ's series starts at C2 on day 3.
+    const t25w = await T25.sendFirst({ sheets, kind: T25.kindOf(source || 'contact-form'), email, first: firstName, last: lastName, message });
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: SHEET_ID,
       range: RANGE,
       valueInputOption: 'USER_ENTERED',
-      requestBody: { values: [leadRow({ ...req.body, source: source || 'contact-form' })] }
+      requestBody: { values: [leadRow({ ...req.body, source: source || 'contact-form' }, { t25_w: t25w })] }
     });
   } catch (err) {
     console.error('Sheet append error:', err.message);

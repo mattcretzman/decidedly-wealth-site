@@ -20,6 +20,7 @@ const INDUSTRY_TAGS = {
 
 const { isSpam } = require('./_spam-filter');
 const { leadRow, RANGE } = require('./_lead-row');
+const T25 = require('./_t25');
 
 const usd = (n) => '$' + Math.round(Number(n) || 0).toLocaleString('en-US');
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -109,11 +110,15 @@ module.exports = async function handler(req, res) {
     if (SHEET_ID && SA_KEY.client_email) {
       const auth = new google.auth.JWT(SA_KEY.client_email, null, SA_KEY.private_key, ['https://www.googleapis.com/auth/spreadsheets']);
       const sheets = google.sheets({ version: 'v4', auth });
+      // T25 B1 (RJ's first email) goes out now, quoting the range the calculator showed. See _t25.js.
+      const lo = Number(result.vLo), hi = Number(result.vHi);
+      const calcRange = lo > 0 && hi >= lo ? `${usd(lo)} to ${usd(hi)}` : '';
+      const t25w = await T25.sendFirst({ sheets, kind: 'calculator', email, first: firstName, range: calcRange });
       await sheets.spreadsheets.values.append({
         spreadsheetId: SHEET_ID,
         range: RANGE,
         valueInputOption: 'USER_ENTERED',
-        requestBody: { values: [leadRow({ ...req.body, lastName: '', source: 'exit-calculator' + (industryTag ? '-' + industry : '') })] }
+        requestBody: { values: [leadRow({ ...req.body, lastName: '', source: 'exit-calculator' + (industryTag ? '-' + industry : '') }, { t25_w: t25w, calc_range: calcRange })] }
       });
     }
   } catch (err) {
