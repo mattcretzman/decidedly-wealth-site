@@ -156,10 +156,8 @@ async function send({ kind, n, first, email, range, tab }) {
       subject: c.subject,
       html: html(c.paras, email, tab),
       text: text(c.paras, email, tab),
-      headers: {
-        'List-Unsubscribe': `<${unsubUrl(email, tab)}&m=oneclick>, <mailto:${CATCH}?subject=stop>`,
-        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'
-      },
+      // No List-Unsubscribe header: it files these 1:1 notes under Gmail Promotions (tested Nov 25). The approved
+      // footer carries the unsubscribe link and "reply stop"; both work (a=unsub, a=inbound).
       tags: [{ name: 't25', value: `${kind === 'calculator' ? 'B' : 'C'}${n}` }, { name: 'tab', value: tab === TEST_TAB ? 'test' : 'live' }]
     })
   });
